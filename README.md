@@ -4,10 +4,10 @@
 
 - **Carousel** se třemi destinacemi (Santorini, Švýcarské Alpy, Bali), šipkami a indikátory, všechny snímky mají stejnou výšku.
 - **Karty** „Naše nabídka“: obrázek, název, popis, cena a tlačítko „Zjistit více“ na sekci dotazů. Na velké obrazovce vedle sebe, na mobilu pod sebou (mřížka `row-cols-1 row-cols-lg-3`).
-- **Accordion** „Časté dotazy“: první odpověď je otevřená, při otevření další se předchozí zavře (`data-bs-parent`).
+- **Accordion** „Časté dotazy“ (3 otázky): první odpověď je otevřená, při otevření další se předchozí zavře (`data-bs-parent`).
 - **Bonus:** štítek „Nejoblíbenější“ a navigace s odkazy na sekce.
 
-Vlastní CSS je jen pro výšku obrázků (`object-fit: cover`) a odsazení kotev pod pevnou navigací.
+Vlastní CSS je jen pro stejnou výšku obrázků (`height` + `object-fit: cover`), zbytek jsou třídy Bootstrapu.
 Fotky ve složce `obrazky/` jsou z [Pixabay](https://pixabay.com) (Pixabay Content License, zdarma k použití):
 
 - `santorini.jpg` – https://pixabay.com/photos/santorini-greece-buildings-houses-416136/
