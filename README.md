@@ -8,6 +8,10 @@
 - **Bonus:** štítek „Nejoblíbenější“ a navigace s odkazy na sekce.
 
 Vlastní CSS je jen pro výšku obrázků (`object-fit: cover`) a odsazení kotev pod pevnou navigací.
-Obrázky ve složce `obrazky/` jsou vlastní ilustrace (SVG).
+Fotky ve složce `obrazky/` jsou z [Pixabay](https://pixabay.com) (Pixabay Content License, zdarma k použití):
+
+- `santorini.jpg` – https://pixabay.com/photos/santorini-greece-buildings-houses-416136/
+- `alpy.jpg` – https://pixabay.com/photos/alpine-lake-oeschinen-lake-mountain-7408477/
+- `bali.jpg` – https://pixabay.com/photos/bali-palm-trees-sunset-travel-2975787/
 
 Spuštění: otevřít `index.html` v prohlížeči.
