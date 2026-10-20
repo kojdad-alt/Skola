@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <title>Bali, Indonésie</title>
+  <defs>
+    <linearGradient id="nebe" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6b4fa3"/>
+      <stop offset="0.5" stop-color="#f08a63"/>
+      <stop offset="0.85" stop-color="#ffd38c"/>
+    </linearGradient>
+    <linearGradient id="more" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2bb3b1"/>
+      <stop offset="1" stop-color="#11706f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#nebe)"/>
+  <circle cx="800" cy="500" r="110" fill="#ffe7a8"/>
+  <rect y="500" width="1600" height="260" fill="url(#more)"/>
+  <path d="M640 530 h320 M690 560 h220 M740 590 h120" stroke="#ffe7a8" stroke-width="7" opacity="0.55"/>
+  <path d="M0 720 C400 680 900 760 1600 700 L1600 900 L0 900 Z" fill="#f2d39a"/>
+  <path d="M0 760 C400 730 900 800 1600 750" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.6"/>
+  <g fill="none" stroke="#4a3220" stroke-width="22" stroke-linecap="round">
+    <path d="M230 880 C250 760 260 620 330 470"/>
+    <path d="M1330 890 C1310 770 1290 640 1220 500"/>
+  </g>
+  <g fill="#1f5b34">
+    <path d="M330 470 C250 420 160 430 100 480 C190 450 260 460 330 470 Z"/>
+    <path d="M330 470 C300 380 230 340 160 340 C240 370 290 410 330 470 Z"/>
+    <path d="M330 470 C390 390 470 370 540 390 C460 400 400 430 330 470 Z"/>
+    <path d="M330 470 C420 450 500 480 550 540 C470 500 400 480 330 470 Z"/>
+    <path d="M1220 500 C1300 450 1390 460 1450 510 C1360 480 1290 490 1220 500 Z"/>
+    <path d="M1220 500 C1250 410 1320 370 1390 370 C1310 400 1260 440 1220 500 Z"/>
+    <path d="M1220 500 C1160 420 1080 400 1010 420 C1090 430 1150 460 1220 500 Z"/>
+    <path d="M1220 500 C1130 480 1050 510 1000 570 C1080 530 1150 510 1220 500 Z"/>
+  </g>
+  <path d="M520 640 l70 -10 l10 30 l-90 0 Z" fill="#8a5a3b"/>
+  <path d="M555 630 l5 -60 l40 55 Z" fill="#ffffff" opacity="0.9"/>
+</svg>
