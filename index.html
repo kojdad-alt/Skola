@@ -3,11 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Toulky světem – cestovní kancelář</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <title>Toulky světem - cestovní kancelář</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* Vlastní CSS jen pro stejnou výšku obrázků */
     .carousel-item img {
       height: 450px;
       object-fit: cover;
@@ -20,12 +18,10 @@
 </head>
 <body class="bg-light">
 
-  <!-- Bonus: navigace s odkazy na sekce -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#destinace">Toulky světem</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
-              aria-controls="menu" aria-expanded="false" aria-label="Otevřít menu">
+      <a class="navbar-brand fw-bold" href="#">Toulky světem</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="menu">
@@ -38,151 +34,129 @@
     </div>
   </nav>
 
-  <main class="container py-4">
+  <div class="container py-4">
 
-    <!-- 1. Carousel – oblíbené destinace -->
-    <section id="destinace" class="mb-5">
-      <div id="carouselDestinace" class="carousel slide rounded-4 overflow-hidden shadow" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselDestinace" data-bs-slide-to="0" class="active"
-                  aria-current="true" aria-label="Snímek 1"></button>
-          <button type="button" data-bs-target="#carouselDestinace" data-bs-slide-to="1" aria-label="Snímek 2"></button>
-          <button type="button" data-bs-target="#carouselDestinace" data-bs-slide-to="2" aria-label="Snímek 3"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="obrazky/santorini.jpg" class="d-block w-100" alt="Bílé domy a modré kopule kostelů na Santorini nad mořem">
-            <div class="carousel-caption bg-dark bg-opacity-50 rounded-3 px-3">
-              <h2 class="h4 fw-bold">Santorini, Řecko</h2>
-              <p class="mb-0">Bílé domky nad mořem, modré kopule kostelů a výhled na sopečnou kalderu.</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="obrazky/alpy.jpg" class="d-block w-100" alt="Horské jezero Oeschinensee pod zasněženými štíty Alp">
-            <div class="carousel-caption bg-dark bg-opacity-50 rounded-3 px-3">
-              <h2 class="h4 fw-bold">Švýcarské Alpy</h2>
-              <p class="mb-0">Zasněžené štíty, horská jezera a túry, na které se nezapomíná.</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="obrazky/bali.jpg" class="d-block w-100" alt="Palmy na Bali odrážející se ve vodě při západu slunce">
-            <div class="carousel-caption bg-dark bg-opacity-50 rounded-3 px-3">
-              <h2 class="h4 fw-bold">Bali, Indonésie</h2>
-              <p class="mb-0">Palmové pláže, teplé moře a chrámy uprostřed rýžových polí.</p>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestinace" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Předchozí</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselDestinace" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Další</span>
-        </button>
+    <div id="destinace" class="carousel slide mb-5 shadow rounded overflow-hidden" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#destinace" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#destinace" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#destinace" data-bs-slide-to="2"></button>
       </div>
-    </section>
-
-    <!-- 2. Karty – nabídka zájezdů -->
-    <section id="nabidka" class="mb-5">
-      <h2 class="text-primary fw-bold text-center mb-4">Naše nabídka</h2>
-      <div class="row row-cols-1 row-cols-lg-3 g-4">
-        <div class="col">
-          <div class="card h-100 border-0 shadow rounded-4 overflow-hidden">
-            <div class="position-relative">
-              <img src="obrazky/santorini.jpg" class="card-img-top" alt="Santorini">
-              <!-- Bonus: štítek Nejoblíbenější -->
-              <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 fs-6 shadow-sm">Nejoblíbenější</span>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title h5 fw-bold text-primary">Řecko – Santorini</h3>
-              <p class="card-text text-secondary">7 nocí v hotelu s výhledem na moře, snídaně a výlet lodí k sopce.</p>
-              <p class="fs-4 fw-bold">24 990 Kč <span class="fs-6 fw-normal text-secondary">/ osoba</span></p>
-              <a href="#dotazy" class="btn btn-primary w-100">Zjistit více</a>
-            </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="obrazky/santorini.jpg" class="d-block w-100" alt="Santorini">
+          <div class="carousel-caption bg-dark bg-opacity-50 rounded">
+            <h3>Santorini, Řecko</h3>
+            <p>Bílé domky nad mořem a modré kopule kostelů.</p>
           </div>
         </div>
-        <div class="col">
-          <div class="card h-100 border-0 shadow rounded-4 overflow-hidden">
-            <img src="obrazky/alpy.jpg" class="card-img-top" alt="Švýcarské Alpy">
-            <div class="card-body">
-              <h3 class="card-title h5 fw-bold text-primary">Švýcarské Alpy</h3>
-              <p class="card-text text-secondary">5 nocí v horské chatě, polopenze a průvodce na třech túrách.</p>
-              <p class="fs-4 fw-bold">18 490 Kč <span class="fs-6 fw-normal text-secondary">/ osoba</span></p>
-              <a href="#dotazy" class="btn btn-primary w-100">Zjistit více</a>
-            </div>
+        <div class="carousel-item">
+          <img src="obrazky/alpy.jpg" class="d-block w-100" alt="Švýcarské Alpy">
+          <div class="carousel-caption bg-dark bg-opacity-50 rounded">
+            <h3>Švýcarské Alpy</h3>
+            <p>Zasněžené štíty, horská jezera a krásné túry.</p>
           </div>
         </div>
-        <div class="col">
-          <div class="card h-100 border-0 shadow rounded-4 overflow-hidden">
-            <img src="obrazky/bali.jpg" class="card-img-top" alt="Bali">
-            <div class="card-body">
-              <h3 class="card-title h5 fw-bold text-primary">Bali – ostrov bohů</h3>
-              <p class="card-text text-secondary">10 nocí u pláže, letenka s jedním přestupem a návštěva chrámů.</p>
-              <p class="fs-4 fw-bold">39 990 Kč <span class="fs-6 fw-normal text-secondary">/ osoba</span></p>
-              <a href="#dotazy" class="btn btn-primary w-100">Zjistit více</a>
-            </div>
+        <div class="carousel-item">
+          <img src="obrazky/bali.jpg" class="d-block w-100" alt="Bali">
+          <div class="carousel-caption bg-dark bg-opacity-50 rounded">
+            <h3>Bali, Indonésie</h3>
+            <p>Palmové pláže, teplé moře a západy slunce.</p>
           </div>
         </div>
       </div>
-    </section>
+      <button class="carousel-control-prev" type="button" data-bs-target="#destinace" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#destinace" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
 
-    <!-- 3. Accordion – časté dotazy -->
-    <section id="dotazy" class="mb-5">
-      <h2 class="text-primary fw-bold text-center mb-4">Časté dotazy</h2>
-      <div class="accordion shadow-sm" id="accordionDotazy">
-        <div class="accordion-item">
-          <h3 class="accordion-header">
-            <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#dotaz1" aria-expanded="true" aria-controls="dotaz1">
-              Co je zahrnuto v ceně zájezdu?
-            </button>
-          </h3>
-          <div id="dotaz1" class="accordion-collapse collapse show" data-bs-parent="#accordionDotazy">
-            <div class="accordion-body">
-              V ceně je letenka nebo doprava, ubytování, strava podle popisu zájezdu, transfer z letiště
-              a cestovní pojištění. Fakultativní výlety si můžete přikoupit na místě.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h3 class="accordion-header">
-            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#dotaz2" aria-expanded="false" aria-controls="dotaz2">
-              Jak probíhá rezervace?
-            </button>
-          </h3>
-          <div id="dotaz2" class="accordion-collapse collapse" data-bs-parent="#accordionDotazy">
-            <div class="accordion-body">
-              Vyberete si zájezd a termín, vyplníte rezervační formulář a do 24 hodin vám pošleme potvrzení.
-              Zálohu 30 % zaplatíte do 7 dní, zbytek nejpozději měsíc před odjezdem.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h3 class="accordion-header">
-            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#dotaz3" aria-expanded="false" aria-controls="dotaz3">
-              Je možné zájezd zrušit?
-            </button>
-          </h3>
-          <div id="dotaz3" class="accordion-collapse collapse" data-bs-parent="#accordionDotazy">
-            <div class="accordion-body">
-              Ano. Do 60 dnů před odjezdem zaplatíte storno poplatek 10 % z ceny, později podle storno podmínek.
-              Při nemoci vám poplatek uhradí cestovní pojištění.
-            </div>
+    <h2 id="nabidka" class="text-primary text-center mb-4">Naše nabídka</h2>
+    <div class="row mb-5">
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 shadow rounded-4">
+          <img src="obrazky/santorini.jpg" class="card-img-top rounded-top-4" alt="Santorini">
+          <div class="card-body">
+            <span class="badge bg-warning text-dark mb-2">Nejoblíbenější</span>
+            <h5 class="card-title text-primary">Řecko - Santorini</h5>
+            <p class="card-text">7 nocí v hotelu u moře se snídaní a výletem lodí.</p>
+            <p class="fs-4 fw-bold">24 990 Kč</p>
+            <a href="#dotazy" class="btn btn-primary">Zjistit více</a>
           </div>
         </div>
       </div>
-    </section>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 shadow rounded-4">
+          <img src="obrazky/alpy.jpg" class="card-img-top rounded-top-4" alt="Švýcarské Alpy">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Švýcarské Alpy</h5>
+            <p class="card-text">5 nocí v horské chatě s polopenzí a průvodcem.</p>
+            <p class="fs-4 fw-bold">18 490 Kč</p>
+            <a href="#dotazy" class="btn btn-primary">Zjistit více</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 shadow rounded-4">
+          <img src="obrazky/bali.jpg" class="card-img-top rounded-top-4" alt="Bali">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Bali - ostrov bohů</h5>
+            <p class="card-text">10 nocí u pláže, letenka a návštěva chrámů.</p>
+            <p class="fs-4 fw-bold">39 990 Kč</p>
+            <a href="#dotazy" class="btn btn-primary">Zjistit více</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  </main>
+    <h2 id="dotazy" class="text-primary text-center mb-4">Časté dotazy</h2>
+    <div class="accordion mb-5" id="accordionDotazy">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#dotaz1">
+            Co je zahrnuto v ceně zájezdu?
+          </button>
+        </h2>
+        <div id="dotaz1" class="accordion-collapse collapse show" data-bs-parent="#accordionDotazy">
+          <div class="accordion-body">
+            V ceně je doprava, ubytování, strava podle popisu zájezdu a cestovní pojištění.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dotaz2">
+            Jak probíhá rezervace?
+          </button>
+        </h2>
+        <div id="dotaz2" class="accordion-collapse collapse" data-bs-parent="#accordionDotazy">
+          <div class="accordion-body">
+            Vyberete si zájezd, vyplníte formulář a do 24 hodin vám pošleme potvrzení.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dotaz3">
+            Je možné zájezd zrušit?
+          </button>
+        </h2>
+        <div id="dotaz3" class="accordion-collapse collapse" data-bs-parent="#accordionDotazy">
+          <div class="accordion-body">
+            Ano, zájezd můžete zrušit. Storno poplatek závisí na tom, kolik dní zbývá do odjezdu.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
   <footer class="bg-primary text-white text-center py-3">
-    <p class="mb-0 small">© 2026 Toulky světem · cestovní kancelář</p>
+    © 2026 Toulky světem
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
