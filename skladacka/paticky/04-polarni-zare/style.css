@@ -1,0 +1,102 @@
+.p04 {
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+  padding: 40px 16px 70px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.p04-text {
+  position: relative;
+  z-index: 1;
+}
+
+.p04-text p {
+  margin: 0 0 6px;
+  opacity: 0.85;
+}
+
+.p04-text .p04-jmeno {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 1;
+}
+
+.p04-text a {
+  color: #fff;
+}
+
+/* Pět do sebe vnořených elips, každá se jinou rychlostí přelévá
+   mezi dvěma barvami stínu. Spodní polovina je schovaná pod okrajem. */
+.p04-zare {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  width: 100%;
+}
+
+.p04-svetlo {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.p04-s1 {
+  animation: p04-jedna 5s ease-in-out infinite alternate;
+}
+
+.p04-s2 {
+  width: 90%;
+  animation: p04-dva 4s ease-in-out infinite alternate;
+}
+
+.p04-s3 {
+  width: 80%;
+  animation: p04-tri 3s ease-in-out infinite alternate;
+}
+
+.p04-s4 {
+  width: 70%;
+  animation: p04-ctyri 2s ease-in-out infinite alternate;
+}
+
+.p04-s5 {
+  width: 60%;
+  animation: p04-pet 1s ease-in-out infinite alternate;
+}
+
+@keyframes p04-jedna {
+  from { box-shadow: 0 0 250px 20px #473c78; }
+  to { box-shadow: 0 0 100px 15px #f72a3b; }
+}
+
+@keyframes p04-dva {
+  from { box-shadow: 0 0 250px 20px #18c499; }
+  to { box-shadow: 0 0 100px 15px #d8f05e; }
+}
+
+@keyframes p04-tri {
+  from { box-shadow: 0 0 250px 20px #ffdd00; }
+  to { box-shadow: 0 0 100px 15px #3e33ff; }
+}
+
+@keyframes p04-ctyri {
+  from { box-shadow: 0 0 250px 20px #781848; }
+  to { box-shadow: 0 0 100px 15px #f2bbe9; }
+}
+
+@keyframes p04-pet {
+  from { box-shadow: 0 0 250px 20px #42f2a1; }
+  to { box-shadow: 0 0 100px 15px #f4f6ad; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p04-svetlo {
+    animation-play-state: paused;
+  }
+}

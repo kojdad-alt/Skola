@@ -1,0 +1,46 @@
+/* Společný základ pro ukázky dílků. Každý dílek má vlastní třídy s předponou
+   (h01-, o01-, p01-), takže jdou libovolně kombinovat bez kolizí. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  background: #f4f5f7;
+  color: #1d2330;
+}
+
+/* Patička na konec stránky i když je obsahu málo. */
+body > main,
+body > .vypln {
+  flex: 1;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Šedá plocha místo obsahu na ukázkách hlavičky/patičky. */
+.vypln {
+  min-height: 40vh;
+  display: grid;
+  place-items: center;
+  color: #8a93a6;
+  font-size: 0.9rem;
+}
+
+/* Delší stránka pro hlavičky, které se mění při posouvání. */
+.vypln-dlouha {
+  min-height: 250vh;
+  place-items: start center;
+  padding-top: 30vh;
+  background: repeating-linear-gradient(#f4f5f7 0 120px, #e6e9ef 120px 240px);
+}

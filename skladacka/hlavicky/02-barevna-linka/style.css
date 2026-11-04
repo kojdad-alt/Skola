@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap");
+
+.h02 {
+  background: #222;
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+}
+
+/* Celý trik: 10 px vysoký pruh s šikmým přechodem tří barev. */
+.h02-linka {
+  height: 10px;
+  background: linear-gradient(141deg, cyan 0%, rebeccapurple 40%, deeppink 90%);
+}
+
+.h02-obsah {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.h02-nazev {
+  color: #fff;
+  text-decoration: none;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+
+.h02-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.h02-menu a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.h02-menu a:hover,
+.h02-menu a:focus-visible {
+  color: #fff;
+  border-bottom-color: deeppink;
+}

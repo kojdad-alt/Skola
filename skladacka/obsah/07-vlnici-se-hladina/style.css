@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+.o07 {
+  --o07-voda: #4973ff;
+  --o07-pozadi: #333;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.o07-uvod {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 80vh;
+  min-height: 480px;
+  overflow: hidden;
+  background: var(--o07-pozadi);
+  color: #fff;
+}
+
+.o07-obsah {
+  max-width: 600px;
+  margin: 0 auto 120px;
+  padding: 0 20px;
+}
+
+.o07-uvod h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 10px;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.o07-uvod p {
+  position: relative;
+  z-index: 1;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Modrý pruh dole. Nad ním se točí dva obří skoro-kulaté čtverce
+   v barvě pozadí, jejich spodní okraj dělá vlny na hladině. */
+.o07-vlny {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background-color: var(--o07-voda);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.o07-vlny::before,
+.o07-vlny::after {
+  content: "";
+  position: absolute;
+  top: -65vw;
+  left: 50%;
+  width: 300vw;
+  height: 300vw;
+  border-radius: 44%;
+  transform: translate(-50%, -75%);
+}
+
+.o07-vlny::before {
+  background: var(--o07-pozadi);
+  animation: o07-vlny 8s linear infinite;
+}
+
+.o07-vlny::after {
+  background: rgba(51, 51, 51, 0.5);
+  animation: o07-vlny 15s linear infinite;
+}
+
+@keyframes o07-vlny {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .o07-vlny::before,
+  .o07-vlny::after {
+    animation-play-state: paused;
+  }
+}

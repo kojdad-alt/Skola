@@ -1,0 +1,2439 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poskládej si stránku</title>
+  <link rel="stylesheet" href="zaklad.css">
+  <style>
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;600;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Open+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+  .dil { display: none; }
+  body:has(#v-h01:checked) .dil-h01,
+  body:has(#v-h02:checked) .dil-h02,
+  body:has(#v-h03:checked) .dil-h03,
+  body:has(#v-h04:checked) .dil-h04,
+  body:has(#v-h05:checked) .dil-h05,
+  body:has(#v-o01:checked) .dil-o01,
+  body:has(#v-o02:checked) .dil-o02,
+  body:has(#v-o03:checked) .dil-o03,
+  body:has(#v-o04:checked) .dil-o04,
+  body:has(#v-o05:checked) .dil-o05,
+  body:has(#v-o06:checked) .dil-o06,
+  body:has(#v-o07:checked) .dil-o07,
+  body:has(#v-p01:checked) .dil-p01,
+  body:has(#v-p02:checked) .dil-p02,
+  body:has(#v-p03:checked) .dil-p03,
+  body:has(#v-p04:checked) .dil-p04,
+  body:has(#v-p05:checked) .dil-p05,
+  body:has(#v-p06:checked) .dil-p06,
+  body:has(#v-p07:checked) .dil-p07,
+  body:has(#v-p08:checked) .dil-p08 { display: contents; }
+  .panel { position: fixed; right: 12px; bottom: 12px; z-index: 9999; max-width: min(360px, calc(100vw - 24px));
+    max-height: calc(100vh - 24px); overflow: auto; background: #fff; color: #1d2330; border: 1px solid #c9ced8;
+    border-radius: 8px; box-shadow: 0 8px 30px rgb(0 0 0 / .25); font: 14px/1.4 system-ui, sans-serif; }
+  .panel summary { cursor: pointer; padding: 10px 14px; font-weight: 700; }
+  .panel fieldset { border: 0; border-top: 1px solid #e3e6ec; margin: 0; padding: 8px 14px 10px; display: grid; gap: 2px; }
+  .panel legend { font-weight: 700; padding: 0; margin-top: 6px; }
+  .panel label { cursor: pointer; }
+  .panel a { display: block; padding: 0 14px 12px; color: #2456c9; }
+  </style>
+  <style>
+/* ===== hlavicky/01-zvyraznene-odkazy ===== */
+.h01 {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding: 0 40px;
+  background-image: linear-gradient(to top, #d6e5f6 0%, #e7f0fd 100%);
+  color: #9197ae;
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+}
+
+.h01 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.h01-logo {
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 18px;
+}
+
+.h01-odkazy {
+  display: flex;
+}
+
+/* Bílý pruh ve spodní půlce odkazu, při najetí vyroste přes celý text. */
+.h01-odkaz {
+  margin-left: 20px;
+  padding: 2px 4px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: inset 0 -10px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(0);
+  transition: all 0.4s ease, transform 0.2s ease;
+}
+
+.h01-odkaz:hover,
+.h01-odkaz:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: inset 0 -20px 0 #fff;
+}
+
+.h01-ikona {
+  display: none;
+  width: 32px;
+  height: 32px;
+}
+
+.h01-ikona svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 799px) {
+  .h01 {
+    padding: 0 20px;
+  }
+
+  .h01-odkazy {
+    display: none;
+  }
+
+  .h01-ikona {
+    display: block;
+  }
+}
+
+/* ===== hlavicky/02-barevna-linka ===== */
+.h02 {
+  background: #222;
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+}
+
+/* Celý trik: 10 px vysoký pruh s šikmým přechodem tří barev. */
+.h02-linka {
+  height: 10px;
+  background: linear-gradient(141deg, cyan 0%, rebeccapurple 40%, deeppink 90%);
+}
+
+.h02-obsah {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.h02-nazev {
+  color: #fff;
+  text-decoration: none;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+
+.h02-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.h02-menu a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.h02-menu a:hover,
+.h02-menu a:focus-visible {
+  color: #fff;
+  border-bottom-color: deeppink;
+}
+
+/* ===== hlavicky/03-zmensujici-se ===== */
+/* Vnější blok je vyšší než vnitřní. Oba jsou sticky: vnější se přilepí
+   s posunem nahoru o rozdíl výšek, vnitřní se přilepí ke stropu vnějšího.
+   Při posouvání se tak hlavička "zmenší" ze 110 px na 70 px bez JavaScriptu. */
+.h03 {
+  --h03-vnejsi: 110px;
+  --h03-vnitrni: 70px;
+  position: sticky;
+  top: calc((var(--h03-vnejsi) - var(--h03-vnitrni)) * -1);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  height: var(--h03-vnejsi);
+  background-color: #fff;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  font-family: "DM Sans", sans-serif;
+  color: #1d2330;
+}
+
+.h03-vnitrek {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1280px;
+  height: var(--h03-vnitrni);
+  margin: 0 auto;
+}
+
+.h03-logo {
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.h03-menu {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.h03-menu a {
+  position: relative;
+  display: none;
+  margin-left: 1.75rem;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.h03-menu .h03-tlacitko {
+  display: inline-block;
+}
+
+/* Podtržení, které se roztáhne od středu. */
+.h03-menu a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentcolor;
+  transform: scaleX(0);
+  transition: 0.25s ease;
+}
+
+.h03-menu a:hover::after,
+.h03-menu a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@media (min-width: 800px) {
+  .h03-menu a {
+    display: inline-block;
+  }
+
+  .h03-menu .h03-tlacitko {
+    display: none;
+  }
+}
+
+/* ===== hlavicky/04-rozmazane-pozadi ===== */
+/* Pruh přes horní část okna: rozmaže, co je pod ním, přidá jemný šum
+   a maskou se dolů ztrácí, takže nemá ostrý okraj. */
+.h04-filtr {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 9rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='1'/%3E%3C/filter%3E%3Crect width='100' height='100' style='filter:url(%23f)' opacity='.2'/%3E%3C/svg%3E");
+  -webkit-mask: linear-gradient(black 7rem, transparent);
+  mask: linear-gradient(black 7rem, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+.h04 {
+  position: sticky;
+  top: 0;
+  z-index: 11;
+  width: 100%;
+  height: 8rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+.h04-obsah {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: calc(100% - 3rem);
+  max-width: 800px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.h04-titul {
+  text-decoration: none;
+}
+
+.h04-nad {
+  display: block;
+  line-height: 1em;
+  color: #666;
+}
+
+.h04-jmeno {
+  display: block;
+  font-size: 2em;
+  font-weight: 700;
+  color: #333;
+  mix-blend-mode: difference;
+}
+
+.h04-menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.h04-menu a {
+  color: #444;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.h04-menu a:hover,
+.h04-menu a:focus-visible {
+  text-decoration: underline;
+}
+
+/* ===== hlavicky/05-duhove-vlny ===== */
+.h05 {
+  position: relative;
+  overflow: hidden;
+  background: #f2f5f5;
+  font-family: "Fredoka", sans-serif;
+}
+
+.h05-obsah {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 24px;
+}
+
+.h05-nazev {
+  color: #333391;
+  text-decoration: none;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.h05-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+.h05-menu a {
+  color: #333391;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.h05-menu a:hover,
+.h05-menu a:focus-visible {
+  color: #e91388;
+}
+
+/* SVG je dlouhé 2660 jednotek, okno ukazuje 960. Každá vlna jezdí
+   tam a zpátky jinou rychlostí a s jiným zpožděním. Výšku dopočítá
+   prohlížeč z viewBoxu, takže je vidět celá vlna i se spodním okrajem. */
+.h05-vlny {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 120px;
+  margin-top: -48px;
+  overflow: visible;
+}
+
+.h05-vlny > path,
+.h05-vlny g > path {
+  animation: h05-vlna 17390ms cubic-bezier(0.25, 0, 0.75, 1) infinite alternate-reverse both;
+  will-change: transform;
+}
+
+.h05-vlny > path:nth-of-type(1) {
+  animation-duration: 20580ms;
+}
+
+.h05-vlny > path:nth-of-type(2) {
+  animation-delay: -2690ms;
+  animation-duration: 13580ms;
+}
+
+.h05-vlny g > path:nth-of-type(1) {
+  animation-delay: -820ms;
+  animation-duration: 10730ms;
+}
+
+.h05-vlny > path:nth-of-type(1),
+.h05-vlny g > path:nth-of-type(2) {
+  animation-direction: alternate;
+}
+
+@keyframes h05-vlna {
+  0% {
+    transform: translateX(-750px);
+  }
+  100% {
+    transform: translateX(-20px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .h05-vlny > path,
+  .h05-vlny g > path {
+    animation-play-state: paused;
+  }
+}
+
+/* ===== obsah/01-text-pres-fotku ===== */
+.o01 {
+  --o01-prechod: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  --o01-barva: #637498;
+  position: relative;
+  overflow: hidden;
+  padding: 0 40px 120px;
+  background-image: var(--o01-prechod);
+  font-family: "Raleway", sans-serif;
+}
+
+.o01-obsah {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1110px;
+  min-height: 600px;
+  margin: 0 auto;
+}
+
+/* Poloprůhledný blok s rozmazaným pozadím, přijede zprava. */
+.o01-text {
+  position: relative;
+  z-index: 1;
+  width: 70%;
+  max-width: 620px;
+  margin-top: 60px;
+  padding: 40px;
+  color: var(--o01-barva);
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: o01-text 0.8s 0.6s ease backwards;
+}
+
+.o01-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  animation: o01-cara 0.8s 0.6s ease backwards;
+}
+
+.o01-nadtitulek {
+  margin: 0 0 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.o01-titulek {
+  margin: 0 0 24px;
+  text-transform: uppercase;
+  font-weight: 200;
+  letter-spacing: 2px;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.o01-popis {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.5px;
+}
+
+.o01-tlacitko {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 16px 32px;
+  border: 1px solid rgba(99, 116, 152, 0.4);
+  color: var(--o01-barva);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 rgba(99, 116, 152, 0.2);
+  transition: all 0.4s ease;
+}
+
+.o01-tlacitko:hover,
+.o01-tlacitko:focus-visible {
+  border-color: rgba(99, 116, 152, 0.1);
+  box-shadow: inset 0 -80px 0 rgba(99, 116, 152, 0.1);
+  transform: translateY(-5px);
+}
+
+/* Fotka vyjede zespodu, přes ni sjede barevná clona. */
+.o01-foto {
+  position: absolute;
+  right: 0;
+  width: 60%;
+  max-width: 600px;
+  height: 600px;
+  margin: 0;
+  overflow: hidden;
+  transform: translateY(100px);
+  animation: o01-foto 0.6s 0.2s ease backwards;
+}
+
+.o01-foto::before,
+.o01-foto::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-image: var(--o01-prechod);
+}
+
+.o01-foto::before {
+  top: 100%;
+  height: 0;
+  animation: o01-clona 1s 0.2s ease backwards;
+}
+
+.o01-foto::after {
+  top: 0;
+  height: 100%;
+  opacity: 0.2;
+}
+
+.o01-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes o01-text {
+  0% {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
+
+@keyframes o01-cara {
+  0% {
+    right: 0;
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes o01-foto {
+  0% {
+    opacity: 0;
+    transform: translateY(200px);
+  }
+}
+
+@keyframes o01-clona {
+  0% {
+    top: 0;
+    height: 100%;
+  }
+}
+
+@media (max-width: 799px) {
+  .o01 {
+    padding: 0 20px 100px;
+  }
+
+  .o01-obsah {
+    min-height: 500px;
+  }
+
+  .o01-text {
+    margin: 90px 0 40px;
+    padding: 20px;
+  }
+
+  .o01-titulek {
+    margin-bottom: 16px;
+    font-size: 28px;
+  }
+
+  .o01-popis {
+    font-size: 14px;
+  }
+
+  .o01-foto {
+    right: -6%;
+    width: 70%;
+    height: 480px;
+    transform: translateY(80px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .o01-text,
+  .o01-text::before,
+  .o01-foto,
+  .o01-foto::before {
+    animation: none;
+  }
+}
+
+/* ===== obsah/02-sikmy-uvod ===== */
+.o02 {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #eee;
+}
+
+/* Fotka s modrým přechodem a šikmým spodním okrajem přes clip-path. */
+.o02-uvod {
+  display: grid;
+  place-items: center;
+  height: 85vh;
+  min-height: 420px;
+  padding: 16px;
+  background-image:
+    linear-gradient(to right bottom, rgba(76, 216, 255, 0.8), rgba(30, 108, 217, 0.8)),
+    url("../obrazky/santorini.jpg");
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+}
+
+.o02-text {
+  text-align: center;
+  margin-bottom: 10vh;
+}
+
+.o02-nadpis {
+  margin: 0 0 30px;
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+}
+
+.o02-hlavni {
+  display: block;
+  font-size: clamp(26px, 5vw, 48px);
+  font-weight: 400;
+  letter-spacing: 5px;
+}
+
+.o02-vedlejsi {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 7.4px;
+}
+
+.o02-tlacitko {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 100px;
+  background-color: #fff;
+  color: #777;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.o02-tlacitko:hover,
+.o02-tlacitko:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.o02-tlacitko:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== obsah/03-zaobleny-uvod ===== */
+/* Spodní okraj je elipsa: border-radius 85 % do šířky a 30 % do výšky.
+   Fotka má background-attachment: fixed, takže při posouvání stojí. */
+.o03-uvod {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: url("../obrazky/bali.jpg") center / cover fixed;
+  border-radius: 0 0 85% 85% / 30%;
+  text-align: center;
+}
+
+.o03-prekryv {
+  width: 100%;
+  height: 100%;
+  padding: 50px 16px;
+  color: #fff;
+  text-shadow: 1px 1px 1px #333;
+  background-image: linear-gradient(135deg, #9f05ff69 10%, #fd5e086b 100%);
+}
+
+.o03 h1 {
+  margin: 0 0 30px;
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(48px, 9vw, 80px);
+  line-height: 1.1;
+}
+
+.o03 h2,
+.o03 p {
+  margin: 0 auto 30px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.o03 h2 {
+  font-size: 1.2rem;
+}
+
+.o03 p {
+  max-width: 60ch;
+}
+
+.o03-tlacitko {
+  display: inline-block;
+  margin-bottom: 50px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: #fff;
+  color: #333;
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+  text-shadow: none;
+  box-shadow: 0 3px 20px 0 #0000003b;
+}
+
+/* ===== obsah/04-sikmy-prechod-s-mobilem ===== */
+.o04 {
+  --o04-barva-1: #21d4fd;
+  --o04-barva-2: #b721ff;
+  --o04-barva-3: #08aeea;
+  --o04-barva-4: #2af598;
+  position: relative;
+  isolation: isolate;
+  min-height: 80vh;
+  font-family: "Varela Round", sans-serif;
+}
+
+/* Pozadí je obdélník zkosený o -10° od levého horního rohu.
+   Dva rozmazané pruhy v něm dělají jemné barevné skvrny. */
+.o04-pozadi {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(19deg, var(--o04-barva-1), var(--o04-barva-2));
+  transform-origin: 0 0;
+  transform: skewY(-10deg);
+}
+
+.o04-pozadi::before,
+.o04-pozadi::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 33.333%;
+  opacity: 0.3;
+  filter: blur(15px);
+}
+
+.o04-pozadi::before {
+  right: 0;
+  background: var(--o04-barva-1);
+}
+
+.o04-pozadi::after {
+  bottom: 0;
+  background: var(--o04-barva-2);
+}
+
+.o04-obsah {
+  margin: 0 auto;
+  padding: 4rem 16px;
+  text-align: center;
+}
+
+.o04-text h1,
+.o04-text p {
+  color: #fff;
+  text-shadow: 0 0.5rem 1rem rgba(50, 0, 100, 0.1);
+}
+
+.o04-text h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.2;
+}
+
+.o04-text p {
+  margin: 1rem 0 2rem;
+  font-size: 1.5rem;
+}
+
+.o04-tlacitko {
+  display: inline-block;
+  padding: 1.5rem 2rem;
+  border-radius: 3px;
+  background: #fff;
+  color: var(--o04-barva-3);
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 1.75rem 2rem -0.4rem rgba(50, 0, 100, 0.15);
+  transition: all 0.2s;
+}
+
+.o04-tlacitko:hover,
+.o04-tlacitko:focus-visible {
+  color: var(--o04-barva-4);
+  box-shadow: 0 1.75rem 3rem 0 rgba(50, 0, 100, 0.1);
+  transform: scale(1.05);
+}
+
+.o04-tlacitko:active {
+  box-shadow: 0 1.75rem 2.5rem -0.2rem rgba(50, 0, 100, 0.125);
+  transform: scale(1.025);
+}
+
+.o04-obrazek {
+  position: relative;
+  margin-top: 5rem;
+  transform: rotate(-10deg);
+}
+
+/* Telefon z jednoho divu: ::before je displej, ::after tlačítko. */
+.o04-mobil {
+  display: inline-block;
+  padding: 4rem 0.6rem 0;
+  border-radius: 2rem;
+  background: #fff;
+  text-align: center;
+  box-shadow:
+    -1rem 1.75rem 2rem -0.4rem rgba(50, 0, 100, 0.1),
+    -0.2rem 0.2rem 0.5rem rgba(50, 0, 100, 0.05),
+    inset 0.5rem -0.5rem 0.5rem -0.4rem rgba(50, 0, 100, 0.1);
+}
+
+.o04-mobil::before {
+  content: "";
+  display: block;
+  width: 16rem;
+  max-width: 60vw;
+  padding-top: 177.5%;
+  background-color: var(--o04-barva-3);
+  background-image: linear-gradient(0deg, var(--o04-barva-3) 0%, var(--o04-barva-4) 100%);
+}
+
+.o04-mobil::after {
+  content: "";
+  display: inline-block;
+  margin: 0.6rem;
+  padding: 1.4rem;
+  border: 1px solid #f1f1f1;
+  border-radius: 2rem;
+  box-shadow: inset -0.05rem 0.05rem 0.5rem 0 rgba(50, 0, 100, 0.05);
+}
+
+@media (min-width: 58rem) {
+  .o04-obsah {
+    display: flex;
+    justify-content: space-between;
+    max-width: 54rem;
+    padding: 10rem 4rem;
+    text-align: left;
+  }
+
+  .o04-obrazek {
+    margin: 0;
+    transform: translateY(-5rem) rotate(-10deg);
+  }
+}
+
+/* ===== obsah/05-casova-osa-karty ===== */
+.o05 {
+  --o05-text: rgb(30, 30, 30);
+  --o05-pozadi: rgb(245, 245, 245);
+  isolation: isolate;
+  display: grid;
+  align-content: center;
+  gap: 2rem;
+  padding: 3rem 1rem;
+  font-family: "Poppins", sans-serif;
+  color: var(--o05-text);
+  background: var(--o05-pozadi);
+}
+
+.o05-nadpis {
+  margin: 0;
+  text-align: center;
+}
+
+/* Mřížka: na mobilu čára + jeden sloupec, od 40rem sloupec – čára – sloupec. */
+.o05-osa {
+  --col-gap: 2rem;
+  --row-gap: 2rem;
+  --line-w: 0.25rem;
+  display: grid;
+  grid-template-columns: var(--line-w) 1fr;
+  grid-auto-columns: max-content;
+  column-gap: var(--col-gap);
+  width: min(60rem, 90%);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.o05-osa::before {
+  content: "";
+  grid-column: 1;
+  grid-row: 1 / span 20;
+  background: rgb(225, 225, 225);
+  border-radius: calc(var(--line-w) / 2);
+}
+
+.o05-osa li:not(:last-child) {
+  margin-bottom: var(--row-gap);
+}
+
+.o05-osa li {
+  --inlineP: 1.5rem;
+  grid-column: 2;
+  grid-row: span 2;
+  display: grid;
+  grid-template-rows: min-content min-content min-content;
+  margin-inline: var(--inlineP);
+}
+
+.o05-rok {
+  --dateH: 3rem;
+  position: relative;
+  display: grid;
+  place-content: center;
+  height: var(--dateH);
+  margin-inline: calc(var(--inlineP) * -1);
+  border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2);
+  background-color: var(--accent-color);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Přehyb pásky pod rokem. */
+.o05-rok::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: var(--inlineP);
+  aspect-ratio: 1;
+  background: var(--accent-color);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* Kroužek na čáře. */
+.o05-rok::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(100% + var(--col-gap) + var(--line-w) / 2);
+  width: 2rem;
+  aspect-ratio: 1;
+  background: var(--o05-pozadi);
+  border: 0.3rem solid var(--accent-color);
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+}
+
+.o05-titul,
+.o05-popis {
+  position: relative;
+  padding-inline: 1.5rem;
+  background: var(--o05-pozadi);
+}
+
+.o05-titul {
+  overflow: hidden;
+  padding-block: 1.5rem 1rem;
+  font-weight: 500;
+}
+
+.o05-popis {
+  padding-block-end: 1.5rem;
+  font-weight: 300;
+}
+
+/* Rozmazané elipsy jako stín nad a pod kartou. */
+.o05-titul::before,
+.o05-popis::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 90%;
+  height: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  filter: blur(4px);
+  transform: translate(-50%, 50%);
+}
+
+.o05-titul::before {
+  bottom: calc(100% + 0.125rem);
+}
+
+.o05-popis::before {
+  z-index: -1;
+  bottom: 0.25rem;
+}
+
+@media (min-width: 40rem) {
+  .o05-osa {
+    grid-template-columns: 1fr var(--line-w) 1fr;
+  }
+
+  .o05-osa::before {
+    grid-column: 2;
+  }
+
+  .o05-osa li:nth-child(odd) {
+    grid-column: 1;
+  }
+
+  .o05-osa li:nth-child(even) {
+    grid-column: 3;
+  }
+
+  .o05-osa li:nth-child(2) {
+    grid-row: 2 / 4;
+  }
+
+  .o05-osa li:nth-child(odd) .o05-rok::before {
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+  }
+
+  .o05-osa li:nth-child(odd) .o05-rok::after {
+    left: calc(100% + var(--col-gap) + var(--line-w) / 2);
+    transform: translate(-50%, -50%);
+  }
+
+  .o05-osa li:nth-child(odd) .o05-rok {
+    border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+  }
+}
+
+/* ===== obsah/06-hadi-casova-osa ===== */
+.o06 {
+  --o06-podklad: #212121;
+  --o06-barva: orangered;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px;
+  background: #111;
+  font-family: sans-serif;
+}
+
+.o06-nadpis {
+  margin: 0 0 12px;
+  color: #eee;
+}
+
+.o06-osa {
+  margin: 20px auto;
+  padding: 20px;
+  background: var(--o06-podklad);
+}
+
+.o06-karta {
+  position: relative;
+  max-width: 400px;
+}
+
+/* Liché karty mají čáru vlevo, sudé vpravo. Spolu dají křivku jako had. */
+.o06-karta:nth-child(odd) {
+  padding: 30px 0 30px 30px;
+}
+
+.o06-karta:nth-child(even) {
+  padding: 30px 30px 30px 0;
+}
+
+.o06-karta::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  border: solid var(--o06-barva);
+}
+
+.o06-karta:nth-child(odd)::before {
+  left: 0;
+  top: -4.5px;
+  bottom: -4.5px;
+  border-width: 5px 0 5px 5px;
+  border-radius: 50px 0 0 50px;
+}
+
+@media (max-width: 400px) {
+  .o06-karta:nth-child(odd)::before {
+    top: -5px;
+    bottom: -5px;
+  }
+}
+
+.o06-karta:nth-child(even)::before {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-width: 5px 5px 5px 0;
+  border-radius: 0 50px 50px 0;
+}
+
+.o06-karta:first-child::before {
+  border-top: 0;
+  border-top-left-radius: 0;
+}
+
+.o06-karta:last-child:nth-child(odd)::before {
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
+}
+
+.o06-karta:last-child:nth-child(even)::before {
+  border-bottom: 0;
+  border-bottom-right-radius: 0;
+}
+
+.o06-info {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  background: #333;
+  color: gray;
+}
+
+.o06-info p {
+  margin: 0;
+}
+
+.o06-titul {
+  position: relative;
+  margin: 0 0 4px;
+  color: var(--o06-barva);
+}
+
+/* Tečka na čáře. */
+.o06-titul::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 999px;
+  border: 3px solid var(--o06-barva);
+}
+
+.o06-karta:nth-child(even) > .o06-info > .o06-titul {
+  text-align: right;
+}
+
+.o06-karta:nth-child(odd) > .o06-info > .o06-titul::before {
+  left: -45px;
+}
+
+.o06-karta:nth-child(even) > .o06-info > .o06-titul::before {
+  right: -45px;
+}
+
+/* ===== obsah/07-vlnici-se-hladina ===== */
+.o07 {
+  --o07-voda: #4973ff;
+  --o07-pozadi: #333;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.o07-uvod {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 80vh;
+  min-height: 480px;
+  overflow: hidden;
+  background: var(--o07-pozadi);
+  color: #fff;
+}
+
+.o07-obsah {
+  max-width: 600px;
+  margin: 0 auto 120px;
+  padding: 0 20px;
+}
+
+.o07-uvod h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 10px;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.o07-uvod p {
+  position: relative;
+  z-index: 1;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Modrý pruh dole. Nad ním se točí dva obří skoro-kulaté čtverce
+   v barvě pozadí, jejich spodní okraj dělá vlny na hladině. */
+.o07-vlny {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background-color: var(--o07-voda);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.o07-vlny::before,
+.o07-vlny::after {
+  content: "";
+  position: absolute;
+  top: -65vw;
+  left: 50%;
+  width: 300vw;
+  height: 300vw;
+  border-radius: 44%;
+  transform: translate(-50%, -75%);
+}
+
+.o07-vlny::before {
+  background: var(--o07-pozadi);
+  animation: o07-vlny 8s linear infinite;
+}
+
+.o07-vlny::after {
+  background: rgba(51, 51, 51, 0.5);
+  animation: o07-vlny 15s linear infinite;
+}
+
+@keyframes o07-vlny {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .o07-vlny::before,
+  .o07-vlny::after {
+    animation-play-state: paused;
+  }
+}
+
+/* ===== paticky/01-odkazy-v-mrizce ===== */
+.p01 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 48px 16px 28px;
+  background-color: #002a38;
+  color: #fff;
+  line-height: 1.3;
+  font-family: Menlo, Consolas, monospace;
+}
+
+.p01-odkazy {
+  display: inline-grid;
+  grid-auto-flow: row;
+  gap: 24px;
+  justify-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 500px) {
+  .p01-odkazy {
+    grid-auto-flow: column;
+  }
+}
+
+.p01-odkazy a {
+  color: #fff;
+  text-decoration: none;
+  box-shadow: inset 0 -1px 0 hsla(0, 0%, 100%, 0.4);
+  transition: box-shadow 0.2s;
+}
+
+.p01-odkazy a:hover,
+.p01-odkazy a:focus-visible {
+  box-shadow: inset 0 -1.2em 0 hsla(0, 0%, 100%, 0.4);
+}
+
+/* Ruka je v HTML poslední, ale mřížka ji posune na první místo,
+   takže selektor li:hover ~ li na ni dosáhne od každého odkazu. */
+.p01-ruka {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.p01-ruka span {
+  display: inline-block;
+}
+
+.p01-odkazy li:hover ~ .p01-ruka span {
+  animation: p01-mavani 0.3s infinite;
+}
+
+.p01-copy {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+@keyframes p01-mavani {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p01-odkazy li:hover ~ .p01-ruka span {
+    animation: none;
+  }
+}
+
+/* ===== paticky/02-vysouvaci ===== */
+/* Patička je přilepená dole a vysune se, když na ni najedeš myší. */
+.p02 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2em;
+  overflow: hidden;
+  z-index: 999;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 300;
+  color: #fff;
+  transition: height 1s ease;
+}
+
+.p02:hover,
+.p02:focus-within {
+  height: 10em;
+}
+
+.p02-tlacitko {
+  position: relative;
+  z-index: 1;
+  width: 35px;
+  height: 35px;
+  margin: 0 auto;
+  border: 12px solid #727172;
+  border-radius: 35px;
+  transition: border-color 1s ease;
+}
+
+.p02-tlacitko:hover {
+  border-color: #3a3a3a;
+}
+
+.p02-panel {
+  height: 100%;
+  margin-top: -18px;
+  padding: 48px 16px 0;
+  background: #3a3a3a;
+  text-align: center;
+}
+
+.p02-nadpis {
+  margin: 0 0 6px;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.p02-text {
+  margin: 0;
+  opacity: 0.8;
+}
+
+.p02-text a {
+  color: #fff;
+}
+
+/* ===== paticky/03-zarici-ikony ===== */
+.p03 {
+  --p03-pozadi: #323b40;
+  --p03-modra: #0096a1;
+  --p03-modra-svetla: #0ebac7;
+  padding: 20px 16px 8px;
+  background: var(--p03-pozadi);
+  color: #e9eaea;
+  font-family: "Source Sans 3", Helvetica, sans-serif;
+  text-align: center;
+}
+
+.p03-text {
+  margin: 0 0 8px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.p03-site {
+  margin: 0;
+  padding: 0 0 4px;
+  list-style: none;
+}
+
+.p03-site li {
+  display: inline;
+}
+
+.p03-site a {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 20px;
+  box-sizing: content-box;
+  border-radius: 4px;
+  transition: 0.2s ease-in;
+}
+
+.p03-site svg {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.p03-site svg * {
+  fill: var(--p03-modra);
+  transition: 0.2s ease-in;
+}
+
+.p03-site .p03-zare * {
+  fill: transparent;
+}
+
+/* Ikona vyskočí nahoru a pod ní se objeví "odraz" ze stínů. */
+.p03-site a:hover,
+.p03-site a:focus-visible {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 -3px 0 0 rgba(0, 0, 0, 0.1),
+    0 6px 8px rgba(0, 0, 0, 0.05),
+    0 24px 24px rgba(0, 0, 0, 0.05),
+    0 36px 36px rgba(0, 0, 0, 0.05),
+    0 64px 64px rgba(0, 0, 0, 0.15),
+    0 64px 128px rgba(0, 0, 0, 0.15),
+    0 86px 8px 6px rgba(14, 186, 199, 0.25),
+    0 83px 4px 0 rgba(14, 186, 199, 0.95);
+}
+
+.p03-site a:hover svg *,
+.p03-site a:focus-visible svg * {
+  fill: var(--p03-modra-svetla);
+}
+
+.p03-site a:hover .p03-zare,
+.p03-site a:focus-visible .p03-zare {
+  filter: blur(2px);
+}
+
+.p03-site a:hover .p03-zare *,
+.p03-site a:focus-visible .p03-zare * {
+  fill: rgba(14, 186, 199, 0.6);
+}
+
+/* ===== paticky/04-polarni-zare ===== */
+.p04 {
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+  padding: 40px 16px 70px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.p04-text {
+  position: relative;
+  z-index: 1;
+}
+
+.p04-text p {
+  margin: 0 0 6px;
+  opacity: 0.85;
+}
+
+.p04-text .p04-jmeno {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 1;
+}
+
+.p04-text a {
+  color: #fff;
+}
+
+/* Pět do sebe vnořených elips, každá se jinou rychlostí přelévá
+   mezi dvěma barvami stínu. Spodní polovina je schovaná pod okrajem. */
+.p04-zare {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  width: 100%;
+}
+
+.p04-svetlo {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.p04-s1 {
+  animation: p04-jedna 5s ease-in-out infinite alternate;
+}
+
+.p04-s2 {
+  width: 90%;
+  animation: p04-dva 4s ease-in-out infinite alternate;
+}
+
+.p04-s3 {
+  width: 80%;
+  animation: p04-tri 3s ease-in-out infinite alternate;
+}
+
+.p04-s4 {
+  width: 70%;
+  animation: p04-ctyri 2s ease-in-out infinite alternate;
+}
+
+.p04-s5 {
+  width: 60%;
+  animation: p04-pet 1s ease-in-out infinite alternate;
+}
+
+@keyframes p04-jedna {
+  from { box-shadow: 0 0 250px 20px #473c78; }
+  to { box-shadow: 0 0 100px 15px #f72a3b; }
+}
+
+@keyframes p04-dva {
+  from { box-shadow: 0 0 250px 20px #18c499; }
+  to { box-shadow: 0 0 100px 15px #d8f05e; }
+}
+
+@keyframes p04-tri {
+  from { box-shadow: 0 0 250px 20px #ffdd00; }
+  to { box-shadow: 0 0 100px 15px #3e33ff; }
+}
+
+@keyframes p04-ctyri {
+  from { box-shadow: 0 0 250px 20px #781848; }
+  to { box-shadow: 0 0 100px 15px #f2bbe9; }
+}
+
+@keyframes p04-pet {
+  from { box-shadow: 0 0 250px 20px #42f2a1; }
+  to { box-shadow: 0 0 100px 15px #f4f6ad; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p04-svetlo {
+    animation-play-state: paused;
+  }
+}
+
+/* ===== paticky/05-bublinky ===== */
+.p05 {
+  --p05-barva: #ed5565;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 12rem;
+  margin-top: 10rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Bubliny jsou jen kruhy, které rostou a stoupají. Rozmazání + ostrý
+   práh průhlednosti ve filtru je slije dohromady jako tekutinu. */
+.p05-bubliny {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  background: var(--p05-barva);
+  filter: url("#p05-blob");
+}
+
+.p05-bublina {
+  position: absolute;
+  left: var(--position, 50%);
+  background: var(--p05-barva);
+  border-radius: 100%;
+  animation:
+    p05-velikost var(--time, 4s) ease-in infinite var(--delay, 0s),
+    p05-pohyb var(--time, 4s) ease-in infinite var(--delay, 0s);
+  transform: translate(-50%, 100%);
+}
+
+.p05-obsah {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  padding: 2rem;
+  background: var(--p05-barva);
+}
+
+.p05-obsah a,
+.p05-obsah p {
+  color: #f5f7fa;
+  text-decoration: none;
+}
+
+.p05-obsah a:hover {
+  text-decoration: underline;
+}
+
+.p05-obsah b {
+  color: #fff;
+}
+
+.p05-sloupce {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.p05-sloupce > div {
+  margin: 0.25rem 0;
+}
+
+.p05-sloupce > div > * {
+  margin-right: 0.5rem;
+}
+
+.p05-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.p05-logo span {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--p05-barva);
+  font-weight: 700;
+}
+
+.p05-logo p {
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.p05-filtr {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+@media (max-width: 600px) {
+  .p05-obsah {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@keyframes p05-velikost {
+  0%,
+  75% {
+    width: var(--size, 4rem);
+    height: var(--size, 4rem);
+  }
+  100% {
+    width: 0;
+    height: 0;
+  }
+}
+
+@keyframes p05-pohyb {
+  0% {
+    bottom: -4rem;
+  }
+  100% {
+    bottom: var(--distance, 10rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p05-bublina {
+    animation-play-state: paused;
+  }
+}
+
+/* ===== paticky/06-mizejici-rozmazana ===== */
+.p06 {
+  --p06-m: 4rem;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  gap: 2vw;
+  padding: 12rem 2vw 4rem;
+  color: #d5d5d5;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 300;
+  font-size: calc(0.3 * var(--p06-m));
+}
+
+/* Černý přechod odspodu nahoru: nahoře průhledný, dole plný. */
+.p06::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -7;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0) 5%,
+    rgba(0, 0, 0, 0.3) 20%,
+    rgba(0, 0, 0, 0.6) 30%,
+    rgba(0, 0, 0, 0.8) 40%,
+    #000 50%
+  );
+}
+
+/* Rozmazání toho, co je pod patičkou, s maskou: nahoře nic, dole naplno. */
+.p06-rozmazani {
+  position: absolute;
+  inset: 0;
+  z-index: -5;
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  mask-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5) 10%, rgba(0, 0, 0, 0.8) 20%, #000 30%);
+  -webkit-mask-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5) 10%, rgba(0, 0, 0, 0.8) 20%, #000 30%);
+}
+
+.p06 h3 {
+  margin: 0;
+  font-weight: 500;
+  font-size: calc(0.6 * var(--p06-m));
+  color: #fff;
+}
+
+.p06 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.p06 a:hover {
+  color: #fff;
+}
+
+.p06-sloupec {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6em;
+  width: 28%;
+  padding: calc(0.3 * var(--p06-m)) calc(0.8 * var(--p06-m));
+}
+
+.p06-sloupec p {
+  margin: 0;
+}
+
+.p06-karta {
+  background-color: #121212;
+  border-radius: calc(0.5 * var(--p06-m));
+}
+
+.p06-srdce {
+  color: #ba6573;
+}
+
+.p06-site {
+  display: flex;
+  gap: 1rem;
+}
+
+.p06-ikona {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(0.8 * var(--p06-m));
+  height: calc(0.8 * var(--p06-m));
+  border-radius: calc(0.1 * var(--p06-m));
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+  font-size: 0.8em;
+}
+
+.p06-mala {
+  color: #818181;
+  font-size: smaller;
+}
+
+@media (max-width: 1000px) {
+  .p06 {
+    --p06-m: 3rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .p06 {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10rem 16px 3rem;
+  }
+
+  .p06-sloupec {
+    width: 100%;
+  }
+}
+
+/* ===== paticky/07-odkryvana ===== */
+/* Stránka s touto patičkou: html je tmavé, body má pod sebou volné místo
+   o výšce patičky. Body má vlastní pozadí, takže patičku zakrývá. */
+html:has(#v-p07:checked) {
+  background: #111;
+}
+
+body:has(#v-p07:checked) {
+  margin-bottom: 350px;
+}
+
+.p07 {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  width: 100%;
+  height: 350px;
+  background: #111;
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.p07-obsah {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 60px 16px;
+}
+
+.p07 h2 {
+  margin: 0 0 16px;
+  color: #eee;
+  font-weight: 900;
+  font-size: 1.6em;
+}
+
+.p07 p {
+  margin: 0 0 16px;
+  color: #696969;
+  column-count: 2;
+  column-gap: 50px;
+}
+
+@media (max-width: 700px) {
+  .p07 p {
+    column-count: 1;
+  }
+}
+
+/* ===== paticky/08-tri-sloupce ===== */
+.p08 {
+  margin-top: auto;
+  padding: 3rem 16px;
+  background: #000;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+}
+
+.p08-sloupce {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.p08-nadpis {
+  margin: 0 0 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.p08-seznam {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.p08 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.p08 a:hover {
+  text-decoration: underline;
+}
+
+.p08-copy {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 700px) {
+  .p08-sloupce {
+    flex-direction: column;
+  }
+}
+
+  </style>
+</head>
+<body>
+<div class="dil dil-h01">
+<header class="h01">
+  <a class="h01-logo" href="#">Lípa</a>
+  <nav class="h01-odkazy">
+    <a href="#" class="h01-odkaz">O škole</a>
+    <a href="#" class="h01-odkaz">Projekty</a>
+    <a href="#" class="h01-odkaz">Učitelé</a>
+    <a href="#" class="h01-odkaz">Kontakt</a>
+  </nav>
+  <a class="h01-ikona" href="#" aria-label="Menu">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <g fill="#9197ae">
+        <circle cx="4" cy="12" r="1"/>
+        <rect x="7" y="11" width="14" height="2" rx=".94" ry=".94"/>
+        <rect x="3" y="16" width="18" height="2" rx=".94" ry=".94"/>
+        <rect x="3" y="6" width="18" height="2" rx=".94" ry=".94"/>
+      </g>
+    </svg>
+  </a>
+</header>
+</div>
+<div class="dil dil-h02">
+<header class="h02">
+  <div class="h02-linka" aria-hidden="true"></div>
+  <div class="h02-obsah">
+    <a class="h02-nazev" href="#">ZŠ Lípa</a>
+    <nav class="h02-menu">
+      <a href="#">Aktuality</a>
+      <a href="#">Rozvrh</a>
+      <a href="#">Jídelna</a>
+      <a href="#">Kontakt</a>
+    </nav>
+  </div>
+</header>
+</div>
+<div class="dil dil-h03">
+<header class="h03">
+  <div class="h03-vnitrek">
+    <a class="h03-logo" href="#">ZŠ <b>Lípa</b></a>
+    <nav class="h03-menu">
+      <a href="#">Úvod</a>
+      <a href="#">O škole</a>
+      <a href="#">Aktuality</a>
+      <a href="#">Kontakt</a>
+      <a href="#" class="h03-tlacitko">Menu</a>
+    </nav>
+  </div>
+</header>
+</div>
+<div class="dil dil-h04">
+<div class="h04-filtr" aria-hidden="true"></div>
+<header class="h04">
+  <div class="h04-obsah">
+    <a class="h04-titul" href="#">
+      <span class="h04-nad">Základní škola</span>
+      <span class="h04-jmeno">Lípa</span>
+    </a>
+    <nav class="h04-menu">
+      <a href="#">Aktuality</a>
+      <a href="#">Rozvrh</a>
+      <a href="#">Kontakt</a>
+    </nav>
+  </div>
+</header>
+</div>
+<div class="dil dil-h05">
+<header class="h05">
+  <div class="h05-obsah">
+    <a class="h05-nazev" href="#">ZŠ Lípa</a>
+    <nav class="h05-menu">
+      <a href="#">Aktuality</a>
+      <a href="#">Akce</a>
+      <a href="#">Galerie</a>
+      <a href="#">Kontakt</a>
+    </nav>
+  </div>
+  <svg class="h05-vlny" viewBox="0 0 960 214.5" preserveAspectRatio="xMinYMid slice" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="h05-duha"><stop stop-color="#00A8DE"/><stop offset="0.2" stop-color="#333391"/><stop offset="0.4" stop-color="#E91388"/><stop offset="0.6" stop-color="#EB2D2E"/></linearGradient>
+    </defs>
+    <path fill="url(#h05-duha)" d="M2662.6 1S2532 41.2 2435 40.2c-19.6-.2-37.3-1.3-53.5-2.8 0 0-421.3-59.4-541-28.6-119.8 30.6-206.2 75.7-391 73.3-198.8-2-225.3-15-370.2-50-145-35-218 37-373.3 36-19.6 0-37.5-1-53.7-3 0 0-282.7-36-373.4-38C139 26 75 46-1 46v106c17-1.4 20-2.3 37.6-1.2 130.6 8.4 210 56.3 287 62.4 77 6 262-25 329.3-23.6 67 1.4 107 22.6 193 23.4 155 1.5 249-71 380-62.5 130 8.5 209 56.3 287 62.5 77 6 126-18 188-18 61.4 0 247-38 307.4-46 159.3-20 281.2 29 348.4 30 67 2 132.2 6 217.4 7 39.3 0 87-11 87-11V1z"/>
+    <path fill="#F2F5F5" d="M2663.6 73.2S2577 92 2529 89c-130.7-8.5-209.5-56.3-286.7-62.4s-125.7 18-188.3 18c-5 0-10-.4-14.5-.7-52-5-149.2-43-220.7-39-31.7 2-64 14-96.4 30-160.4 80-230.2-5.6-340.4-18-110-12-146.6 20-274 36S820.4 0 605.8 0C450.8 0 356 71 225.2 62.2 128 56 60.7 28-.3 11.2V104c22 7.3 46 14.2 70.4 16.7 110 12.3 147-19.3 275-35.5s350 39.8 369 43c27 4.3 59 8 94 10 13 .5 26 1 39 1 156 2 250-70.3 381-62 130.5 8.2 209.5 56.3 286.7 62 77 6.4 125.8-18 188.3-17.5 5 0 10 .2 14.3.6 52 5 145 49.5 220.7 38.2 32-5 64-15 96.6-31 160.5-79.4 230.3 6 340 18.4 110 12 146.3-20 273.7-36l15.5-2V73l1-.5z"/>
+    <g fill="none" stroke="#E2E9E9" stroke-width="1">
+    <path d="M0 51.4c3.4.6 7.7 1.4 11 2.3 133.2 34 224.3 34 308.6 34 110.2 0 116.7 36.6 229.8 26 113-11 128.7-44 222-42.6C865 73 889 38 1002 27c113-10.8 119.6 25.6 229.8 25.6 84.4 0 175.4 0 308.6 34 133 34.2 277-73 379.4-84.3 204-22.5 283.6 128.7 283.6 128.7"/>
+    <path d="M0 6C115.7-6 198.3 76.6 308 76.6c109.6 0 131.8-20 223-28.3 114.3-10.2 238.2 0 238.2 0s124 10.2 238.3 0c91-8.2 113.2-28 223-28S1425 103 1541 91c115.8-11.8 153.3-69 269.3-84.6 116-15.5 198.4 71 308 71 109.8 0 131.8-20 223-28 114-10.2 237.7 0 237.7 0s37.4 2.4 82.8 3.7"/>
+    </g>
+  </svg>
+</header>
+</div>
+<div class="dil dil-o01">
+<main class="o01">
+  <div class="o01-obsah">
+    <article class="o01-text">
+      <p class="o01-nadtitulek">Lyžák 2027</p>
+      <h1 class="o01-titulek">Za horami, za lesy</h1>
+      <p class="o01-popis">Sedm dní na horách s instruktory, večerní program a výlet na ledovec. Přihlášky do konce listopadu u třídních učitelů.</p>
+      <a href="#" class="o01-tlacitko">Chci jet</a>
+    </article>
+    <figure class="o01-foto">
+      <img src="../obrazky/alpy.jpg" alt="Jezero pod zasněženými Alpami">
+    </figure>
+  </div>
+</main>
+</div>
+<div class="dil dil-o02">
+<main class="o02">
+  <section class="o02-uvod">
+    <div class="o02-text">
+      <h1 class="o02-nadpis">
+        <span class="o02-hlavni">Školní výlet</span>
+        <span class="o02-vedlejsi">Řecko 2027</span>
+      </h1>
+      <a href="#" class="o02-tlacitko">Chci vědět víc</a>
+    </div>
+  </section>
+</main>
+</div>
+<div class="dil dil-o03">
+<main class="o03">
+  <section class="o03-uvod">
+    <div class="o03-prekryv">
+      <h1>Letní tábor</h1>
+      <h2>Proč jet s námi</h2>
+      <p>Dva týdny u moře, potápění s instruktorem, večerní ohně na pláži a výlet na sopku. Pro žáky od 6. do 9. třídy, přihlášky do konce března.</p>
+      <a href="#" class="o03-tlacitko">ČÍST DÁL</a>
+    </div>
+  </section>
+</main>
+</div>
+<div class="dil dil-o04">
+<main class="o04">
+  <div class="o04-pozadi" aria-hidden="true"></div>
+  <div class="o04-obsah">
+    <div class="o04-text">
+      <h1>Rozvrh, známky a obědy<br>v jedné aplikaci</h1>
+      <p>Školní aplikace Lípa pro žáky i rodiče</p>
+      <a href="#" class="o04-tlacitko">Stáhnout zdarma</a>
+    </div>
+    <div class="o04-obrazek" aria-hidden="true">
+      <div class="o04-mobil"></div>
+    </div>
+  </div>
+</main>
+</div>
+<div class="dil dil-o05">
+<main class="o05">
+  <h1 class="o05-nadpis">Historie školy</h1>
+  <ul class="o05-osa">
+    <li style="--accent-color:#41516c">
+      <div class="o05-rok">1962</div>
+      <div class="o05-titul">Otevření školy</div>
+      <div class="o05-popis">Nová budova u lipové aleje. První rok sem chodilo 240 dětí v osmi třídách.</div>
+    </li>
+    <li style="--accent-color:#fbca3e">
+      <div class="o05-rok">1985</div>
+      <div class="o05-titul">Tělocvična a hřiště</div>
+      <div class="o05-popis">Přistavěná tělocvična a atletický ovál, na kterém se dodnes běhá Lipová míle.</div>
+    </li>
+    <li style="--accent-color:#e24a68">
+      <div class="o05-rok">2004</div>
+      <div class="o05-titul">První počítačová učebna</div>
+      <div class="o05-popis">Dvacet počítačů, internet a kroužek programování, který vede bývalý žák školy.</div>
+    </li>
+    <li style="--accent-color:#1b5f8c">
+      <div class="o05-rok">2015</div>
+      <div class="o05-titul">Zelená střecha</div>
+      <div class="o05-popis">Na střeše je školní zahrada, včelín a meteostanice, o kterou se starají deváťáci.</div>
+    </li>
+    <li style="--accent-color:#4cadad">
+      <div class="o05-rok">2026</div>
+      <div class="o05-titul">Nový web</div>
+      <div class="o05-popis">Žáci si web postavili sami z hlaviček, obsahu a patiček jako ze stavebnice.</div>
+    </li>
+  </ul>
+</main>
+</div>
+<div class="dil dil-o06">
+<main class="o06">
+  <h2 class="o06-nadpis">Školní rok v kostce</h2>
+  <div class="o06-osa">
+    <div class="o06-karta">
+      <div class="o06-info">
+        <h3 class="o06-titul">Září</h3>
+        <p>Zahájení, seznamovací výlet šestých tříd a zápis do kroužků.</p>
+      </div>
+    </div>
+    <div class="o06-karta">
+      <div class="o06-info">
+        <h3 class="o06-titul">Prosinec</h3>
+        <p>Vánoční jarmark, výtěžek jde na novou školní knihovnu.</p>
+      </div>
+    </div>
+    <div class="o06-karta">
+      <div class="o06-info">
+        <h3 class="o06-titul">Únor</h3>
+        <p>Lyžařský kurz pro sedmáky a pololetní vysvědčení.</p>
+      </div>
+    </div>
+    <div class="o06-karta">
+      <div class="o06-info">
+        <h3 class="o06-titul">Duben</h3>
+        <p>Přijímací zkoušky na střední školy a Den Země na zelené střeše.</p>
+      </div>
+    </div>
+    <div class="o06-karta">
+      <div class="o06-info">
+        <h3 class="o06-titul">Červen</h3>
+        <p>Školní akademie, rozloučení s deváťáky a hurá na prázdniny.</p>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+<div class="dil dil-o07">
+<main class="o07">
+  <section class="o07-uvod">
+    <div class="o07-obsah">
+      <h1>Plavecký výcvik</h1>
+      <p>Každý čtvrtek pro třetí a čtvrté třídy. Bazén je pět minut od školy, chodíme spolu po druhé vyučovací hodině a zpátky jsme na oběd.</p>
+    </div>
+    <div class="o07-vlny" aria-hidden="true"></div>
+  </section>
+</main>
+</div>
+<div class="dil dil-p01">
+<footer class="p01">
+  <ul class="p01-odkazy">
+    <li><a href="#">Rozvrh</a></li>
+    <li><a href="#">Jídelna</a></li>
+    <li><a href="#">Kontakt</a></li>
+    <li><a href="#">Instagram</a></li>
+    <li><a href="#">Mapa školy</a></li>
+    <li class="p01-ruka"><span aria-hidden="true">👋</span></li>
+  </ul>
+  <p class="p01-copy">© 2026 ZŠ Lípa</p>
+</footer>
+</div>
+<div class="dil dil-p02">
+<footer class="p02">
+  <div class="p02-tlacitko" aria-hidden="true"></div>
+  <div class="p02-panel">
+    <p class="p02-nadpis">ZŠ Lípa</p>
+    <p class="p02-text">Lipová 12, Praha · tel. 123 456 789 · <a href="#">napište nám</a></p>
+  </div>
+</footer>
+</div>
+<div class="dil dil-p03">
+<footer class="p03">
+  <p class="p03-text">Sledujte, co se u nás děje</p>
+  <ul class="p03-site">
+    <li>
+      <a href="#" aria-label="Facebook">
+        <svg class="p03-zare" viewBox="0 0 30 30" aria-hidden="true"><path d="M28.3 0.1H1.7c-0.9 0-1.6 0.7-1.6 1.6v26.5c0 0.9 0.7 1.6 1.6 1.6H16V18.4h-3.9v-4.5H16v-3.3c0-3.9 2.4-5.9 5.8-5.9 1.6 0 3.1 0.1 3.5 0.2v4l-2.4 0c-1.9 0-2.2 0.9-2.2 2.2v2.9h4.5l-0.6 4.5h-3.9v11.5h7.6c0.9 0 1.6-0.7 1.6-1.6V1.7C29.9 0.8 29.2 0.1 28.3 0.1z"/></svg>
+        <svg viewBox="0 0 30 30" aria-hidden="true"><path d="M28.3 0.1H1.7c-0.9 0-1.6 0.7-1.6 1.6v26.5c0 0.9 0.7 1.6 1.6 1.6H16V18.4h-3.9v-4.5H16v-3.3c0-3.9 2.4-5.9 5.8-5.9 1.6 0 3.1 0.1 3.5 0.2v4l-2.4 0c-1.9 0-2.2 0.9-2.2 2.2v2.9h4.5l-0.6 4.5h-3.9v11.5h7.6c0.9 0 1.6-0.7 1.6-1.6V1.7C29.9 0.8 29.2 0.1 28.3 0.1z"/></svg>
+      </a>
+    </li>
+    <li>
+      <a href="#" aria-label="YouTube">
+        <svg class="p03-zare" viewBox="0 0 30 30" aria-hidden="true"><path d="M29.7 9c0 0-0.3-2.1-1.2-3 -1.1-1.2-2.4-1.2-3-1.3C21.3 4.5 15 4.5 15 4.5h0c0 0-6.3 0-10.5 0.3C3.9 4.8 2.6 4.8 1.5 6 0.6 6.9 0.3 9 0.3 9S0 11.4 0 13.9v2.3C0 18.6 0.3 21 0.3 21s0.3 2.1 1.2 3c1.1 1.2 2.6 1.2 3.3 1.3C7.2 25.5 15 25.6 15 25.6s6.3 0 10.5-0.3c0.6-0.1 1.9-0.1 3-1.3 0.9-0.9 1.2-3 1.2-3s0.3-2.4 0.3-4.9v-2.3C30 11.4 29.7 9 29.7 9zM11.9 18.9l0-8.4 8.1 4.2L11.9 18.9z"/></svg>
+        <svg viewBox="0 0 30 30" aria-hidden="true"><path d="M29.7 9c0 0-0.3-2.1-1.2-3 -1.1-1.2-2.4-1.2-3-1.3C21.3 4.5 15 4.5 15 4.5h0c0 0-6.3 0-10.5 0.3C3.9 4.8 2.6 4.8 1.5 6 0.6 6.9 0.3 9 0.3 9S0 11.4 0 13.9v2.3C0 18.6 0.3 21 0.3 21s0.3 2.1 1.2 3c1.1 1.2 2.6 1.2 3.3 1.3C7.2 25.5 15 25.6 15 25.6s6.3 0 10.5-0.3c0.6-0.1 1.9-0.1 3-1.3 0.9-0.9 1.2-3 1.2-3s0.3-2.4 0.3-4.9v-2.3C30 11.4 29.7 9 29.7 9zM11.9 18.9l0-8.4 8.1 4.2L11.9 18.9z"/></svg>
+      </a>
+    </li>
+    <li>
+      <a href="#" aria-label="Instagram">
+        <svg class="p03-zare" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2.8c4 0 4.4 0 6 0.1 1.4 0.1 2.2 0.3 2.8 0.5 0.7 0.3 1.2 0.6 1.7 1.1 0.5 0.5 0.8 1 1.1 1.7C26.8 6.8 27 7.6 27.1 9c0.1 1.6 0.1 2 0.1 6s0 4.4-0.1 6c-0.1 1.4-0.3 2.2-0.5 2.8 -0.3 0.7-0.6 1.2-1.1 1.7 -0.5 0.5-1 0.8-1.7 1.1 -0.5 0.2-1.3 0.4-2.8 0.5 -1.6 0.1-2 0.1-6 0.1s-4.4 0-6-0.1c-1.4-0.1-2.2-0.3-2.8-0.5 -0.7-0.3-1.2-0.6-1.7-1.1 -0.5-0.5-0.8-1-1.1-1.7C3.2 23.2 3 22.4 2.9 21c-0.1-1.6-0.1-2-0.1-6s0-4.4 0.1-6C3 7.6 3.2 6.8 3.4 6.2 3.7 5.5 4 5.1 4.5 4.5c0.5-0.5 1-0.8 1.7-1.1C6.8 3.2 7.6 3 9 2.9 10.6 2.8 11 2.8 15 2.8M15 0.2c-4 0-4.5 0-6.1 0.1C7.3 0.3 6.2 0.6 5.3 0.9c-1 0.4-1.8 0.9-2.6 1.7C1.8 3.5 1.3 4.3 0.9 5.3c-0.4 0.9-0.6 2-0.7 3.6C0.2 10.5 0.1 11 0.1 15c0 4 0 4.5 0.1 6.1 0.1 1.6 0.3 2.7 0.7 3.6 0.4 1 0.9 1.8 1.7 2.6 0.8 0.8 1.7 1.3 2.6 1.7 0.9 0.4 2 0.6 3.6 0.7 1.6 0.1 2.1 0.1 6.1 0.1s4.5 0 6.1-0.1c1.6-0.1 2.7-0.3 3.6-0.7 1-0.4 1.8-0.9 2.6-1.7 0.8-0.8 1.3-1.7 1.7-2.6 0.4-0.9 0.6-2 0.7-3.6 0.1-1.6 0.1-2.1 0.1-6.1s0-4.5-0.1-6.1c-0.1-1.6-0.3-2.7-0.7-3.6 -0.4-1-0.9-1.8-1.7-2.6 -0.8-0.8-1.7-1.3-2.6-1.7 -0.9-0.4-2-0.6-3.6-0.7C19.5 0.2 19 0.2 15 0.2L15 0.2z"/><path d="M15 7.4c-4.2 0-7.6 3.4-7.6 7.6s3.4 7.6 7.6 7.6 7.6-3.4 7.6-7.6S19.2 7.4 15 7.4zM15 20c-2.7 0-5-2.2-5-5s2.2-5 5-5c2.7 0 5 2.2 5 5S17.7 20 15 20z"/><circle cx="22.9" cy="7.1" r="1.8"/></svg>
+        <svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2.8c4 0 4.4 0 6 0.1 1.4 0.1 2.2 0.3 2.8 0.5 0.7 0.3 1.2 0.6 1.7 1.1 0.5 0.5 0.8 1 1.1 1.7C26.8 6.8 27 7.6 27.1 9c0.1 1.6 0.1 2 0.1 6s0 4.4-0.1 6c-0.1 1.4-0.3 2.2-0.5 2.8 -0.3 0.7-0.6 1.2-1.1 1.7 -0.5 0.5-1 0.8-1.7 1.1 -0.5 0.2-1.3 0.4-2.8 0.5 -1.6 0.1-2 0.1-6 0.1s-4.4 0-6-0.1c-1.4-0.1-2.2-0.3-2.8-0.5 -0.7-0.3-1.2-0.6-1.7-1.1 -0.5-0.5-0.8-1-1.1-1.7C3.2 23.2 3 22.4 2.9 21c-0.1-1.6-0.1-2-0.1-6s0-4.4 0.1-6C3 7.6 3.2 6.8 3.4 6.2 3.7 5.5 4 5.1 4.5 4.5c0.5-0.5 1-0.8 1.7-1.1C6.8 3.2 7.6 3 9 2.9 10.6 2.8 11 2.8 15 2.8M15 0.2c-4 0-4.5 0-6.1 0.1C7.3 0.3 6.2 0.6 5.3 0.9c-1 0.4-1.8 0.9-2.6 1.7C1.8 3.5 1.3 4.3 0.9 5.3c-0.4 0.9-0.6 2-0.7 3.6C0.2 10.5 0.1 11 0.1 15c0 4 0 4.5 0.1 6.1 0.1 1.6 0.3 2.7 0.7 3.6 0.4 1 0.9 1.8 1.7 2.6 0.8 0.8 1.7 1.3 2.6 1.7 0.9 0.4 2 0.6 3.6 0.7 1.6 0.1 2.1 0.1 6.1 0.1s4.5 0 6.1-0.1c1.6-0.1 2.7-0.3 3.6-0.7 1-0.4 1.8-0.9 2.6-1.7 0.8-0.8 1.3-1.7 1.7-2.6 0.4-0.9 0.6-2 0.7-3.6 0.1-1.6 0.1-2.1 0.1-6.1s0-4.5-0.1-6.1c-0.1-1.6-0.3-2.7-0.7-3.6 -0.4-1-0.9-1.8-1.7-2.6 -0.8-0.8-1.7-1.3-2.6-1.7 -0.9-0.4-2-0.6-3.6-0.7C19.5 0.2 19 0.2 15 0.2L15 0.2z"/><path d="M15 7.4c-4.2 0-7.6 3.4-7.6 7.6s3.4 7.6 7.6 7.6 7.6-3.4 7.6-7.6S19.2 7.4 15 7.4zM15 20c-2.7 0-5-2.2-5-5s2.2-5 5-5c2.7 0 5 2.2 5 5S17.7 20 15 20z"/><circle cx="22.9" cy="7.1" r="1.8"/></svg>
+      </a>
+    </li>
+  </ul>
+</footer>
+</div>
+<div class="dil dil-p04">
+<footer class="p04">
+  <div class="p04-text">
+    <p class="p04-jmeno">ZŠ Lípa</p>
+    <p>Lipová 12, Praha · <a href="#">Kontakt</a> · <a href="#">Jídelna</a> · <a href="#">Rozvrh</a></p>
+  </div>
+  <div class="p04-zare" aria-hidden="true">
+    <div class="p04-svetlo p04-s1">
+      <div class="p04-svetlo p04-s2">
+        <div class="p04-svetlo p04-s3">
+          <div class="p04-svetlo p04-s4">
+            <div class="p04-svetlo p04-s5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+<div class="dil dil-p05">
+<footer class="p05">
+  <div class="p05-bubliny">
+    <div class="p05-bublina" style="--size:3.3rem; --distance:6.6rem; --position:67%; --time:2.1s; --delay:-3.1s"></div>
+    <div class="p05-bublina" style="--size:3.5rem; --distance:6.2rem; --position:51%; --time:2.1s; --delay:-2.9s"></div>
+    <div class="p05-bublina" style="--size:2.3rem; --distance:6.4rem; --position:42%; --time:3.7s; --delay:-2.2s"></div>
+    <div class="p05-bublina" style="--size:2.9rem; --distance:8.5rem; --position:99%; --time:3.2s; --delay:-2.8s"></div>
+    <div class="p05-bublina" style="--size:5.9rem; --distance:6.2rem; --position:89%; --time:2.6s; --delay:-2.3s"></div>
+    <div class="p05-bublina" style="--size:2.5rem; --distance:7.2rem; --position:85%; --time:2.4s; --delay:-3.2s"></div>
+    <div class="p05-bublina" style="--size:4.6rem; --distance:7.5rem; --position:55%; --time:2.1s; --delay:-2.1s"></div>
+    <div class="p05-bublina" style="--size:2.8rem; --distance:8.7rem; --position:42%; --time:2.6s; --delay:-3.2s"></div>
+    <div class="p05-bublina" style="--size:3.8rem; --distance:7.2rem; --position:82%; --time:3.4s; --delay:-2.5s"></div>
+    <div class="p05-bublina" style="--size:4.3rem; --distance:8.1rem; --position:91%; --time:3.5s; --delay:-2.6s"></div>
+    <div class="p05-bublina" style="--size:5.9rem; --distance:6.5rem; --position:41%; --time:3.5s; --delay:-2.3s"></div>
+    <div class="p05-bublina" style="--size:4.0rem; --distance:6.2rem; --position:69%; --time:3.5s; --delay:-3.1s"></div>
+    <div class="p05-bublina" style="--size:5.5rem; --distance:7.3rem; --position:71%; --time:3.2s; --delay:-3.2s"></div>
+    <div class="p05-bublina" style="--size:3.8rem; --distance:9.4rem; --position:99%; --time:2.9s; --delay:-3.3s"></div>
+    <div class="p05-bublina" style="--size:2.2rem; --distance:8.8rem; --position:66%; --time:4.0s; --delay:-3.6s"></div>
+    <div class="p05-bublina" style="--size:3.1rem; --distance:7.5rem; --position:69%; --time:2.0s; --delay:-2.9s"></div>
+    <div class="p05-bublina" style="--size:2.7rem; --distance:6.5rem; --position:1%; --time:3.5s; --delay:-2.3s"></div>
+    <div class="p05-bublina" style="--size:3.0rem; --distance:7.6rem; --position:91%; --time:2.2s; --delay:-2.9s"></div>
+    <div class="p05-bublina" style="--size:4.2rem; --distance:9.5rem; --position:85%; --time:3.7s; --delay:-2.6s"></div>
+    <div class="p05-bublina" style="--size:3.7rem; --distance:7.4rem; --position:92%; --time:3.9s; --delay:-2.3s"></div>
+    <div class="p05-bublina" style="--size:2.7rem; --distance:6.9rem; --position:21%; --time:3.0s; --delay:-3.2s"></div>
+    <div class="p05-bublina" style="--size:3.1rem; --distance:6.0rem; --position:41%; --time:2.7s; --delay:-3.1s"></div>
+    <div class="p05-bublina" style="--size:5.8rem; --distance:8.8rem; --position:52%; --time:3.2s; --delay:-3.4s"></div>
+    <div class="p05-bublina" style="--size:2.2rem; --distance:9.6rem; --position:81%; --time:3.7s; --delay:-3.6s"></div>
+    <div class="p05-bublina" style="--size:3.6rem; --distance:7.6rem; --position:6%; --time:3.3s; --delay:-2.1s"></div>
+    <div class="p05-bublina" style="--size:2.3rem; --distance:6.8rem; --position:13%; --time:2.7s; --delay:-2.1s"></div>
+    <div class="p05-bublina" style="--size:2.0rem; --distance:6.6rem; --position:6%; --time:2.7s; --delay:-2.1s"></div>
+    <div class="p05-bublina" style="--size:5.5rem; --distance:8.5rem; --position:11%; --time:2.5s; --delay:-2.7s"></div>
+    <div class="p05-bublina" style="--size:3.5rem; --distance:6.5rem; --position:88%; --time:4.0s; --delay:-2.9s"></div>
+    <div class="p05-bublina" style="--size:3.9rem; --distance:6.3rem; --position:6%; --time:2.7s; --delay:-2.5s"></div>
+    <div class="p05-bublina" style="--size:5.3rem; --distance:6.6rem; --position:-2%; --time:3.9s; --delay:-3.1s"></div>
+    <div class="p05-bublina" style="--size:2.6rem; --distance:8.2rem; --position:-2%; --time:3.1s; --delay:-4.0s"></div>
+    <div class="p05-bublina" style="--size:5.5rem; --distance:8.8rem; --position:24%; --time:2.7s; --delay:-2.3s"></div>
+    <div class="p05-bublina" style="--size:5.1rem; --distance:8.1rem; --position:81%; --time:2.7s; --delay:-2.4s"></div>
+    <div class="p05-bublina" style="--size:5.2rem; --distance:9.9rem; --position:89%; --time:3.6s; --delay:-3.6s"></div>
+    <div class="p05-bublina" style="--size:5.0rem; --distance:6.9rem; --position:52%; --time:2.7s; --delay:-2.1s"></div>
+    <div class="p05-bublina" style="--size:2.1rem; --distance:7.1rem; --position:24%; --time:3.4s; --delay:-3.9s"></div>
+    <div class="p05-bublina" style="--size:3.8rem; --distance:9.7rem; --position:104%; --time:3.9s; --delay:-2.7s"></div>
+    <div class="p05-bublina" style="--size:2.9rem; --distance:6.9rem; --position:17%; --time:2.4s; --delay:-3.2s"></div>
+    <div class="p05-bublina" style="--size:5.6rem; --distance:9.4rem; --position:48%; --time:3.3s; --delay:-3.6s"></div>
+    <div class="p05-bublina" style="--size:2.3rem; --distance:8.6rem; --position:95%; --time:3.6s; --delay:-3.5s"></div>
+    <div class="p05-bublina" style="--size:3.9rem; --distance:6.7rem; --position:82%; --time:2.7s; --delay:-3.6s"></div>
+    <div class="p05-bublina" style="--size:5.9rem; --distance:7.6rem; --position:39%; --time:3.9s; --delay:-3.4s"></div>
+    <div class="p05-bublina" style="--size:2.7rem; --distance:6.5rem; --position:12%; --time:3.8s; --delay:-3.6s"></div>
+    <div class="p05-bublina" style="--size:2.6rem; --distance:9.3rem; --position:103%; --time:3.3s; --delay:-2.7s"></div>
+    <div class="p05-bublina" style="--size:4.2rem; --distance:6.5rem; --position:-3%; --time:3.9s; --delay:-3.3s"></div>
+    <div class="p05-bublina" style="--size:4.1rem; --distance:9.7rem; --position:43%; --time:3.7s; --delay:-3.7s"></div>
+    <div class="p05-bublina" style="--size:2.8rem; --distance:7.0rem; --position:27%; --time:2.5s; --delay:-3.2s"></div>
+  </div>
+  <div class="p05-obsah">
+    <div class="p05-sloupce">
+      <div><b>Škola</b> <a href="#">O nás</a> <a href="#">Učitelé</a> <a href="#">Historie</a> <a href="#">Galerie</a></div>
+      <div><b>Žáci</b> <a href="#">Rozvrh</a> <a href="#">Suplování</a> <a href="#">Kroužky</a> <a href="#">Jídelna</a></div>
+      <div><b>Rodiče</b> <a href="#">Přihlášky</a> <a href="#">Platby</a> <a href="#">Omluvenky</a></div>
+      <div><b>Kontakt</b> <a href="#">Sekretariát</a> <a href="#">Mapa</a> <a href="#">Napište nám</a></div>
+    </div>
+    <div class="p05-logo">
+      <span aria-hidden="true">Lípa</span>
+      <p>© 2026 ZŠ Lípa</p>
+    </div>
+  </div>
+  <svg class="p05-filtr" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="p05-blob">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="blob"/>
+      </filter>
+    </defs>
+  </svg>
+</footer>
+</div>
+<div class="dil dil-p06">
+<footer class="p06">
+  <div class="p06-rozmazani" aria-hidden="true"></div>
+  <div class="p06-sloupec">
+    <h3>ZŠ Lípa</h3>
+    <p>Vyrobeno s <span class="p06-srdce">❤</span> našimi žáky</p>
+    <div class="p06-site">
+      <a href="#" class="p06-ikona" aria-label="Instagram">Ig</a>
+      <a href="#" class="p06-ikona" aria-label="YouTube">Yt</a>
+      <a href="#" class="p06-ikona" aria-label="Facebook">Fb</a>
+    </div>
+    <p class="p06-mala">2026 © Všechna práva vyhrazena</p>
+  </div>
+  <div class="p06-sloupec p06-karta">
+    <a href="#">O škole</a>
+    <a href="#">Naše vize</a>
+    <a href="#">Ochrana údajů</a>
+    <a href="#">Školní řád</a>
+  </div>
+  <div class="p06-sloupec p06-karta">
+    <a href="#">Kroužky</a>
+    <a href="#">Projekty</a>
+    <a href="#">Volná místa</a>
+    <a href="#">Spolupráce</a>
+  </div>
+</footer>
+</div>
+<div class="dil dil-p07">
+<footer class="p07">
+  <div class="p07-obsah">
+    <h2>ZŠ Lípa</h2>
+    <p>Patička je pořád přilepená dole za stránkou. Stránka má pod sebou volné místo stejně vysoké jako patička, takže když dojedeš na konec, stránka odjede nahoru a patička se pod ní odkryje. Žádný JavaScript, jen position: fixed a z-index: -1.</p>
+    <p>Lipová 12, Praha · sekretariat@zs-lipa.example · tel. 123 456 789 · úřední hodiny po–pá 7:30–15:30</p>
+  </div>
+</footer>
+</div>
+<div class="dil dil-p08">
+<footer class="p08">
+  <div class="p08-sloupce">
+    <div>
+      <h3 class="p08-nadpis">Škola</h3>
+      <ul class="p08-seznam">
+        <li><a href="#">Školní řád</a></li>
+        <li><a href="#">Ochrana osobních údajů</a></li>
+        <li><a href="#">Výroční zprávy</a></li>
+        <li><a href="#">Volná místa</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="p08-nadpis">Sledujte nás</h3>
+      <ul class="p08-seznam">
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="p08-nadpis">Kontakt</h3>
+      <ul class="p08-seznam">
+        <li><a href="#">sekretariat@zs-lipa.example</a></li>
+        <li>Lipová 12, Praha</li>
+      </ul>
+    </div>
+  </div>
+  <p class="p08-copy">© 2026 ZŠ Lípa · Web vytvořili žáci</p>
+</footer>
+</div>
+<details class="panel" open>
+  <summary>Skládačka</summary>
+  <fieldset><legend>Hlavičky</legend><label><input type="radio" name="hlavicky" id="v-h01" checked> 01 Odkazy se zvýrazněním</label><label><input type="radio" name="hlavicky" id="v-h02"> 02 Barevná linka nahoře</label><label><input type="radio" name="hlavicky" id="v-h03"> 03 Zmenšující se při posouvání</label><label><input type="radio" name="hlavicky" id="v-h04"> 04 Rozmazané pozadí pod hlavičkou</label><label><input type="radio" name="hlavicky" id="v-h05"> 05 Duhové vlny</label></fieldset><fieldset><legend>Obsah</legend><label><input type="radio" name="obsah" id="v-o01" checked> 01 Text přes fotku s náběhem</label><label><input type="radio" name="obsah" id="v-o02"> 02 Šikmý úvod s fotkou</label><label><input type="radio" name="obsah" id="v-o03"> 03 Zaoblený úvod s přechodem</label><label><input type="radio" name="obsah" id="v-o04"> 04 Šikmý přechod s mobilem</label><label><input type="radio" name="obsah" id="v-o05"> 05 Časová osa s kartami</label><label><input type="radio" name="obsah" id="v-o06"> 06 Hadí časová osa</label><label><input type="radio" name="obsah" id="v-o07"> 07 Vlnící se hladina</label></fieldset><fieldset><legend>Patičky</legend><label><input type="radio" name="paticky" id="v-p01" checked> 01 Odkazy v mřížce s mávající rukou</label><label><input type="radio" name="paticky" id="v-p02"> 02 Vysouvací patička</label><label><input type="radio" name="paticky" id="v-p03"> 03 Ikony sítí se září</label><label><input type="radio" name="paticky" id="v-p04"> 04 Polární záře</label><label><input type="radio" name="paticky" id="v-p05"> 05 Bublající patička</label><label><input type="radio" name="paticky" id="v-p06"> 06 Mizející patička s rozmazáním</label><label><input type="radio" name="paticky" id="v-p07"> 07 Odkrývaná patička</label><label><input type="radio" name="paticky" id="v-p08"> 08 Tři sloupce s copyrightem</label></fieldset>
+  <a href="index.html">Zpět do galerie</a>
+</details>
+</body>
+</html>

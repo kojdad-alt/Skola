@@ -1,4 +1,11 @@
-# Toulky světem – cestovní kancelář
+# Škola
+
+Školní projekty z HTML a CSS.
+
+- **Toulky světem** (kořen repa) – cestovní kancelář s komponentami Bootstrapu.
+- **[Skládačka webu](skladacka/)** – hlavičky, obsah a patičky z FreeFrontend, které jdou libovolně poskládat.
+
+## Toulky světem – cestovní kancelář
 
 Školní úkol: jednoduchá stránka s komponentami Bootstrapu 5.3.
 
