@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;900&display=swap");
+
+/* Stránka s touto patičkou: html je tmavé, body má pod sebou volné místo
+   o výšce patičky. Body má vlastní pozadí, takže patičku zakrývá. */
+html:has(.p07) {
+  background: #111;
+}
+
+body:has(.p07) {
+  margin-bottom: 350px;
+}
+
+.p07 {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  width: 100%;
+  height: 350px;
+  background: #111;
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.p07-obsah {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 60px 16px;
+}
+
+.p07 h2 {
+  margin: 0 0 16px;
+  color: #eee;
+  font-weight: 900;
+  font-size: 1.6em;
+}
+
+.p07 p {
+  margin: 0 0 16px;
+  color: #696969;
+  column-count: 2;
+  column-gap: 50px;
+}
+
+@media (max-width: 700px) {
+  .p07 p {
+    column-count: 1;
+  }
+}

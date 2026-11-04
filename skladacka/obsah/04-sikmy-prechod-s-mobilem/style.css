@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+.o04 {
+  --o04-barva-1: #21d4fd;
+  --o04-barva-2: #b721ff;
+  --o04-barva-3: #08aeea;
+  --o04-barva-4: #2af598;
+  position: relative;
+  isolation: isolate;
+  min-height: 80vh;
+  font-family: "Varela Round", sans-serif;
+}
+
+/* Pozadí je obdélník zkosený o -10° od levého horního rohu.
+   Dva rozmazané pruhy v něm dělají jemné barevné skvrny. */
+.o04-pozadi {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(19deg, var(--o04-barva-1), var(--o04-barva-2));
+  transform-origin: 0 0;
+  transform: skewY(-10deg);
+}
+
+.o04-pozadi::before,
+.o04-pozadi::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 33.333%;
+  opacity: 0.3;
+  filter: blur(15px);
+}
+
+.o04-pozadi::before {
+  right: 0;
+  background: var(--o04-barva-1);
+}
+
+.o04-pozadi::after {
+  bottom: 0;
+  background: var(--o04-barva-2);
+}
+
+.o04-obsah {
+  margin: 0 auto;
+  padding: 4rem 16px;
+  text-align: center;
+}
+
+.o04-text h1,
+.o04-text p {
+  color: #fff;
+  text-shadow: 0 0.5rem 1rem rgba(50, 0, 100, 0.1);
+}
+
+.o04-text h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.2;
+}
+
+.o04-text p {
+  margin: 1rem 0 2rem;
+  font-size: 1.5rem;
+}
+
+.o04-tlacitko {
+  display: inline-block;
+  padding: 1.5rem 2rem;
+  border-radius: 3px;
+  background: #fff;
+  color: var(--o04-barva-3);
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 1.75rem 2rem -0.4rem rgba(50, 0, 100, 0.15);
+  transition: all 0.2s;
+}
+
+.o04-tlacitko:hover,
+.o04-tlacitko:focus-visible {
+  color: var(--o04-barva-4);
+  box-shadow: 0 1.75rem 3rem 0 rgba(50, 0, 100, 0.1);
+  transform: scale(1.05);
+}
+
+.o04-tlacitko:active {
+  box-shadow: 0 1.75rem 2.5rem -0.2rem rgba(50, 0, 100, 0.125);
+  transform: scale(1.025);
+}
+
+.o04-obrazek {
+  position: relative;
+  margin-top: 5rem;
+  transform: rotate(-10deg);
+}
+
+/* Telefon z jednoho divu: ::before je displej, ::after tlačítko. */
+.o04-mobil {
+  display: inline-block;
+  padding: 4rem 0.6rem 0;
+  border-radius: 2rem;
+  background: #fff;
+  text-align: center;
+  box-shadow:
+    -1rem 1.75rem 2rem -0.4rem rgba(50, 0, 100, 0.1),
+    -0.2rem 0.2rem 0.5rem rgba(50, 0, 100, 0.05),
+    inset 0.5rem -0.5rem 0.5rem -0.4rem rgba(50, 0, 100, 0.1);
+}
+
+.o04-mobil::before {
+  content: "";
+  display: block;
+  width: 16rem;
+  max-width: 60vw;
+  padding-top: 177.5%;
+  background-color: var(--o04-barva-3);
+  background-image: linear-gradient(0deg, var(--o04-barva-3) 0%, var(--o04-barva-4) 100%);
+}
+
+.o04-mobil::after {
+  content: "";
+  display: inline-block;
+  margin: 0.6rem;
+  padding: 1.4rem;
+  border: 1px solid #f1f1f1;
+  border-radius: 2rem;
+  box-shadow: inset -0.05rem 0.05rem 0.5rem 0 rgba(50, 0, 100, 0.05);
+}
+
+@media (min-width: 58rem) {
+  .o04-obsah {
+    display: flex;
+    justify-content: space-between;
+    max-width: 54rem;
+    padding: 10rem 4rem;
+    text-align: left;
+  }
+
+  .o04-obrazek {
+    margin: 0;
+    transform: translateY(-5rem) rotate(-10deg);
+  }
+}

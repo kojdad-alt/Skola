@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Open+Sans:wght@400;700&display=swap");
+
+/* Spodní okraj je elipsa: border-radius 85 % do šířky a 30 % do výšky.
+   Fotka má background-attachment: fixed, takže při posouvání stojí. */
+.o03-uvod {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: url("../../../obrazky/bali.jpg") center / cover fixed;
+  border-radius: 0 0 85% 85% / 30%;
+  text-align: center;
+}
+
+.o03-prekryv {
+  width: 100%;
+  height: 100%;
+  padding: 50px 16px;
+  color: #fff;
+  text-shadow: 1px 1px 1px #333;
+  background-image: linear-gradient(135deg, #9f05ff69 10%, #fd5e086b 100%);
+}
+
+.o03 h1 {
+  margin: 0 0 30px;
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(48px, 9vw, 80px);
+  line-height: 1.1;
+}
+
+.o03 h2,
+.o03 p {
+  margin: 0 auto 30px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.o03 h2 {
+  font-size: 1.2rem;
+}
+
+.o03 p {
+  max-width: 60ch;
+}
+
+.o03-tlacitko {
+  display: inline-block;
+  margin-bottom: 50px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: #fff;
+  color: #333;
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+  text-shadow: none;
+  box-shadow: 0 3px 20px 0 #0000003b;
+}

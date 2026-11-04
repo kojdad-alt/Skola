@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;600;800&display=swap");
+
+.h01 {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding: 0 40px;
+  background-image: linear-gradient(to top, #d6e5f6 0%, #e7f0fd 100%);
+  color: #9197ae;
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+}
+
+.h01 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.h01-logo {
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 18px;
+}
+
+.h01-odkazy {
+  display: flex;
+}
+
+/* Bílý pruh ve spodní půlce odkazu, při najetí vyroste přes celý text. */
+.h01-odkaz {
+  margin-left: 20px;
+  padding: 2px 4px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: inset 0 -10px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(0);
+  transition: all 0.4s ease, transform 0.2s ease;
+}
+
+.h01-odkaz:hover,
+.h01-odkaz:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: inset 0 -20px 0 #fff;
+}
+
+.h01-ikona {
+  display: none;
+  width: 32px;
+  height: 32px;
+}
+
+.h01-ikona svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 799px) {
+  .h01 {
+    padding: 0 20px;
+  }
+
+  .h01-odkazy {
+    display: none;
+  }
+
+  .h01-ikona {
+    display: block;
+  }
+}

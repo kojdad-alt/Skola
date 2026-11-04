@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap");
+
+/* Patička je přilepená dole a vysune se, když na ni najedeš myší. */
+.p02 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2em;
+  overflow: hidden;
+  z-index: 999;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 300;
+  color: #fff;
+  transition: height 1s ease;
+}
+
+.p02:hover,
+.p02:focus-within {
+  height: 10em;
+}
+
+.p02-tlacitko {
+  position: relative;
+  z-index: 1;
+  width: 35px;
+  height: 35px;
+  margin: 0 auto;
+  border: 12px solid #727172;
+  border-radius: 35px;
+  transition: border-color 1s ease;
+}
+
+.p02-tlacitko:hover {
+  border-color: #3a3a3a;
+}
+
+.p02-panel {
+  height: 100%;
+  margin-top: -18px;
+  padding: 48px 16px 0;
+  background: #3a3a3a;
+  text-align: center;
+}
+
+.p02-nadpis {
+  margin: 0 0 6px;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.p02-text {
+  margin: 0;
+  opacity: 0.8;
+}
+
+.p02-text a {
+  color: #fff;
+}

@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;600&display=swap");
+
+.p03 {
+  --p03-pozadi: #323b40;
+  --p03-modra: #0096a1;
+  --p03-modra-svetla: #0ebac7;
+  padding: 20px 16px 8px;
+  background: var(--p03-pozadi);
+  color: #e9eaea;
+  font-family: "Source Sans 3", Helvetica, sans-serif;
+  text-align: center;
+}
+
+.p03-text {
+  margin: 0 0 8px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.p03-site {
+  margin: 0;
+  padding: 0 0 4px;
+  list-style: none;
+}
+
+.p03-site li {
+  display: inline;
+}
+
+.p03-site a {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 20px;
+  box-sizing: content-box;
+  border-radius: 4px;
+  transition: 0.2s ease-in;
+}
+
+.p03-site svg {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.p03-site svg * {
+  fill: var(--p03-modra);
+  transition: 0.2s ease-in;
+}
+
+.p03-site .p03-zare * {
+  fill: transparent;
+}
+
+/* Ikona vyskočí nahoru a pod ní se objeví "odraz" ze stínů. */
+.p03-site a:hover,
+.p03-site a:focus-visible {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 -3px 0 0 rgba(0, 0, 0, 0.1),
+    0 6px 8px rgba(0, 0, 0, 0.05),
+    0 24px 24px rgba(0, 0, 0, 0.05),
+    0 36px 36px rgba(0, 0, 0, 0.05),
+    0 64px 64px rgba(0, 0, 0, 0.15),
+    0 64px 128px rgba(0, 0, 0, 0.15),
+    0 86px 8px 6px rgba(14, 186, 199, 0.25),
+    0 83px 4px 0 rgba(14, 186, 199, 0.95);
+}
+
+.p03-site a:hover svg *,
+.p03-site a:focus-visible svg * {
+  fill: var(--p03-modra-svetla);
+}
+
+.p03-site a:hover .p03-zare,
+.p03-site a:focus-visible .p03-zare {
+  filter: blur(2px);
+}
+
+.p03-site a:hover .p03-zare *,
+.p03-site a:focus-visible .p03-zare * {
+  fill: rgba(14, 186, 199, 0.6);
+}

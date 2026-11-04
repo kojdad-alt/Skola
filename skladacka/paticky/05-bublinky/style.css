@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+
+.p05 {
+  --p05-barva: #ed5565;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 12rem;
+  margin-top: 10rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Bubliny jsou jen kruhy, které rostou a stoupají. Rozmazání + ostrý
+   práh průhlednosti ve filtru je slije dohromady jako tekutinu. */
+.p05-bubliny {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  background: var(--p05-barva);
+  filter: url("#p05-blob");
+}
+
+.p05-bublina {
+  position: absolute;
+  left: var(--position, 50%);
+  background: var(--p05-barva);
+  border-radius: 100%;
+  animation:
+    p05-velikost var(--time, 4s) ease-in infinite var(--delay, 0s),
+    p05-pohyb var(--time, 4s) ease-in infinite var(--delay, 0s);
+  transform: translate(-50%, 100%);
+}
+
+.p05-obsah {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  padding: 2rem;
+  background: var(--p05-barva);
+}
+
+.p05-obsah a,
+.p05-obsah p {
+  color: #f5f7fa;
+  text-decoration: none;
+}
+
+.p05-obsah a:hover {
+  text-decoration: underline;
+}
+
+.p05-obsah b {
+  color: #fff;
+}
+
+.p05-sloupce {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.p05-sloupce > div {
+  margin: 0.25rem 0;
+}
+
+.p05-sloupce > div > * {
+  margin-right: 0.5rem;
+}
+
+.p05-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.p05-logo span {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--p05-barva);
+  font-weight: 700;
+}
+
+.p05-logo p {
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.p05-filtr {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+@media (max-width: 600px) {
+  .p05-obsah {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@keyframes p05-velikost {
+  0%,
+  75% {
+    width: var(--size, 4rem);
+    height: var(--size, 4rem);
+  }
+  100% {
+    width: 0;
+    height: 0;
+  }
+}
+
+@keyframes p05-pohyb {
+  0% {
+    bottom: -4rem;
+  }
+  100% {
+    bottom: var(--distance, 10rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p05-bublina {
+    animation-play-state: paused;
+  }
+}

@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,900;1,400&display=swap");
+
+.h07 {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  height: clamp(360px, 55vw, 600px);
+  border-radius: 0 0 20px 20px;
+  color: #eee;
+  font-family: "Montserrat", sans-serif;
+  text-shadow: 0 2px 6px #000a;
+}
+
+/* Ztmavení odspodu, ať je text čitelný. */
+.h07::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.12) 40%, #1b2030 100%);
+}
+
+/* Ken Burns: fotka je 2× vyšší a za šest minut se pomalu zvětší a posune. */
+.h07::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  width: 100%;
+  height: 200%;
+  background: #1b2030 url("../../../obrazky/alpy.jpg") 50% 0 / cover no-repeat;
+  backface-visibility: hidden;
+  animation: h07-zoom 360s linear 10ms infinite;
+}
+
+.h07 a {
+  color: #eee;
+  text-decoration: none;
+}
+
+.h07-logo {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  margin: 20px;
+  padding: 0 10px;
+  border: 2px solid #fff;
+  border-radius: 3px;
+  font-weight: 900;
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+/* Hamburger: rámeček + tři čárky z jednoho ::after a dvou stínů. */
+.h07-tlacitko-menu {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 30px;
+  margin: 25px 20px;
+  border: 2px solid #fff;
+  border-radius: 3px;
+}
+
+.h07-tlacitko-menu::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  display: block;
+  width: 20px;
+  height: 3px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 8px, 0 16px;
+}
+
+.h07-info {
+  width: 100%;
+  padding: 8% 10% 0;
+  text-align: center;
+}
+
+.h07-info h1 {
+  margin: 0.3em 0;
+  font-size: clamp(1.5rem, 4vw, 2.6rem);
+}
+
+.h07-rubrika,
+.h07-meta {
+  margin: 0;
+  font-size: 0.8em;
+}
+
+.h07-meta {
+  font-style: italic;
+}
+
+/* Menu je schované, odkaz #h07-menu ho otevře přes :target. */
+.h07-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(0.25rem);
+  backdrop-filter: blur(0.25rem);
+  text-shadow: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+.h07-menu:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.h07 .h07-menu a {
+  padding: 5px;
+  color: #333;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.h07 .h07-menu a:hover,
+.h07 .h07-menu a:focus-visible {
+  color: #000;
+  text-decoration: underline;
+}
+
+.h07 .h07-menu .h07-zavrit {
+  margin-top: 20px;
+  font-size: 1em;
+}
+
+@keyframes h07-zoom {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.2) translateY(-25%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .h07::before {
+    animation: none;
+  }
+}

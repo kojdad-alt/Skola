@@ -1,0 +1,122 @@
+.o06 {
+  --o06-podklad: #212121;
+  --o06-barva: orangered;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px;
+  background: #111;
+  font-family: sans-serif;
+}
+
+.o06-nadpis {
+  margin: 0 0 12px;
+  color: #eee;
+}
+
+.o06-osa {
+  margin: 20px auto;
+  padding: 20px;
+  background: var(--o06-podklad);
+}
+
+.o06-karta {
+  position: relative;
+  max-width: 400px;
+}
+
+/* Liché karty mají čáru vlevo, sudé vpravo. Spolu dají křivku jako had. */
+.o06-karta:nth-child(odd) {
+  padding: 30px 0 30px 30px;
+}
+
+.o06-karta:nth-child(even) {
+  padding: 30px 30px 30px 0;
+}
+
+.o06-karta::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  border: solid var(--o06-barva);
+}
+
+.o06-karta:nth-child(odd)::before {
+  left: 0;
+  top: -4.5px;
+  bottom: -4.5px;
+  border-width: 5px 0 5px 5px;
+  border-radius: 50px 0 0 50px;
+}
+
+@media (max-width: 400px) {
+  .o06-karta:nth-child(odd)::before {
+    top: -5px;
+    bottom: -5px;
+  }
+}
+
+.o06-karta:nth-child(even)::before {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-width: 5px 5px 5px 0;
+  border-radius: 0 50px 50px 0;
+}
+
+.o06-karta:first-child::before {
+  border-top: 0;
+  border-top-left-radius: 0;
+}
+
+.o06-karta:last-child:nth-child(odd)::before {
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
+}
+
+.o06-karta:last-child:nth-child(even)::before {
+  border-bottom: 0;
+  border-bottom-right-radius: 0;
+}
+
+.o06-info {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  background: #333;
+  color: gray;
+}
+
+.o06-info p {
+  margin: 0;
+}
+
+.o06-titul {
+  position: relative;
+  margin: 0 0 4px;
+  color: var(--o06-barva);
+}
+
+/* Tečka na čáře. */
+.o06-titul::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 999px;
+  border: 3px solid var(--o06-barva);
+}
+
+.o06-karta:nth-child(even) > .o06-info > .o06-titul {
+  text-align: right;
+}
+
+.o06-karta:nth-child(odd) > .o06-info > .o06-titul::before {
+  left: -45px;
+}
+
+.o06-karta:nth-child(even) > .o06-info > .o06-titul::before {
+  right: -45px;
+}

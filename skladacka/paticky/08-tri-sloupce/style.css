@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+
+.p08 {
+  margin-top: auto;
+  padding: 3rem 16px;
+  background: #000;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+}
+
+.p08-sloupce {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.p08-nadpis {
+  margin: 0 0 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.p08-seznam {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.p08 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.p08 a:hover {
+  text-decoration: underline;
+}
+
+.p08-copy {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 700px) {
+  .p08-sloupce {
+    flex-direction: column;
+  }
+}
