@@ -1,0 +1,373 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600;800&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* ===== Hlavička (skladacka/hlavicky/01) ===== */
+.h01 {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding: 0 40px;
+  background-image: linear-gradient(to top, #d6e5f6 0%, #e7f0fd 100%);
+  color: #9197ae;
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+}
+
+.h01 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.h01-logo {
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 18px;
+}
+
+.h01-odkazy {
+  display: flex;
+}
+
+/* Bílý pruh ve spodní půlce odkazu, při najetí vyroste přes celý text. */
+.h01-odkaz {
+  margin-left: 20px;
+  padding: 2px 4px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: inset 0 -10px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(0);
+  transition: all 0.4s ease, transform 0.2s ease;
+}
+
+.h01-odkaz:hover,
+.h01-odkaz:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: inset 0 -20px 0 #fff;
+}
+
+.h01-ikona {
+  display: none;
+  width: 32px;
+  height: 32px;
+}
+
+.h01-ikona svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 799px) {
+  .h01 {
+    padding: 0 20px;
+  }
+
+  .h01-odkazy {
+    display: none;
+  }
+
+  .h01-ikona {
+    display: block;
+  }
+}
+
+/* ===== Obsah (skladacka/obsah/01) ===== */
+.o01 {
+  --o01-prechod: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  --o01-barva: #637498;
+  position: relative;
+  overflow: hidden;
+  padding: 0 40px 120px;
+  background-image: var(--o01-prechod);
+  font-family: "Raleway", sans-serif;
+}
+
+.o01-obsah {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1110px;
+  min-height: 600px;
+  margin: 0 auto;
+}
+
+/* Poloprůhledný blok s rozmazaným pozadím, přijede zprava. */
+.o01-text {
+  position: relative;
+  z-index: 1;
+  width: 70%;
+  max-width: 620px;
+  margin-top: 60px;
+  padding: 40px;
+  color: var(--o01-barva);
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: o01-text 0.8s 0.6s ease backwards;
+}
+
+.o01-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  animation: o01-cara 0.8s 0.6s ease backwards;
+}
+
+.o01-nadtitulek {
+  margin: 0 0 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.o01-titulek {
+  margin: 0 0 24px;
+  text-transform: uppercase;
+  font-weight: 200;
+  letter-spacing: 2px;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.o01-popis {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.5px;
+}
+
+.o01-tlacitko {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 16px 32px;
+  border: 1px solid rgba(99, 116, 152, 0.4);
+  color: var(--o01-barva);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 rgba(99, 116, 152, 0.2);
+  transition: all 0.4s ease;
+}
+
+.o01-tlacitko:hover,
+.o01-tlacitko:focus-visible {
+  border-color: rgba(99, 116, 152, 0.1);
+  box-shadow: inset 0 -80px 0 rgba(99, 116, 152, 0.1);
+  transform: translateY(-5px);
+}
+
+/* Fotka vyjede zespodu, přes ni sjede barevná clona. */
+.o01-foto {
+  position: absolute;
+  right: 0;
+  width: 60%;
+  max-width: 600px;
+  height: 600px;
+  margin: 0;
+  overflow: hidden;
+  transform: translateY(100px);
+  animation: o01-foto 0.6s 0.2s ease backwards;
+}
+
+.o01-foto::before,
+.o01-foto::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-image: var(--o01-prechod);
+}
+
+.o01-foto::before {
+  top: 100%;
+  height: 0;
+  animation: o01-clona 1s 0.2s ease backwards;
+}
+
+.o01-foto::after {
+  top: 0;
+  height: 100%;
+  opacity: 0.2;
+}
+
+.o01-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes o01-text {
+  0% {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
+
+@keyframes o01-cara {
+  0% {
+    right: 0;
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes o01-foto {
+  0% {
+    opacity: 0;
+    transform: translateY(200px);
+  }
+}
+
+@keyframes o01-clona {
+  0% {
+    top: 0;
+    height: 100%;
+  }
+}
+
+@media (max-width: 799px) {
+  .o01 {
+    padding: 0 20px 100px;
+  }
+
+  .o01-obsah {
+    min-height: 500px;
+  }
+
+  .o01-text {
+    margin: 90px 0 40px;
+    padding: 20px;
+  }
+
+  .o01-titulek {
+    margin-bottom: 16px;
+    font-size: 28px;
+  }
+
+  .o01-popis {
+    font-size: 14px;
+  }
+
+  .o01-foto {
+    right: -6%;
+    width: 70%;
+    height: 480px;
+    transform: translateY(80px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .o01-text,
+  .o01-text::before,
+  .o01-foto,
+  .o01-foto::before {
+    animation: none;
+  }
+}
+
+/* ===== Patička (skladacka/paticky/01) ===== */
+.p01 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 48px 16px 28px;
+  background-color: #002a38;
+  color: #fff;
+  line-height: 1.3;
+  font-family: Menlo, Consolas, monospace;
+}
+
+.p01-odkazy {
+  display: inline-grid;
+  grid-auto-flow: row;
+  gap: 24px;
+  justify-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 500px) {
+  .p01-odkazy {
+    grid-auto-flow: column;
+  }
+}
+
+.p01-odkazy a {
+  color: #fff;
+  text-decoration: none;
+  box-shadow: inset 0 -1px 0 hsla(0, 0%, 100%, 0.4);
+  transition: box-shadow 0.2s;
+}
+
+.p01-odkazy a:hover,
+.p01-odkazy a:focus-visible {
+  box-shadow: inset 0 -1.2em 0 hsla(0, 0%, 100%, 0.4);
+}
+
+/* Ruka je v HTML poslední, ale mřížka ji posune na první místo,
+   takže selektor li:hover ~ li na ni dosáhne od každého odkazu. */
+.p01-ruka {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.p01-ruka span {
+  display: inline-block;
+}
+
+.p01-odkazy li:hover ~ .p01-ruka span {
+  animation: p01-mavani 0.3s infinite;
+}
+
+.p01-copy {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+@keyframes p01-mavani {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p01-odkazy li:hover ~ .p01-ruka span {
+    animation: none;
+  }
+}

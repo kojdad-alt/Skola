@@ -4,6 +4,7 @@
 
 - **Toulky světem** (kořen repa) – cestovní kancelář s komponentami Bootstrapu.
 - **[Skládačka webu](skladacka/)** – hlavičky, obsah a patičky z FreeFrontend, které jdou libovolně poskládat.
+- **[Jednoduchý web](jednoduchy-web/)** – hotová stránka z jedné hlavičky, jednoho obsahu a jedné patičky ze skládačky (hlavička 01, obsah 01, patička 01).
 
 ## Toulky světem – cestovní kancelář
 
