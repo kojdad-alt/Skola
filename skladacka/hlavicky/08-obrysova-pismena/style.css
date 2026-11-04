@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap");
+
+.h08 {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 60vh;
+  min-height: 340px;
+  padding: 1.5em 1em 2em;
+  background: url("../../../obrazky/bali.jpg") center / cover;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+}
+
+/* Tmavý kruhový závoj, při najetí myší se trochu zesílí. */
+.h08::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(rgba(0, 0, 0, 0.3), transparent);
+  opacity: 0.4;
+  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.h08:hover::before {
+  opacity: 0.8;
+}
+
+.h08-menu {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5em;
+}
+
+.h08-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.h08-menu a:hover,
+.h08-menu a:focus-visible {
+  text-decoration: underline;
+}
+
+/* Každé písmeno má vlastní sloupec mřížky. Je jen obrysové
+   (text-stroke) a při najetí se zvětší a vyplní bílou. */
+.h08-slovo {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: min(100%, 640px);
+  margin: 0 auto;
+}
+
+.h08-pismeno {
+  display: grid;
+  place-items: center;
+  color: transparent;
+  font-size: clamp(48px, 12vw, 96px);
+  font-weight: 900;
+  -webkit-text-stroke: 2px #fff;
+  cursor: default;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.h08-pismeno:hover {
+  color: #fff;
+  -webkit-text-stroke: 2px transparent;
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.5);
+}

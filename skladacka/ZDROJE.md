@@ -16,6 +16,9 @@ Co se v kterém dílku změnilo, je v jeho souboru `ZDROJ.md`. Fotky v `../obraz
 | [03 Zmenšující se při posouvání](hlavicky/03-zmensujici-se/ZDROJ.md) | [Håvard Brynjulfsen](https://codepen.io/havardob) | <https://codepen.io/havardob/pen/KKgEJep> |
 | [04 Rozmazané pozadí pod hlavičkou](hlavicky/04-rozmazane-pozadi/ZDROJ.md) | [Luciano Felix](https://codepen.io/FelixLuciano) | <https://codepen.io/FelixLuciano/pen/KKVyZzY> |
 | [05 Duhové vlny](hlavicky/05-duhove-vlny/ZDROJ.md) | [Jeffrey Bennett](https://codepen.io/PickJBennett) | <https://codepen.io/PickJBennett/pen/BdbrMW> |
+| [06 Naběhající pruhy](hlavicky/06-nabihajici-pruhy/ZDROJ.md) | [Alvaro Montoro](https://codepen.io/alvaromontoro) | <https://codepen.io/alvaromontoro/pen/abpBmxz> |
+| [07 Pomalý zoom fotky](hlavicky/07-pomaly-zoom-fotky/ZDROJ.md) | [Nodws](https://codepen.io/nodws) | <https://codepen.io/nodws/pen/aWgMMQ> |
+| [08 Obrysová písmena](hlavicky/08-obrysova-pismena/ZDROJ.md) | [Olivia Ng](https://codepen.io/oliviale) | <https://codepen.io/oliviale/pen/YgzNzK> |
 
 ## Obsah
 
@@ -28,6 +31,7 @@ Co se v kterém dílku změnilo, je v jeho souboru `ZDROJ.md`. Fotky v `../obraz
 | [05 Časová osa s kartami](obsah/05-casova-osa-karty/ZDROJ.md) | [Mark Boots](https://codepen.io/MarkBoots) | <https://codepen.io/MarkBoots/pen/OJOqNyB> |
 | [06 Hadí časová osa](obsah/06-hadi-casova-osa/ZDROJ.md) | [Jatin Sharma](https://codepen.io/j471n) | <https://codepen.io/j471n/pen/vYJaLvm> |
 | [07 Vlnící se hladina](obsah/07-vlnici-se-hladina/ZDROJ.md) | [Krzysztof Furtak](https://codepen.io/KrzysiekF) | <https://codepen.io/KrzysiekF/pen/oNNLwZq> |
+| [08 Ceník s kolečky](obsah/08-cenik-s-kolecky/ZDROJ.md) | [Assia Chemlali](https://codepen.io/AssiaChemlali) | <https://codepen.io/AssiaChemlali/pen/gVXLEN> |
 
 ## Patičky
 

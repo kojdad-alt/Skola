@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap");
+
+.o08 {
+  --o08-prechod: linear-gradient(to right, #8e2de2 0%, #4a00e0 100%);
+  padding: 40px 16px 60px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+.o08-nadpis {
+  margin: 0 0 40px;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.o08-mrizka {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.o08-karta {
+  position: relative;
+  padding: 30px 0;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 0 18px #ccc;
+  text-align: center;
+}
+
+.o08-titul {
+  margin: 0;
+  padding-bottom: 70px;
+  border-bottom: 1px solid #eee;
+  font-size: 20px;
+  font-weight: 700;
+  transition: border-color 0.5s ease;
+}
+
+.o08-karta:hover .o08-titul {
+  border-bottom-color: #8e2de2;
+}
+
+/* Kolečko s cenou leží přes čáru pod názvem (záporný margin nahoru). */
+.o08-cena {
+  width: 100px;
+  height: 100px;
+  margin: -55px auto 0;
+  white-space: nowrap;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: var(--o08-prechod);
+  box-shadow: 0 0 10px #ccc;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 90px;
+  transition: transform 0.5s ease;
+}
+
+.o08-karta:hover .o08-cena {
+  transform: scale(1.2);
+}
+
+.o08-karta ul {
+  margin: 0 0 20px;
+  padding: 10px 0 0;
+  list-style: none;
+}
+
+.o08-karta li {
+  margin: 20px 0;
+  color: #555;
+}
+
+/* Tlačítko: fialový obal a bílá výplň přes ::after, která při najetí
+   na kartu zmizí, takže prosvitne přechod. */
+.o08-obal-tlacitka {
+  position: relative;
+  display: inline-block;
+  border-radius: 40px;
+  background: var(--o08-prechod);
+  font-weight: 500;
+}
+
+.o08-tlacitko {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin: 2px;
+  padding: 14px 40px;
+  border-radius: 50px;
+  color: #333;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s linear, box-shadow 0.3s linear;
+}
+
+.o08-tlacitko::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  background: #fff;
+  transform: scale(1);
+  transition: all 0.3s linear;
+}
+
+.o08-karta:hover .o08-tlacitko {
+  color: #fff;
+}
+
+.o08-karta:hover .o08-tlacitko::after {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.o08-tlacitko:hover,
+.o08-tlacitko:focus-visible {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .o08-mrizka {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .o08-mrizka {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
