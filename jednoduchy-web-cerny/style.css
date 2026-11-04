@@ -1,0 +1,285 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+main {
+  flex: 1;
+}
+
+/* ===== Hlavička (skladacka/hlavicky/02) ===== */
+.h02 {
+  background: #222;
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+}
+
+/* Celý trik: 10 px vysoký pruh s šikmým přechodem tří barev. */
+.h02-linka {
+  height: 10px;
+  background: linear-gradient(141deg, cyan 0%, rebeccapurple 40%, deeppink 90%);
+}
+
+.h02-obsah {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.h02-nazev {
+  color: #fff;
+  text-decoration: none;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+
+.h02-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.h02-menu a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.h02-menu a:hover,
+.h02-menu a:focus-visible {
+  color: #fff;
+  border-bottom-color: deeppink;
+}
+
+/* ===== Obsah (skladacka/obsah/07) ===== */
+.o07 {
+  --o07-voda: #4973ff;
+  --o07-pozadi: #333;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.o07-uvod {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 80vh;
+  min-height: 480px;
+  overflow: hidden;
+  background: var(--o07-pozadi);
+  color: #fff;
+}
+
+.o07-obsah {
+  max-width: 600px;
+  margin: 0 auto 120px;
+  padding: 0 20px;
+}
+
+.o07-uvod h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 10px;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.o07-uvod p {
+  position: relative;
+  z-index: 1;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Modrý pruh dole. Nad ním se točí dva obří skoro-kulaté čtverce
+   v barvě pozadí, jejich spodní okraj dělá vlny na hladině. */
+.o07-vlny {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background-color: var(--o07-voda);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.o07-vlny::before,
+.o07-vlny::after {
+  content: "";
+  position: absolute;
+  top: -65vw;
+  left: 50%;
+  width: 300vw;
+  height: 300vw;
+  border-radius: 44%;
+  transform: translate(-50%, -75%);
+}
+
+.o07-vlny::before {
+  background: var(--o07-pozadi);
+  animation: o07-vlny 8s linear infinite;
+}
+
+.o07-vlny::after {
+  background: rgba(51, 51, 51, 0.5);
+  animation: o07-vlny 15s linear infinite;
+}
+
+@keyframes o07-vlny {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .o07-vlny::before,
+  .o07-vlny::after {
+    animation-play-state: paused;
+  }
+}
+
+/* ===== Patička (skladacka/paticky/04) ===== */
+.p04 {
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+  padding: 40px 16px 70px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.p04-text {
+  position: relative;
+  z-index: 1;
+}
+
+.p04-text p {
+  margin: 0 0 6px;
+  opacity: 0.85;
+}
+
+.p04-text .p04-jmeno {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 1;
+}
+
+.p04-text a {
+  color: #fff;
+}
+
+/* Pět do sebe vnořených elips, každá se jinou rychlostí přelévá
+   mezi dvěma barvami stínu. Spodní polovina je schovaná pod okrajem. */
+.p04-zare {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  width: 100%;
+}
+
+.p04-svetlo {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.p04-s1 {
+  animation: p04-jedna 5s ease-in-out infinite alternate;
+}
+
+.p04-s2 {
+  width: 90%;
+  animation: p04-dva 4s ease-in-out infinite alternate;
+}
+
+.p04-s3 {
+  width: 80%;
+  animation: p04-tri 3s ease-in-out infinite alternate;
+}
+
+.p04-s4 {
+  width: 70%;
+  animation: p04-ctyri 2s ease-in-out infinite alternate;
+}
+
+.p04-s5 {
+  width: 60%;
+  animation: p04-pet 1s ease-in-out infinite alternate;
+}
+
+@keyframes p04-jedna {
+  from { box-shadow: 0 0 250px 20px #473c78; }
+  to { box-shadow: 0 0 100px 15px #f72a3b; }
+}
+
+@keyframes p04-dva {
+  from { box-shadow: 0 0 250px 20px #18c499; }
+  to { box-shadow: 0 0 100px 15px #d8f05e; }
+}
+
+@keyframes p04-tri {
+  from { box-shadow: 0 0 250px 20px #ffdd00; }
+  to { box-shadow: 0 0 100px 15px #3e33ff; }
+}
+
+@keyframes p04-ctyri {
+  from { box-shadow: 0 0 250px 20px #781848; }
+  to { box-shadow: 0 0 100px 15px #f2bbe9; }
+}
+
+@keyframes p04-pet {
+  from { box-shadow: 0 0 250px 20px #42f2a1; }
+  to { box-shadow: 0 0 100px 15px #f4f6ad; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p04-svetlo {
+    animation-play-state: paused;
+  }
+}
+
+/* ===== Černý vzhled celé stránky ===== */
+.h02 {
+  background: #0b0b0d;
+}
+
+.o07 {
+  --o07-pozadi: #111114;
+}
+
+.o07-vlny::after {
+  background: rgba(17, 17, 20, 0.5);
+}
