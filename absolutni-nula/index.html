@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absolutní nula · Kmetík + Sitta</title>
+    <meta name="description" content="Interaktivní prezentace: co je absolutní nula a proč jí nelze dosáhnout.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='%2308131c' stroke='%239af4ea' stroke-width='2'/%3E%3Ctext x='16' y='20' text-anchor='middle' font-size='12' fill='%239af4ea' font-family='serif'%3E0%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="progress" aria-hidden="true"><span id="progress-bar" style="width: 10%"></span></div>
+
+    <header class="top">
+        <div class="top-left">
+            <span class="who">Kmetík + Sitta</span>
+            <button type="button" id="notes-toggle" aria-pressed="false" aria-controls="notes">Poznámky</button>
+        </div>
+        <p id="current-title">Úvod</p>
+        <p id="counter">1 / 10</p>
+    </header>
+
+    <main id="deck">
+        <section class="slide is-active" data-title="Úvod">
+            <div class="frame">
+                <div class="hero">
+                    <div>
+                        <p class="kicker">Otázka 5 · fyzika</p>
+                        <h1>Co je absolutní nula a&nbsp;proč jí nelze dosáhnout?</h1>
+                        <p class="lead">Nejnižší teplota, kterou fyzika dovoluje. A důvod, proč se k ní dá jen blížit.</p>
+                        <ul class="trail">
+                            <li>Co to je</li>
+                            <li>Proč to nejde</li>
+                            <li>Jak blízko jsme</li>
+                        </ul>
+                        <p class="hint">Šipky nebo mezerník posouvají snímky. Klávesa N ukáže poznámky k mluvení.</p>
+                    </div>
+                    <div class="orb" aria-hidden="true">
+                        <div class="ring"></div>
+                        <div class="core">
+                            <strong>0 K</strong>
+                            <span>−273,15 °C</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="speaker">Začněte otázkou ze zadání. Absolutní nula není nula na venkovním teploměru. Je to spodní hranice teploty. Pak řekněte, že projdete tři věci: co to je, proč to nejde a jak blízko se člověk dostal.</p>
+            </div>
+        </section>
+
+        <section class="slide" data-title="Teplota">
+            <div class="frame">
+                <p class="kicker">Nejdřív teplota</p>
+                <h2>Teplota je pohyb částic</h2>
+                <p class="lead">Teplota říká, jakou pohybovou energii mají atomy a molekuly. V teplém vzduchu létají stovky metrů za sekundu. Ochladit látku znamená jediné: odebrat jim tenhle pohyb.</p>
+                <div class="stage" id="stage">
+                    <canvas id="particles" width="800" height="280"></canvas>
+                </div>
+                <div class="segment">
+                    <button type="button" class="choice is-on" data-mode="hot" aria-pressed="true">Zahřát</button>
+                    <button type="button" class="choice" data-mode="cold" aria-pressed="false">Zchladit</button>
+                </div>
+                <p class="hint" id="particle-caption">Vysoká teplota. Částice narážejí rychle a neuspořádaně.</p>
+                <p class="speaker">Nechte částice zpomalit tlačítkem. Věta k zapamatování: ochladit znamená odebrat pohyb. Molekuly vzduchu v místnosti létají zhruba 500 metrů za sekundu. I po zchlazení na plátně zbývá drobné chvění. To se vysvětlí na snímku o nulové energii.</p>
+            </div>
+        </section>
+
+        <section class="slide" data-title="Stupnice">
+            <div class="frame">
+                <p class="kicker">Dvě nuly</p>
+                <h2>Nula na Celsiovi není dno</h2>
+                <p class="lead">0 °C je teplota tání ledu. Částice v ledu se pořád chvějí. Kelvinova stupnice proto začíná jinde: tam, kde už tepelný pohyb nemá kam klesnout.</p>
+                <div class="pair">
+                    <article>
+                        <p class="pair-k">Celsiova nula</p>
+                        <p class="pair-n">0 °C</p>
+                        <p>Tání ledu. Pořád 273 kelvinů nad absolutní nulou.</p>
+                    </article>
+                    <article class="pair-cold">
+                        <p class="pair-k">Absolutní nula</p>
+                        <p class="pair-n">0 K</p>
+                        <p>Přesně −273,15 °C. Konec stupnice.</p>
+                    </article>
+                </div>
+                <label class="field">
+                    <span>Teplota</span>
+                    <input id="celsius" inputmode="decimal" autocomplete="off" spellcheck="false" value="20" aria-describedby="celsius-out">
+                    <span>°C</span>
+                </label>
+                <div class="chips" id="c-chips">
+                    <button type="button" class="c-chip" data-c="100">Vařící voda</button>
+                    <button type="button" class="c-chip" data-c="20">Pokoj</button>
+                    <button type="button" class="c-chip" data-c="0">Led</button>
+                    <button type="button" class="c-chip" data-c="-196">Kapalný dusík</button>
+                    <button type="button" class="c-chip" data-c="-273.15">Absolutní nula</button>
+                </div>
+                <p class="result" id="celsius-out">20 °C = 293,15 K. Nad táním ledu, a od absolutní nuly pořád stovky kelvinů.</p>
+                <p class="speaker">Přepočtěte 0 °C a pak −273,15. Mezi táním ledu a absolutní nulou je 273 kelvinů. To je větší odstup než mezi ledem a vařící vodou. Když někdo zadá číslo pod −273,15, řekněte, že stupnice tam končí.</p>
+            </div>
+        </section>
+
+        <section class="slide" data-title="Absolutní nula">
+            <div class="frame">
+                <p class="kicker">Definice</p>
+                <h2>Absolutní nula je 0 K</h2>
+                <p class="define"><span>0 K</span><span class="eq">=</span><span>−273,15 °C</span></p>
+                <p class="lead">Nejnižší teplota, kterou termodynamika připouští. Látka v ní má nejmenší možnou vnitřní energii. Není to místo, kam se dá dojít. Je to mez stupnice.</p>
+                <div class="tabs" role="group" aria-label="Dvě úrovně vysvětlení">
+                    <button type="button" class="tab is-on" data-tab="school" aria-pressed="true">Jak se to učí</button>
+                    <button type="button" class="tab" data-tab="exact" aria-pressed="false">Přesněji</button>
+                </div>
+                <div class="panel" id="panel-school">
+                    <p>Teplota je pohyb částic. Absolutní nula je teplota, při které by ten neuspořádaný tepelný pohyb ustal. Níž už klesnout nemůže, a proto od ní Kelvinova stupnice začíná. Nula na domácím teploměru s tím nemá nic společného.</p>
+                </div>
+                <div class="panel" id="panel-exact" hidden>
+                    <p>Kvantová fyzika ten obraz doplní. I v nejnižším stavu částici zbývá nulová energie: čím přesněji víme, kde je, tím míň můžeme tvrdit, že stojí. Říká to Heisenbergův princip neurčitosti. Absolutní nula proto neznamená, že všechno znehybní. Znamená, že už nejde odebrat žádné teplo.</p>
+                </div>
+                <p class="speaker">Řekněte číslo −273,15 pomalu. Nejdřív nechte zapnuté „Jak se to učí“. Pak přepněte na „Přesněji“, ať vám nikdo nevytkne, že atomy úplně stojí. Věta na závěr snímku: nejde odebrat žádné teplo.</p>
+            </div>
+        </section>
+
+        <section class="slide" data-title="Proč to nejde">
+            <div class="frame">
+                <p class="kicker">Proč to nejde</p>
+                <h2>Nestačí silnější mrazák</h2>
+                <blockquote>Absolutní nuly nelze dosáhnout konečným počtem kroků.</blockquote>
+                <p class="byline">Třetí termodynamický zákon · Walther Nernst, 1906</p>
+                <p class="lead">Teplo umíš odvést jen do něčeho studenějšího. Čím jsi blíž nule, tím míň ho zbývá a tím víc práce stojí ho odebrat. Další krok teplotu jen zmenší. Na nulu by jich muselo být nekonečně mnoho.</p>
+                <ol class="approach">
+                    <li>300 K</li>
+                    <li>30 K</li>
+                    <li>3 K</li>
+                    <li>0,3 K</li>
+                    <li>0,03 K</li>
+                    <li class="more">···</li>
+                    <li class="limit">0 K<small>nedosažitelná</small></li>
+                </ol>
+                <p class="hint">Nákres, ne měření. Každé políčko nechá desetinu teploty. Nula stojí až za nekonečnem, ne za dalším políčkem.</p>
+                <p class="speaker">Pojmenujte třetí termodynamický zákon. Pointa není slabý mrazák. I dokonalý přístroj by potřeboval nekonečně mnoho kroků. Ukažte řadu 300, 30, 3, 0,3… a řekněte, že se blíží, ale nedojede. Další snímek si to třída může proklikat.</p>
+            </div>
+        </section>
+
+        <section class="slide" data-title="Simulace">
+            <div class="frame">
+                <p class="kicker">Vyzkoušej si to</p>
+                <h2>Desetkrát studenější. Pořád ne nula.</h2>
+                <p class="lead">Model, ne skutečný přístroj. Každý krok nechá jen desetinu teploty. Skutečné chlazení je pomalejší. I takový štědrý stroj na nulu nikdy nedojede.</p>
+                <div class="sim">
+                    <div class="thermo" aria-hidden="true">
+                        <div class="thermo-tube"><div class="thermo-fill" id="thermo-fill"></div></div>
+                        <span class="thermo-zero">0 K</span>
+                    </div>
+                    <div>
+                        <p class="step" id="cool-step">Krok 0</p>
+                        <p class="big-temp" id="cool-temp" aria-live="polite">293,15 K</p>
+                        <p class="sub" id="cool-sub">20 °C · pokoj</p>
+                        <p class="forever">Do 0 K zbývá nekonečně mnoho kroků.</p>
+                        <div class="actions">
+                            <button type="button" class="btn" id="cool-btn">Ochladit na desetinu</button>
+                            <button type="button" class="btn ghost" id="cool-reset">Zpět na 20 °C</button>
+                        </div>
+                        <p class="note" id="cool-note">Pokojová teplota. Částice ve vzduchu pořád létají stovky metrů za sekundu.</p>
+                    </div>
+                </div>
+                <p class="speaker">Klikejte a čtěte teplotu nahlas. Zastavte se u helia a u pikokelvinů. Sloupec teploměru klesne a pak se zarazí nad nulou, číslo ale pořád není nula. Na konci: další kliknutí přidá jen další nulu za čárkou.</p>
+            </div>
+        </section>
+
+        <section class="slide" data-title="Jak blízko">
+            <div class="frame">
+                <p class="kicker">Jak blízko jsme</p>
+                <h2>Od Slunce až k nule</h2>
+                <p class="lead">Nula je na konci stupnice. Člověk už stál těsně nad ní. Dosáhnout jí je něco jiného.</p>
+                <p class="big-temp" id="map-temp">293,15 K</p>
+                <p class="sub" id="map-sub">20 °C</p>
+                <input id="map-range" type="range" min="0" max="1000" step="1" value="82" aria-label="Teplota od povrchu Slunce k absolutní nule">
+                <div class="scale-labels" aria-hidden="true"><span>teplo</span><span>absolutní nula</span></div>
+                <div class="chips" id="map-chips"></div>
+                <article class="fact">
+                    <h3 id="map-title">Pokojová teplota</h3>
+                    <p id="map-fact">20 °C. Nám je příjemně, ale molekuly vzduchu létají zhruba 500 m/s.</p>
+                </article>
+                <p class="speaker">Proklikejte zastávky: Slunce, pokoj, led, dusík, helium, vesmír, kvantový počítač, rok 2026 a nakonec 0 K. Vesmír sám má 2,7 K, takže ani on není na absolutní nule. U rekordu řekněte, že 9,7 pikokelvinu pořád není nula.</p>
+            </div>
+        </section>
+
+        <section class="slide" data-title="K čemu to je">
+            <div class="frame">
+                <p class="kicker">K čemu ten mráz je</p>
+                <h2>Těsně nad nulou se hmota změní</h2>
+                <p class="lead">Absolutní nula zůstává nedosažitelná. Už kousek nad ní ale příroda přestane fungovat tak, jak ji známe z kuchyně. Klepni na kartičku.</p>
+                <div class="cards">
+                    <button type="button" class="flip" aria-expanded="false">
+                        <span class="flip-inner">
+                            <span class="flip-face flip-front">
+                                <span class="kicker">01</span>
+                                <strong>Supravodivost</strong>
+                                <span class="flip-hint">Klepni a otoč</span>
+                            </span>
+                            <span class="flip-face flip-back">
+                                <strong>Supravodivost</strong>
+                                <span>Pod kritickou teplotou zmizí elektrický odpor. Proud v cívce pak teče bez ztrát. Díky tomu fungují silné magnety v magnetické rezonanci a v urychlovačích částic.</span>
+                            </span>
+                        </span>
+                    </button>
+                    <button type="button" class="flip" aria-expanded="false">
+                        <span class="flip-inner">
+                            <span class="flip-face flip-front">
+                                <span class="kicker">02</span>
+                                <strong>Supratekuté helium</strong>
+                                <span class="flip-hint">Klepni a otoč</span>
+                            </span>
+                            <span class="flip-face flip-back">
+                                <strong>Supratekuté helium</strong>
+                                <span>Pod asi 2,17 K teče helium bez vnitřního tření. Vytéká i po stěně nádoby ven. Není to obyčejná kapalina, ale kvantový jev ve velkém měřítku.</span>
+                            </span>
+                        </span>
+                    </button>
+                    <button type="button" class="flip" aria-expanded="false">
+                        <span class="flip-inner">
+                            <span class="flip-face flip-front">
+                                <span class="kicker">03</span>
+                                <strong>Boseho–Einsteinův kondenzát</strong>
+                                <span class="flip-hint">Klepni a otoč</span>
+                            </span>
+                            <span class="flip-face flip-back">
+                                <strong>Kondenzát</strong>
+                                <span>Když se atomy ochladí na zlomky mikrokelvinu, obsadí stejný kvantový stav a chovají se jako jedna vlna. Poprvé se to podařilo v roce 1995. Nobelova cena přišla v roce 2001.</span>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+                <p class="speaker">Rozdělte si karty. Jeden supravodivost, druhý supratekuté helium, kondenzát klidně společně. Pointa: tyhle jevy nastávají nad nulou. Samotná nula k nim není potřeba a stejně jí nedosáhneme.</p>
+            </div>
+        </section>
+
+        <section class="slide" data-title="Kvíz">
+            <div class="frame">
+                <p class="kicker">Ověř si to</p>
+                <h2>Čtyři otázky</h2>
+                <div id="quiz-play">
+                    <p class="quiz-progress" id="quiz-progress">Otázka 1 / 4</p>
+                    <h3 id="quiz-q"></h3>
+                    <div class="options" id="quiz-options"></div>
+                    <p class="feedback" id="quiz-feedback" aria-live="polite"></p>
+                    <button type="button" class="btn" id="quiz-next" hidden>Další otázka</button>
+                </div>
+                <div id="quiz-score" hidden>
+                    <p class="big-temp" id="score-num"></p>
+                    <p class="lead" id="score-text"></p>
+                    <button type="button" class="btn ghost" id="quiz-retry">Zkusit znovu</button>
+                </div>
+                <p class="speaker">Nechte někoho ze třídy vybrat odpověď, nebo si ji vyberte sami. Po každé odpovědi přečtěte tu jednu větu, proč to tak je. Když padne špatná, neokřikujte. Řekněte správnou a jeďte dál.</p>
+            </div>
+        </section>
+
+        <section class="slide" data-title="Shrnutí">
+            <div class="frame">
+                <p class="kicker">Odnést si</p>
+                <h2>Tři věty, které stačí</h2>
+                <ol class="takeaways">
+                    <li>
+                        <div>
+                            <h3>Co to je</h3>
+                            <p>Absolutní nula je 0 K, přesně −273,15 °C. Níž už teplota klesnout nemůže.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h3>Co dělají částice</h3>
+                            <p>Je to stav s nejmenší energií. Tepelný pohyb by ustal, kvantová fyzika ale nechává částicím nulovou energii.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h3>Proč to nejde</h3>
+                            <p>Třetí termodynamický zákon: konečným počtem kroků se k nule jen blížíme. Proto jí nelze dosáhnout.</p>
+                        </div>
+                    </li>
+                </ol>
+                <details class="sources">
+                    <summary>Zdroje</summary>
+                    <ul>
+                        <li>0 °C je definitoricky 273,15 K, takže absolutní nula je přesně −273,15 °C.</li>
+                        <li>Třetí termodynamický zákon: Walther Nernst, tepelný teorém z roku 1906. Absolutní nuly nelze dosáhnout konečným počtem termodynamických operací.</li>
+                        <li>Supravodivost: Heike Kamerlingh Onnes, 1911, rtuť při teplotě kapalného helia.</li>
+                        <li>Boseho–Einsteinův kondenzát: Eric Cornell, Carl Wieman a Wolfgang Ketterle, 1995. Nobelova cena 2001.</li>
+                        <li>38 pikokelvinů: Christian Deppner a kol., Physical Review Letters 127, 100401 (2021). Pádová věž v Brémách, oblak rubidia, pár sekund.</li>
+                        <li>9,7 pikokelvinu: čínská vesmírná stanice Tchien-kung, článek v časopise Science z 5. listopadu 2026. Ekvivalentní teplota oblaku rubidia, také jen sekundy.</li>
+                    </ul>
+                </details>
+                <p class="who-end">Kmetík + Sitta · otázka 5</p>
+                <p class="speaker">Tři věty přečtěte pomalu. To je celá odpověď na otázku. Když zbyde čas, otevřete zdroje. Neslibujte, že se na nulu jednou sáhne. Zákon říká, že ne.</p>
+            </div>
+        </section>
+    </main>
+
+    <aside id="notes" class="notes" hidden>
+        <p class="notes-label">Poznámky k mluvení. Na plátno při přednášce vypni.</p>
+        <p id="notes-text"></p>
+    </aside>
+
+    <div class="nav">
+        <button type="button" class="nav-btn" id="prev" disabled aria-label="Předchozí snímek">←</button>
+        <div class="dots" id="dots"></div>
+        <button type="button" class="nav-btn" id="next" aria-label="Další snímek">→</button>
+    </div>
+    <p class="sr" id="live" aria-live="polite"></p>
+
+    <noscript>
+        <style>
+            .slide { position: relative; inset: auto; opacity: 1; visibility: visible; transform: none; pointer-events: auto; min-height: 100vh; }
+            .top, .nav, .progress, .notes { display: none; }
+            body { height: auto; overflow: auto; }
+        </style>
+    </noscript>
+    <script src="script.js"></script>
+</body>
+</html>
