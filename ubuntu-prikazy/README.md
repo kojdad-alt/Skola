@@ -113,7 +113,7 @@ sudo prikaz   # spustí příkaz jako správce počítače (zeptá se na heslo)
 
 ## 9. UŽIVATELÉ A SKUPINY
 
-Uživatel = účet jednoho člověka. Skupina = parta uživatelů. Skupině můžeš dát práva a dostanou je všichni v ní najednou (třeba celá třída nebo tým).
+Uživatel = účet jednoho člověka. Skupina = parta uživatelů. Skupině můžeš dát práva a dostanou je všichni v ní najednou (třeba celá třída nebo tým). Každý uživatel má číslo UID (správce root má 0, běžní lidi od 1000) a každá skupina číslo GID. Každý má jednu hlavní (primární) skupinu – tu dostanou jeho nové soubory – a k tomu může být v kolika chce dalších (doplňkových) skupinách, třeba sudo.
 
 ```bash
 sudo adduser novak                     # vytvoří uživatele novak, na všechno se zeptá (heslo, jméno…)
@@ -124,11 +124,11 @@ sudo groupadd projekty                 # vytvoří skupinu projekty
 sudo groupdel stara_skupina            # smaže skupinu
 sudo usermod -aG projekty novak        # přidá uživatele do skupiny – vždycky -aG! Bez „a“ ho to vyhodí ze všech ostatních skupin
 sudo gpasswd -d petr projekty          # vyhodí uživatele ze skupiny
-id novak                               # ukáže, kdo to je a ve kterých je skupinách
+id novak                               # ukáže jeho UID, hlavní skupinu (GID) a všechny skupiny
 groups novak                           # jen jeho skupiny
 newgrp projekty                        # načte novou skupinu hned, bez odhlášení
-cat /etc/passwd                        # seznam všech uživatelů v počítači
-sudo cat /etc/shadow                   # zašifrovaná hesla (jde jen se sudo)
+cat /etc/passwd                        # seznam všech uživatelů: jméno, UID, hlavní skupina, domovská složka, terminál – číst může každý
+sudo cat /etc/shadow                   # zašifrovaná hesla a jak dlouho platí – přečte jen root, proto sudo
 cat /etc/group                         # seznam všech skupin a kdo v nich je
 ```
 
@@ -150,9 +150,17 @@ sudo chown student:projekty soubor.txt     # změní majitele i skupinu najednou
 sudo chown -R anna:projekty /opt/sdilene   # totéž pro celou složku i se vším uvnitř (-R)
 ```
 
-**Jak číst `-rw-r--r--`:** první znak je typ (`-` soubor, `d` složka), pak tři trojice: majitel `rw-`, skupina `r--`, ostatní `r--`.
+**Jak číst `ls -l`**, třeba `-rwxr-xr-- 1 student vyuka … soubor.txt`: první znak typ (`-` soubor, `d` složka, `l` odkaz), pak tři trojice: majitel `rwx`, skupina `r-x`, ostatní `r--`.
 
-**Písmena v chmod:** `u` majitel, `g` skupina, `o` ostatní, `a` všichni; `+` přidat, `-` vzít.
+| právo | u souboru | u složky |
+|---|---|---|
+| `r` | číst obsah | vidět, co v ní je (ls) |
+| `w` | měnit a ukládat | vytvářet, mazat a přejmenovávat věci v ní |
+| `x` | spustit jako program | vejít do ní (cd) a projít dál |
+
+> **Pozor na průchod:** když na jakékoli složce po cestě k souboru nemáš `x`, k souboru se nedostaneš – ani kdyby měl 777.
+
+**Písmena v chmod:** `u` majitel, `g` skupina, `o` ostatní, `a` všichni; `+` přidat, `-` vzít, `=` nastavit přesně tohle.
 
 | písmeno | číslo | znamená |
 |---|---|---|
@@ -172,15 +180,15 @@ Tři číslice za sebou = majitel, skupina, ostatní:
 
 | číslo | znamená |
 |---|---|
-| `755` | majitel všechno, ostatní číst a spustit (programy, složky) |
-| `644` | majitel čte a píše, ostatní jen čtou (běžný soubor) |
-| `700` | jen majitel, nikdo jiný nic |
-| `600` | jen majitel čte a píše |
-| `770` | majitel a skupina všechno, ostatní nic |
+| `755` | rwxr-xr-x – majitel všechno, ostatní čtou a procházejí (složky, programy) |
+| `644` | rw-r--r-- – majitel čte a píše, ostatní jen čtou (běžný soubor) |
+| `700` | rwx------ – soukromá složka, jen majitel |
+| `600` | rw------- – soukromý soubor, jen majitel (třeba klíč id_rsa) |
+| `770` | rwxrwx--- – týmová složka: majitel a skupina všechno, ostatní nic |
 
 ## 11. SDÍLENÁ SLOŽKA
 
-Cíl: složka, do které můžou psát všichni ze skupiny projekty, ale nikdo jiný.
+Cíl: složka, do které můžou psát všichni ze skupiny projekty, ale nikdo jiný. V učebním textu je místo 2770 a 710 napsáno 770 a 750 – funguje to taky. Rozdíl: dvojka v 2770 zařídí, že nové soubory ve složce budou taky patřit skupině, a 710 (místo 750) skupině nedovolí koukat, co dalšího má Anna doma.
 
 ```bash
 sudo groupadd projekty                         # vytvoří skupinu projekty
@@ -282,4 +290,15 @@ sudo setfacl …                   # dává práva jednotlivým lidem (ACL) u ci
 sudo apt install …               # instaluje programy
 sudo cat /etc/shadow             # čte zašifrovaná hesla
 sudo -u anna … / sudo -iu anna   # dělá věci za jiného uživatele bez jeho hesla
+```
+
+## 18. TYPICKÉ CHYBY
+
+Když něco nefunguje, je to skoro vždycky jedno z tohohle.
+
+```bash
+Permission denied (i když práva jsou)   # nějaká složka po cestě nemá pro tebe x (průchod), třeba /home/anna má 700 → admin: sudo chmod g+x /home/anna (nebo o+x)
+nová skupina nefunguje                  # terminál si pamatuje skupiny z přihlášení → odhlásit a přihlásit (exit, su - uzivatel) nebo newgrp nazev_skupiny
+chmod 777                               # NEDĚLAT! Dá úplně všem všechno – kdokoli pak může soubor číst, změnit nebo smazat
+sudo: … not in the sudoers file         # nejsi admin – tenhle příkaz musí udělat správce
 ```
