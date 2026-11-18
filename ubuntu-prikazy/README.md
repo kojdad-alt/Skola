@@ -147,3 +147,38 @@ sudo chmod 710 /home/anna                # skupina může jen projít, ne číst
 ls -ld /home/anna
 ls -ld /home/anna/tym_sdilene
 ```
+
+## 12. PRÁVO PSÁT DO SOUBORU PRO URČITÉ LIDI
+
+```bash
+sudo groupadd zapisovatele                 # nová skupina
+sudo usermod -aG zapisovatele anna         # přidat člověka do skupiny (vždy -aG!)
+sudo usermod -aG zapisovatele petr
+sudo chgrp zapisovatele soubor.txt         # soubor dostane tu skupinu
+sudo chmod g+w soubor.txt                  # skupině přidá zápis
+sudo chmod 664 soubor.txt                  # vlastník a skupina čtou i píšou, ostatní jen čtou
+sudo chmod 660 soubor.txt                  # totéž, ale ostatní ani nečtou
+ls -l soubor.txt                           # kontrola: -rw-rw-r-- … zapisovatele
+newgrp zapisovatele                        # načíst skupinu bez odhlášení (jinak odhlásit a přihlásit)
+sudo chgrp zapisovatele /home/anna         # soubor v cizí domovské složce: skupina jí musí projít
+sudo chmod 710 /home/anna                  # skupina může jen projít, ne číst
+```
+
+## 13. PRÁVO JEN PRO JEDNOHO ČLOVĚKA (ACL)
+
+```bash
+sudo apt install acl                       # když ACL chybí
+sudo setfacl -m u:anna:rw soubor.txt       # anna smí soubor číst i psát
+getfacl soubor.txt                         # kontrola
+sudo setfacl -x u:anna soubor.txt          # anně právo zase vezme
+```
+
+## 14. ODEBRÁNÍ PRÁV
+
+```bash
+sudo chmod g-w soubor.txt                  # skupině vezme zápis (číst může dál)
+sudo chmod g-rwx soubor.txt                # skupině vezme všechno
+sudo gpasswd -d petr zapisovatele          # odebrat člověka ze skupiny
+sudo chgrp anna soubor.txt                 # vrátit souboru vlastní skupinu
+sudo groupdel zapisovatele                 # smazat skupinu
+```
