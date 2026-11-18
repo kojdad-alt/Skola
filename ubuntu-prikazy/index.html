@@ -22,6 +22,7 @@
     .popis { color: var(--popis); }
     .prava { margin-top: 14px; border-top: 1px solid var(--cara); padding-top: 12px; }
     .prava p { margin: 8px 0; }
+    .pozor { background: #fdecea; border-left: 4px solid #c62828; border-radius: 6px; padding: 8px 12px; }
     table { border-collapse: collapse; margin: 6px 0 12px; }
     th, td { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--cara); vertical-align: baseline; }
     th { font-size: .9rem; color: var(--popis); font-weight: 600; }
@@ -139,7 +140,7 @@
   </section>
   <section>
     <h2>9. UŽIVATELÉ A SKUPINY</h2>
-    <p class="vysvetleni">Uživatel = účet jednoho člověka. Skupina = parta uživatelů. Skupině můžeš dát práva a dostanou je všichni v ní najednou (třeba celá třída nebo tým).</p>
+    <p class="vysvetleni">Uživatel = účet jednoho člověka. Skupina = parta uživatelů. Skupině můžeš dát práva a dostanou je všichni v ní najednou (třeba celá třída nebo tým). Každý uživatel má číslo UID (správce root má 0, běžní lidi od 1000) a každá skupina číslo GID. Každý má jednu hlavní (primární) skupinu – tu dostanou jeho nové soubory – a k tomu může být v kolika chce dalších (doplňkových) skupinách, třeba sudo.</p>
     <ul>
       <li><code>sudo adduser novak</code><span class="popis">vytvoří uživatele novak, na všechno se zeptá (heslo, jméno…)</span></li>
       <li><code>sudo useradd -m -s /bin/bash svoboda</code><span class="popis">vytvoří uživatele ručně (-m = udělá mu domovskou složku, -s = terminál bash)</span></li>
@@ -149,11 +150,11 @@
       <li><code>sudo groupdel stara_skupina</code><span class="popis">smaže skupinu</span></li>
       <li><code>sudo usermod -aG projekty novak</code><span class="popis">přidá uživatele do skupiny – vždycky -aG! Bez „a“ ho to vyhodí ze všech ostatních skupin</span></li>
       <li><code>sudo gpasswd -d petr projekty</code><span class="popis">vyhodí uživatele ze skupiny</span></li>
-      <li><code>id novak</code><span class="popis">ukáže, kdo to je a ve kterých je skupinách</span></li>
+      <li><code>id novak</code><span class="popis">ukáže jeho UID, hlavní skupinu (GID) a všechny skupiny</span></li>
       <li><code>groups novak</code><span class="popis">jen jeho skupiny</span></li>
       <li><code>newgrp projekty</code><span class="popis">načte novou skupinu hned, bez odhlášení</span></li>
-      <li><code>cat /etc/passwd</code><span class="popis">seznam všech uživatelů v počítači</span></li>
-      <li><code>sudo cat /etc/shadow</code><span class="popis">zašifrovaná hesla (jde jen se sudo)</span></li>
+      <li><code>cat /etc/passwd</code><span class="popis">seznam všech uživatelů: jméno, UID, hlavní skupina, domovská složka, terminál – číst může každý</span></li>
+      <li><code>sudo cat /etc/shadow</code><span class="popis">zašifrovaná hesla a jak dlouho platí – přečte jen root, proto sudo</span></li>
       <li><code>cat /etc/group</code><span class="popis">seznam všech skupin a kdo v nich je</span></li>
     </ul>
   </section>
@@ -174,18 +175,31 @@
       <li><code>sudo chown -R anna:projekty /opt/sdilene</code><span class="popis">totéž pro celou složku i se vším uvnitř (-R)</span></li>
     </ul>
     <div class="prava">
-      <p><b>Jak číst <code>-rw-r--r--</code>:</b> první znak je typ (<code>-</code> soubor, <code>d</code> složka), pak tři trojice: <b>majitel</b> <code>rw-</code>, <b>skupina</b> <code>r--</code>, <b>ostatní</b> <code>r--</code>.</p>
-      <p><b>Písmena v chmod:</b> <code>u</code> = majitel, <code>g</code> = skupina, <code>o</code> = ostatní, <code>a</code> = všichni; <code>+</code> přidat, <code>-</code> vzít.</p>
+      <p><b>Jak číst výpis <code>ls -l</code></b>, třeba <code>-rwxr-xr-- 1 student vyuka 4096 říj 20 09:15 soubor.txt</code>:</p>
+      <table><tr><th>kus</th><th>znamená</th></tr>
+        <tr><td><code>-</code></td><td>typ: <code>-</code> soubor, <code>d</code> složka, <code>l</code> odkaz</td></tr>
+        <tr><td><code>rwx</code></td><td>co smí <b>majitel</b> (tady student)</td></tr>
+        <tr><td><code>r-x</code></td><td>co smí <b>skupina</b> (tady vyuka)</td></tr>
+        <tr><td><code>r--</code></td><td>co smí <b>ostatní</b></td></tr>
+      </table>
+      <p><b>Co znamenají práva u souboru a u složky:</b></p>
+      <table><tr><th>právo</th><th>u souboru</th><th>u složky</th></tr>
+        <tr><td><code>r</code></td><td>číst obsah</td><td>vidět, co v ní je (ls)</td></tr>
+        <tr><td><code>w</code></td><td>měnit a ukládat</td><td>vytvářet, mazat a přejmenovávat věci v ní</td></tr>
+        <tr><td><code>x</code></td><td>spustit jako program</td><td>vejít do ní (cd) a projít dál</td></tr>
+      </table>
+      <p class="pozor"><b>Pozor na průchod:</b> když na <b>jakékoli</b> složce po cestě k souboru nemáš <code>x</code>, k souboru se nedostaneš – ani kdyby měl 777.</p>
+      <p><b>Písmena v chmod:</b> <code>u</code> = majitel, <code>g</code> = skupina, <code>o</code> = ostatní, <code>a</code> = všichni; <code>+</code> přidat, <code>-</code> vzít, <code>=</code> nastavit přesně tohle.</p>
       <p><b>Čísla práv:</b> každé právo má číslo a sečtou se.</p>
       <table><tr><th>písmeno</th><th>číslo</th><th>znamená</th></tr><tr><td><code>r</code></td><td>4</td><td>číst</td></tr><tr><td><code>w</code></td><td>2</td><td>psát</td></tr><tr><td><code>x</code></td><td>1</td><td>spustit / vstoupit do složky</td></tr></table>
       <table><tr><th>součet</th><th>práva</th><th>znamená</th></tr><tr><td><code>7</code></td><td><code>rwx</code></td><td>všechno</td></tr><tr><td><code>6</code></td><td><code>rw-</code></td><td>číst a psát</td></tr><tr><td><code>5</code></td><td><code>r-x</code></td><td>číst a spustit</td></tr><tr><td><code>4</code></td><td><code>r--</code></td><td>jen číst</td></tr><tr><td><code>0</code></td><td><code>---</code></td><td>nic</td></tr></table>
       <p>Tři číslice za sebou = <b>majitel, skupina, ostatní</b>. Nejčastější kombinace:</p>
-      <table><tr><th>číslo</th><th>znamená</th></tr><tr><td><code>755</code></td><td>majitel všechno, ostatní číst a spustit (programy, složky)</td></tr><tr><td><code>644</code></td><td>majitel čte a píše, ostatní jen čtou (běžný soubor)</td></tr><tr><td><code>700</code></td><td>jen majitel, nikdo jiný nic</td></tr><tr><td><code>600</code></td><td>jen majitel čte a píše</td></tr><tr><td><code>770</code></td><td>majitel a skupina všechno, ostatní nic</td></tr></table>
+      <table><tr><th>číslo</th><th>znamená</th></tr><tr><td><code>755</code></td><td>rwxr-xr-x – majitel všechno, ostatní čtou a procházejí (složky, programy)</td></tr><tr><td><code>644</code></td><td>rw-r--r-- – majitel čte a píše, ostatní jen čtou (běžný soubor)</td></tr><tr><td><code>700</code></td><td>rwx------ – soukromá složka, jen majitel</td></tr><tr><td><code>600</code></td><td>rw------- – soukromý soubor, jen majitel (třeba klíč id_rsa)</td></tr><tr><td><code>770</code></td><td>rwxrwx--- – týmová složka: majitel a skupina všechno, ostatní nic</td></tr></table>
     </div>
   </section>
   <section>
     <h2>11. SDÍLENÁ SLOŽKA</h2>
-    <p class="vysvetleni">Cíl: složka, do které můžou psát všichni ze skupiny projekty, ale nikdo jiný.</p>
+    <p class="vysvetleni">Cíl: složka, do které můžou psát všichni ze skupiny projekty, ale nikdo jiný. V učebním textu je místo 2770 a 710 napsáno 770 a 750 – funguje to taky. Rozdíl: dvojka v 2770 zařídí, že nové soubory ve složce budou taky patřit skupině, a 710 (místo 750) skupině nedovolí koukat, co dalšího má Anna doma.</p>
     <ul>
       <li><code>sudo groupadd projekty</code><span class="popis">vytvoří skupinu projekty</span></li>
       <li><code>sudo usermod -aG projekty anna</code><span class="popis">přidá do ní Annu</span></li>
@@ -280,6 +294,16 @@
       <li><code>sudo apt install …</code><span class="popis">instaluje programy</span></li>
       <li><code>sudo cat /etc/shadow</code><span class="popis">čte zašifrovaná hesla</span></li>
       <li><code>sudo -u anna … / sudo -iu anna</code><span class="popis">dělá věci za jiného uživatele bez jeho hesla</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>18. TYPICKÉ CHYBY</h2>
+    <p class="vysvetleni">Když něco nefunguje, je to skoro vždycky jedno z tohohle.</p>
+    <ul>
+      <li><code>Permission denied (i když práva jsou)</code><span class="popis">nějaká složka po cestě nemá pro tebe x (průchod), třeba /home/anna má 700 → admin: sudo chmod g+x /home/anna (nebo o+x)</span></li>
+      <li><code>nová skupina nefunguje</code><span class="popis">terminál si pamatuje skupiny z přihlášení → odhlásit a přihlásit (exit, su - uzivatel) nebo newgrp nazev_skupiny</span></li>
+      <li><code>chmod 777</code><span class="popis">NEDĚLAT! Dá úplně všem všechno – kdokoli pak může soubor číst, změnit nebo smazat</span></li>
+      <li><code>sudo: … not in the sudoers file</code><span class="popis">nejsi admin – tenhle příkaz musí udělat správce</span></li>
     </ul>
   </section>
 </main>
