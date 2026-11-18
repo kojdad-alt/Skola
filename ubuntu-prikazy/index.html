@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Základní příkazy Ubuntu</title>
+  <style>
+    body { margin: 0; background: #f6f7f9; color: #1f2328; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 860px; margin: 0 auto; padding: 32px 16px 48px; }
+    h1 { font-size: 1.6rem; margin: 0 0 24px; }
+    h2 { font-size: 1.1rem; margin: 28px 0 8px; }
+    pre { margin: 0; padding: 14px 16px; background: #1f2328; color: #e6edf3; border-radius: 8px; overflow-x: auto; font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .k { color: #8b949e; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>ZÁKLADNÍ PŘÍKAZY UBUNTU – TERMINÁL</h1>
+  <h2>1. NAVIGACE</h2>
+  <pre>pwd                 <span class="k"># kde právě jsem</span>
+ls                  <span class="k"># obsah složky</span>
+ls -l               <span class="k"># podrobný výpis (práva, vlastník, velikost)</span>
+ls -a               <span class="k"># i skryté soubory</span>
+ls -la              <span class="k"># podrobně včetně skrytých</span>
+cd slozka           <span class="k"># do složky</span>
+cd ..               <span class="k"># o úroveň výš</span>
+cd ~                <span class="k"># domů (nebo jen cd)</span>
+cd /                <span class="k"># do kořene systému</span></pre>
+  <h2>2. SLOŽKY</h2>
+  <pre>mkdir nazev_slozky
+mkdir -p projekty/web/podklady   <span class="k"># víc úrovní naráz</span>
+rmdir nazev_slozky               <span class="k"># smaže prázdnou složku</span>
+rm -r nazev_slozky               <span class="k"># smaže složku i s obsahem</span></pre>
+  <h2>3. SOUBORY</h2>
+  <pre>touch dokument.txt                     <span class="k"># prázdný soubor</span>
+echo &quot;První řádek&quot; &gt; soubor.txt        <span class="k"># vytvoří / přepíše</span>
+echo &quot;Druhý řádek&quot; &gt;&gt; soubor.txt       <span class="k"># připíše na konec</span></pre>
+  <h2>4. ČTENÍ SOUBORŮ</h2>
+  <pre>cat soubor.txt
+less soubor.txt          <span class="k"># šipky, mezerník, /hledat, q = konec</span>
+head soubor.txt          <span class="k"># prvních 10 řádků</span>
+head -n 20 soubor.txt
+tail soubor.txt          <span class="k"># posledních 10 řádků</span>
+tail -n 15 soubor.txt
+tail -f /var/log/syslog  <span class="k"># sledování živě</span></pre>
+  <h2>5. NANO (EDITOR)</h2>
+  <pre>nano soubor.txt
+
+Ctrl+O  uložit (potvrdit Enter)
+Ctrl+X  konec
+Ctrl+W  hledat
+Ctrl+K  vyjmout řádek
+Ctrl+U  vložit
+Ctrl+G  nápověda</pre>
+  <h2>6. KOPÍROVÁNÍ, PŘESUN, MAZÁNÍ</h2>
+  <pre>cp zdroj.txt cil.txt
+cp soubor.txt /cesta/do/slozky/
+cp -r slozka1 nova_slozka
+mv stary.txt novy.txt            <span class="k"># přejmenování</span>
+mv soubor.txt /cesta/do/slozky/  <span class="k"># přesun</span>
+rm soubor.txt                    <span class="k"># nevratné!</span></pre>
+  <h2>7. GREP (HLEDÁNÍ)</h2>
+  <pre>grep &quot;slovo&quot; soubor.txt
+grep -i &quot;ubuntu&quot; soubor.txt      <span class="k"># bez ohledu na velikost písmen</span>
+grep -n &quot;chyba&quot; log.txt          <span class="k"># s čísly řádků</span>
+grep -r &quot;heslo&quot; /home/uzivatel/  <span class="k"># v celé složce</span>
+grep -v &quot;#&quot; config.conf          <span class="k"># řádky BEZ výrazu</span>
+grep -c &quot;warning&quot; server.log     <span class="k"># jen počet</span>
+grep -w &quot;is&quot; text.txt            <span class="k"># jen celá slova</span>
+ls -la | grep &quot;test&quot;
+history | grep &quot;apt&quot;
+ps aux | grep &quot;firefox&quot;</pre>
+  <h2>8. UŽITEČNÉ</h2>
+  <pre>Tab        doplňování
+šipky      historie příkazů
+Ctrl+C     přerušit příkaz
+Ctrl+L     vyčistit obrazovku (nebo clear)
+
+history
+man prikaz
+sudo prikaz</pre>
+  <h2>9. UŽIVATELÉ A SKUPINY</h2>
+  <pre>sudo adduser novak                       <span class="k"># interaktivně</span>
+sudo useradd -m -s /bin/bash svoboda     <span class="k"># ručně</span>
+sudo passwd svoboda                      <span class="k"># nastavit heslo</span>
+sudo passwd -d svoboda                   <span class="k"># smazat heslo</span>
+sudo groupadd projekty
+sudo groupdel stara_skupina
+sudo usermod -aG projekty novak          <span class="k"># přidat do skupiny (vždy -aG!)</span>
+sudo gpasswd -d petr projekty            <span class="k"># odebrat ze skupiny</span>
+id novak
+groups novak
+newgrp projekty                          <span class="k"># načíst novou skupinu bez odhlášení</span>
+cat /etc/passwd
+sudo cat /etc/shadow
+cat /etc/group</pre>
+  <h2>10. PRÁVA</h2>
+  <pre>ls -l soubor.txt
+ls -ld slozka
+chmod 750 /cesta/ke/slozce
+chmod 644 dokument.txt
+chmod g+w projekt.txt        <span class="k"># skupině přidá zápis</span>
+chmod o-rwx tajne/           <span class="k"># ostatním odebere vše</span>
+chmod +x skript.sh           <span class="k"># spustitelný pro všechny</span>
+sudo chown student soubor.txt
+sudo chgrp projekty soubor.txt
+sudo chown student:projekty soubor.txt
+sudo chown -R anna:projekty /opt/sdilene
+
+Čísla práv: r = 4, w = 2, x = 1
+Nejčastější kombinace: 755, 644, 700, 600, 770</pre>
+  <h2>11. SDÍLENÁ SLOŽKA</h2>
+  <pre>sudo groupadd projekty
+sudo usermod -aG projekty anna
+sudo usermod -aG projekty petr
+sudo -u anna mkdir -p /home/anna/tym_sdilene
+sudo chgrp projekty /home/anna/tym_sdilene
+sudo chmod 2770 /home/anna/tym_sdilene   <span class="k"># 2 = setgid, nové soubory dostanou skupinu projekty</span>
+sudo chgrp projekty /home/anna
+sudo chmod 710 /home/anna                <span class="k"># skupina může jen projít, ne číst</span>
+ls -ld /home/anna
+ls -ld /home/anna/tym_sdilene</pre>
+</main>
+</body>
+</html>
