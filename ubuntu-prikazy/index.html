@@ -5,211 +5,281 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Základní příkazy Ubuntu</title>
   <style>
-    :root { --pozadi: #eef1f4; --karta: #ffffff; --text: #16191d; --popis: #3d4651; --cara: #e2e6eb; --kod: #f3f5f8; --akcent: #e95420; }
+    :root { --pozadi: #eef1f4; --karta: #ffffff; --text: #16191d; --popis: #2f3740; --cara: #e2e6eb; --kod: #f3f5f8; --akcent: #e95420; --vysv: #fff6ef; }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--pozadi); color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Ubuntu, sans-serif; font-size: 18px; line-height: 1.5; }
-    main { max-width: 980px; margin: 0 auto; padding: 32px 16px 56px; }
-    h1 { font-size: 1.9rem; margin: 0 0 24px; }
-    section { background: var(--karta); border-radius: 10px; padding: 18px 22px 10px; margin: 0 0 18px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
-    h2 { font-size: 1.2rem; margin: 0 0 8px; padding-bottom: 8px; border-bottom: 3px solid var(--akcent); display: inline-block; }
+    main { max-width: 1000px; margin: 0 auto; padding: 32px 16px 56px; }
+    h1 { font-size: 1.9rem; margin: 0 0 12px; }
+    .uvod { margin: 0 0 24px; font-size: 1.05rem; }
+    section { background: var(--karta); border-radius: 10px; padding: 18px 22px 12px; margin: 0 0 18px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    h2 { font-size: 1.2rem; margin: 0 0 10px; padding-bottom: 6px; border-bottom: 3px solid var(--akcent); display: inline-block; }
+    .vysvetleni { background: var(--vysv); border-left: 4px solid var(--akcent); border-radius: 6px; padding: 10px 14px; margin: 0 0 10px; }
     ul { list-style: none; margin: 0; padding: 0; }
-    li { display: grid; grid-template-columns: minmax(0, 26rem) minmax(0, 1fr); gap: 4px 24px; align-items: baseline; padding: 9px 0; border-top: 1px solid var(--cara); }
+    li { display: grid; grid-template-columns: minmax(0, 27rem) minmax(0, 1fr); gap: 4px 24px; align-items: baseline; padding: 9px 0; border-top: 1px solid var(--cara); }
     li:first-child { border-top: 0; }
-    code { font-family: ui-monospace, "Ubuntu Mono", Consolas, Menlo, monospace; font-size: 1.02rem; font-weight: 600; background: var(--kod); border: 1px solid var(--cara); border-radius: 6px; padding: 3px 8px; justify-self: start; overflow-wrap: anywhere; }
+    code { font-family: ui-monospace, "Ubuntu Mono", Consolas, Menlo, monospace; font-size: 1rem; font-weight: 600; background: var(--kod); border: 1px solid var(--cara); border-radius: 6px; padding: 2px 7px; overflow-wrap: anywhere; }
+    li > code { justify-self: start; }
     .popis { color: var(--popis); }
-    li.mezera { display: block; padding: 4px 0; border: 0; }
-    li.pozn { display: block; font-weight: 600; padding: 10px 0 4px; }
+    .prava { margin-top: 14px; border-top: 1px solid var(--cara); padding-top: 12px; }
+    .prava p { margin: 8px 0; }
+    table { border-collapse: collapse; margin: 6px 0 12px; }
+    th, td { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--cara); vertical-align: baseline; }
+    th { font-size: .9rem; color: var(--popis); font-weight: 600; }
     @media (max-width: 700px) {
       body { font-size: 17px; }
       li { grid-template-columns: 1fr; }
-      section { padding: 14px 14px 6px; }
+      section { padding: 14px 14px 8px; }
     }
   </style>
 </head>
 <body>
 <main>
   <h1>ZÁKLADNÍ PŘÍKAZY UBUNTU – TERMINÁL</h1>
+  <p class="uvod">Příkazy se píšou do terminálu a potvrzují Enterem. Vlevo je, co napsat, vpravo, co to udělá. Slova jako soubor.txt, slozka nebo novak jsou jen příklady, místo nich napiš svoje jména.</p>
   <section>
     <h2>1. NAVIGACE</h2>
+    <p class="vysvetleni">Terminál je pořád „v nějaké složce“. Tyhle příkazy ti řeknou, kde jsi, co v té složce je, a přesunou tě jinam.</p>
     <ul>
-      <li><code>pwd</code><span class="popis">kde právě jsem</span></li>
-      <li><code>ls</code><span class="popis">obsah složky</span></li>
-      <li><code>ls -l</code><span class="popis">podrobný výpis (práva, vlastník, velikost)</span></li>
-      <li><code>ls -a</code><span class="popis">i skryté soubory</span></li>
-      <li><code>ls -la</code><span class="popis">podrobně včetně skrytých</span></li>
-      <li><code>cd slozka</code><span class="popis">do složky</span></li>
-      <li><code>cd ..</code><span class="popis">o úroveň výš</span></li>
-      <li><code>cd ~</code><span class="popis">domů (nebo jen cd)</span></li>
-      <li><code>cd /</code><span class="popis">do kořene systému</span></li>
+      <li><code>pwd</code><span class="popis">vypíše, ve které složce právě jsi</span></li>
+      <li><code>ls</code><span class="popis">vypíše, co je ve složce</span></li>
+      <li><code>ls -l</code><span class="popis">totéž, ale s podrobnostmi: práva, majitel, velikost, datum</span></li>
+      <li><code>ls -a</code><span class="popis">ukáže i skryté soubory (ty začínají tečkou)</span></li>
+      <li><code>ls -la</code><span class="popis">podrobně a i se skrytými</span></li>
+      <li><code>cd slozka</code><span class="popis">vleze do složky „slozka“</span></li>
+      <li><code>cd ..</code><span class="popis">vyleze o jednu složku výš</span></li>
+      <li><code>cd ~</code><span class="popis">skočí do tvé domovské složky (stačí napsat jen cd)</span></li>
+      <li><code>cd /</code><span class="popis">skočí úplně na začátek celého disku</span></li>
     </ul>
   </section>
   <section>
     <h2>2. SLOŽKY</h2>
+    <p class="vysvetleni">Vytváření a mazání složek.</p>
     <ul>
-      <li><code>mkdir nazev_slozky</code></li>
-      <li><code>mkdir -p projekty/web/podklady</code><span class="popis">víc úrovní naráz</span></li>
-      <li><code>rmdir nazev_slozky</code><span class="popis">smaže prázdnou složku</span></li>
-      <li><code>rm -r nazev_slozky</code><span class="popis">smaže složku i s obsahem</span></li>
+      <li><code>mkdir nazev_slozky</code><span class="popis">vytvoří novou složku</span></li>
+      <li><code>mkdir -p projekty/web/podklady</code><span class="popis">vytvoří rovnou několik složek v sobě</span></li>
+      <li><code>rmdir nazev_slozky</code><span class="popis">smaže složku, ale jen když je prázdná</span></li>
+      <li><code>rm -r nazev_slozky</code><span class="popis">smaže složku i se vším uvnitř – pozor, nejde vrátit, žádný koš!</span></li>
     </ul>
   </section>
   <section>
     <h2>3. SOUBORY</h2>
+    <p class="vysvetleni">Vytvoření souboru a zápis textu do něj.</p>
     <ul>
-      <li><code>touch dokument.txt</code><span class="popis">prázdný soubor</span></li>
-      <li><code>echo &quot;První řádek&quot; &gt; soubor.txt</code><span class="popis">vytvoří / přepíše</span></li>
-      <li><code>echo &quot;Druhý řádek&quot; &gt;&gt; soubor.txt</code><span class="popis">připíše na konec</span></li>
+      <li><code>touch dokument.txt</code><span class="popis">vytvoří prázdný soubor</span></li>
+      <li><code>echo &quot;První řádek&quot; &gt; soubor.txt</code><span class="popis">zapíše text do souboru – co tam bylo, zmizí (jedna šipka &gt;)</span></li>
+      <li><code>echo &quot;Druhý řádek&quot; &gt;&gt; soubor.txt</code><span class="popis">připíše text na konec, nic nesmaže (dvě šipky &gt;&gt;)</span></li>
     </ul>
   </section>
   <section>
     <h2>4. ČTENÍ SOUBORŮ</h2>
+    <p class="vysvetleni">Jak se podívat, co je v souboru, bez otevírání v editoru.</p>
     <ul>
-      <li><code>cat soubor.txt</code></li>
-      <li><code>less soubor.txt</code><span class="popis">šipky, mezerník, /hledat, q = konec</span></li>
-      <li><code>head soubor.txt</code><span class="popis">prvních 10 řádků</span></li>
-      <li><code>head -n 20 soubor.txt</code></li>
-      <li><code>tail soubor.txt</code><span class="popis">posledních 10 řádků</span></li>
-      <li><code>tail -n 15 soubor.txt</code></li>
-      <li><code>tail -f /var/log/syslog</code><span class="popis">sledování živě</span></li>
+      <li><code>cat soubor.txt</code><span class="popis">vypíše celý soubor najednou</span></li>
+      <li><code>less soubor.txt</code><span class="popis">otevře soubor na listování: šipky, mezerník = další strana, /slovo = hledat, q = konec</span></li>
+      <li><code>head soubor.txt</code><span class="popis">ukáže prvních 10 řádků</span></li>
+      <li><code>head -n 20 soubor.txt</code><span class="popis">ukáže prvních 20 řádků</span></li>
+      <li><code>tail soubor.txt</code><span class="popis">ukáže posledních 10 řádků</span></li>
+      <li><code>tail -n 15 soubor.txt</code><span class="popis">ukáže posledních 15 řádků</span></li>
+      <li><code>tail -f /var/log/syslog</code><span class="popis">sleduje soubor živě, nové řádky se hned ukazují (konec Ctrl+C)</span></li>
     </ul>
   </section>
   <section>
     <h2>5. NANO (EDITOR)</h2>
+    <p class="vysvetleni">Nano je jednoduchý textový editor přímo v terminálu. Neovládá se myší, ale klávesami. Dole v nano uvidíš ^O, ^X… – znak ^ znamená Ctrl.</p>
     <ul>
-      <li><code>nano soubor.txt</code></li>
-      <li class="mezera" aria-hidden="true"></li>
-      <li><code>Ctrl+O</code><span class="popis">uložit (potvrdit Enter)</span></li>
-      <li><code>Ctrl+X</code><span class="popis">konec</span></li>
-      <li><code>Ctrl+W</code><span class="popis">hledat</span></li>
-      <li><code>Ctrl+K</code><span class="popis">vyjmout řádek</span></li>
-      <li><code>Ctrl+U</code><span class="popis">vložit</span></li>
+      <li><code>nano soubor.txt</code><span class="popis">otevře soubor v editoru (když neexistuje, vytvoří ho)</span></li>
+      <li><code>Ctrl+O</code><span class="popis">uložit – pak ještě potvrdit Enterem</span></li>
+      <li><code>Ctrl+X</code><span class="popis">zavřít editor</span></li>
+      <li><code>Ctrl+W</code><span class="popis">hledat v textu</span></li>
+      <li><code>Ctrl+K</code><span class="popis">vyjmout celý řádek</span></li>
+      <li><code>Ctrl+U</code><span class="popis">vložit vyjmutý řádek</span></li>
       <li><code>Ctrl+G</code><span class="popis">nápověda</span></li>
     </ul>
   </section>
   <section>
     <h2>6. KOPÍROVÁNÍ, PŘESUN, MAZÁNÍ</h2>
+    <p class="vysvetleni">cp = kopírovat, mv = přesunout nebo přejmenovat, rm = smazat.</p>
     <ul>
-      <li><code>cp zdroj.txt cil.txt</code></li>
-      <li><code>cp soubor.txt /cesta/do/slozky/</code></li>
-      <li><code>cp -r slozka1 nova_slozka</code></li>
-      <li><code>mv stary.txt novy.txt</code><span class="popis">přejmenování</span></li>
-      <li><code>mv soubor.txt /cesta/do/slozky/</code><span class="popis">přesun</span></li>
-      <li><code>rm soubor.txt</code><span class="popis">nevratné!</span></li>
+      <li><code>cp zdroj.txt cil.txt</code><span class="popis">zkopíruje soubor pod novým jménem</span></li>
+      <li><code>cp soubor.txt /cesta/do/slozky/</code><span class="popis">zkopíruje soubor do jiné složky</span></li>
+      <li><code>cp -r slozka1 nova_slozka</code><span class="popis">zkopíruje celou složku (-r = i se vším uvnitř)</span></li>
+      <li><code>mv stary.txt novy.txt</code><span class="popis">přejmenuje soubor</span></li>
+      <li><code>mv soubor.txt /cesta/do/slozky/</code><span class="popis">přesune soubor do jiné složky</span></li>
+      <li><code>rm soubor.txt</code><span class="popis">smaže soubor – nejde vrátit, žádný koš!</span></li>
     </ul>
   </section>
   <section>
     <h2>7. GREP (HLEDÁNÍ)</h2>
+    <p class="vysvetleni">grep hledá slovo v textu a vypíše jen ty řádky, kde to slovo je. Znak | (svislá čára) pošle výsledek jednoho příkazu do dalšího.</p>
     <ul>
-      <li><code>grep &quot;slovo&quot; soubor.txt</code></li>
-      <li><code>grep -i &quot;ubuntu&quot; soubor.txt</code><span class="popis">bez ohledu na velikost písmen</span></li>
-      <li><code>grep -n &quot;chyba&quot; log.txt</code><span class="popis">s čísly řádků</span></li>
-      <li><code>grep -r &quot;heslo&quot; /home/uzivatel/</code><span class="popis">v celé složce</span></li>
-      <li><code>grep -v &quot;#&quot; config.conf</code><span class="popis">řádky BEZ výrazu</span></li>
-      <li><code>grep -c &quot;warning&quot; server.log</code><span class="popis">jen počet</span></li>
-      <li><code>grep -w &quot;is&quot; text.txt</code><span class="popis">jen celá slova</span></li>
-      <li><code>ls -la | grep &quot;test&quot;</code></li>
-      <li><code>history | grep &quot;apt&quot;</code></li>
-      <li><code>ps aux | grep &quot;firefox&quot;</code></li>
+      <li><code>grep &quot;slovo&quot; soubor.txt</code><span class="popis">najde řádky se slovem</span></li>
+      <li><code>grep -i &quot;ubuntu&quot; soubor.txt</code><span class="popis">totéž, ale nezáleží na velkých a malých písmenech</span></li>
+      <li><code>grep -n &quot;chyba&quot; log.txt</code><span class="popis">ukáže i čísla řádků</span></li>
+      <li><code>grep -r &quot;heslo&quot; /home/uzivatel/</code><span class="popis">hledá ve všech souborech v celé složce</span></li>
+      <li><code>grep -v &quot;#&quot; config.conf</code><span class="popis">naopak: ukáže řádky, kde to NENÍ</span></li>
+      <li><code>grep -c &quot;warning&quot; server.log</code><span class="popis">jen spočítá, kolik takových řádků je</span></li>
+      <li><code>grep -w &quot;is&quot; text.txt</code><span class="popis">jen celé slovo („is“ najde, „this“ ne)</span></li>
+      <li><code>ls -la | grep &quot;test&quot;</code><span class="popis">ze seznamu souborů ukáže jen ty, co mají v názvu „test“</span></li>
+      <li><code>history | grep &quot;apt&quot;</code><span class="popis">najde v historii příkazy, kde bylo „apt“</span></li>
+      <li><code>ps aux | grep &quot;firefox&quot;</code><span class="popis">zjistí, jestli běží program firefox</span></li>
     </ul>
   </section>
   <section>
     <h2>8. UŽITEČNÉ</h2>
+    <p class="vysvetleni">Klávesy a příkazy, které ušetří spoustu psaní.</p>
     <ul>
-      <li><code>Tab</code><span class="popis">doplňování</span></li>
-      <li><code>šipky</code><span class="popis">historie příkazů</span></li>
-      <li><code>Ctrl+C</code><span class="popis">přerušit příkaz</span></li>
-      <li><code>Ctrl+L</code><span class="popis">vyčistit obrazovku (nebo clear)</span></li>
-      <li class="mezera" aria-hidden="true"></li>
-      <li><code>history</code></li>
-      <li><code>man prikaz</code></li>
-      <li><code>sudo prikaz</code></li>
+      <li><code>Tab</code><span class="popis">doplní název souboru nebo příkazu – stačí napsat začátek</span></li>
+      <li><code>šipky</code><span class="popis">nahoru a dolů listuješ příkazy, které jsi už psal</span></li>
+      <li><code>Ctrl+C</code><span class="popis">zastaví příkaz, který právě běží</span></li>
+      <li><code>Ctrl+L</code><span class="popis">vyčistí obrazovku (to samé jako clear)</span></li>
+      <li><code>history</code><span class="popis">vypíše všechny příkazy, které jsi psal</span></li>
+      <li><code>man prikaz</code><span class="popis">návod k příkazu, třeba man ls (konec q)</span></li>
+      <li><code>sudo prikaz</code><span class="popis">spustí příkaz jako správce počítače (zeptá se na heslo)</span></li>
     </ul>
   </section>
   <section>
     <h2>9. UŽIVATELÉ A SKUPINY</h2>
+    <p class="vysvetleni">Uživatel = účet jednoho člověka. Skupina = parta uživatelů. Skupině můžeš dát práva a dostanou je všichni v ní najednou (třeba celá třída nebo tým).</p>
     <ul>
-      <li><code>sudo adduser novak</code><span class="popis">interaktivně</span></li>
-      <li><code>sudo useradd -m -s /bin/bash svoboda</code><span class="popis">ručně</span></li>
-      <li><code>sudo passwd svoboda</code><span class="popis">nastavit heslo</span></li>
-      <li><code>sudo passwd -d svoboda</code><span class="popis">smazat heslo</span></li>
-      <li><code>sudo groupadd projekty</code></li>
-      <li><code>sudo groupdel stara_skupina</code></li>
-      <li><code>sudo usermod -aG projekty novak</code><span class="popis">přidat do skupiny (vždy -aG!)</span></li>
-      <li><code>sudo gpasswd -d petr projekty</code><span class="popis">odebrat ze skupiny</span></li>
-      <li><code>id novak</code></li>
-      <li><code>groups novak</code></li>
-      <li><code>newgrp projekty</code><span class="popis">načíst novou skupinu bez odhlášení</span></li>
-      <li><code>cat /etc/passwd</code></li>
-      <li><code>sudo cat /etc/shadow</code></li>
-      <li><code>cat /etc/group</code></li>
+      <li><code>sudo adduser novak</code><span class="popis">vytvoří uživatele novak, na všechno se zeptá (heslo, jméno…)</span></li>
+      <li><code>sudo useradd -m -s /bin/bash svoboda</code><span class="popis">vytvoří uživatele ručně (-m = udělá mu domovskou složku, -s = terminál bash)</span></li>
+      <li><code>sudo passwd svoboda</code><span class="popis">nastaví uživateli heslo</span></li>
+      <li><code>sudo passwd -d svoboda</code><span class="popis">smaže uživateli heslo</span></li>
+      <li><code>sudo groupadd projekty</code><span class="popis">vytvoří skupinu projekty</span></li>
+      <li><code>sudo groupdel stara_skupina</code><span class="popis">smaže skupinu</span></li>
+      <li><code>sudo usermod -aG projekty novak</code><span class="popis">přidá uživatele do skupiny – vždycky -aG! Bez „a“ ho to vyhodí ze všech ostatních skupin</span></li>
+      <li><code>sudo gpasswd -d petr projekty</code><span class="popis">vyhodí uživatele ze skupiny</span></li>
+      <li><code>id novak</code><span class="popis">ukáže, kdo to je a ve kterých je skupinách</span></li>
+      <li><code>groups novak</code><span class="popis">jen jeho skupiny</span></li>
+      <li><code>newgrp projekty</code><span class="popis">načte novou skupinu hned, bez odhlášení</span></li>
+      <li><code>cat /etc/passwd</code><span class="popis">seznam všech uživatelů v počítači</span></li>
+      <li><code>sudo cat /etc/shadow</code><span class="popis">zašifrovaná hesla (jde jen se sudo)</span></li>
+      <li><code>cat /etc/group</code><span class="popis">seznam všech skupin a kdo v nich je</span></li>
     </ul>
   </section>
   <section>
     <h2>10. PRÁVA</h2>
+    <p class="vysvetleni">Každý soubor a složka má práva pro tři „lidi“: majitele, skupinu a ostatní. Každý z nich může mít r = číst, w = psát (měnit), x = spustit (u složky = vstoupit do ní). Pomlčka znamená, že to nemá.</p>
     <ul>
-      <li><code>ls -l soubor.txt</code></li>
-      <li><code>ls -ld slozka</code></li>
-      <li><code>chmod 750 /cesta/ke/slozce</code></li>
-      <li><code>chmod 644 dokument.txt</code></li>
-      <li><code>chmod g+w projekt.txt</code><span class="popis">skupině přidá zápis</span></li>
-      <li><code>chmod o-rwx tajne/</code><span class="popis">ostatním odebere vše</span></li>
-      <li><code>chmod +x skript.sh</code><span class="popis">spustitelný pro všechny</span></li>
-      <li><code>sudo chown student soubor.txt</code></li>
-      <li><code>sudo chgrp projekty soubor.txt</code></li>
-      <li><code>sudo chown student:projekty soubor.txt</code></li>
-      <li><code>sudo chown -R anna:projekty /opt/sdilene</code></li>
-      <li class="mezera" aria-hidden="true"></li>
-      <li class="pozn">Čísla práv: r = 4, w = 2, x = 1</li>
-      <li class="pozn">Nejčastější kombinace: 755, 644, 700, 600, 770</li>
+      <li><code>ls -l soubor.txt</code><span class="popis">ukáže práva souboru, třeba -rw-r--r--</span></li>
+      <li><code>ls -ld slozka</code><span class="popis">ukáže práva samotné složky (ne toho, co je v ní)</span></li>
+      <li><code>chmod 750 /cesta/ke/slozce</code><span class="popis">majitel všechno, skupina číst a vstoupit, ostatní nic</span></li>
+      <li><code>chmod 644 dokument.txt</code><span class="popis">majitel čte a píše, všichni ostatní jen čtou</span></li>
+      <li><code>chmod g+w projekt.txt</code><span class="popis">skupině přidá právo psát (g = skupina, + = přidat, w = psát)</span></li>
+      <li><code>chmod o-rwx tajne/</code><span class="popis">ostatním vezme všechno (o = ostatní, - = vzít)</span></li>
+      <li><code>chmod +x skript.sh</code><span class="popis">dovolí soubor spustit</span></li>
+      <li><code>sudo chown student soubor.txt</code><span class="popis">majitelem souboru bude student</span></li>
+      <li><code>sudo chgrp projekty soubor.txt</code><span class="popis">soubor bude patřit skupině projekty</span></li>
+      <li><code>sudo chown student:projekty soubor.txt</code><span class="popis">změní majitele i skupinu najednou</span></li>
+      <li><code>sudo chown -R anna:projekty /opt/sdilene</code><span class="popis">totéž pro celou složku i se vším uvnitř (-R)</span></li>
     </ul>
+    <div class="prava">
+      <p><b>Jak číst <code>-rw-r--r--</code>:</b> první znak je typ (<code>-</code> soubor, <code>d</code> složka), pak tři trojice: <b>majitel</b> <code>rw-</code>, <b>skupina</b> <code>r--</code>, <b>ostatní</b> <code>r--</code>.</p>
+      <p><b>Písmena v chmod:</b> <code>u</code> = majitel, <code>g</code> = skupina, <code>o</code> = ostatní, <code>a</code> = všichni; <code>+</code> přidat, <code>-</code> vzít.</p>
+      <p><b>Čísla práv:</b> každé právo má číslo a sečtou se.</p>
+      <table><tr><th>písmeno</th><th>číslo</th><th>znamená</th></tr><tr><td><code>r</code></td><td>4</td><td>číst</td></tr><tr><td><code>w</code></td><td>2</td><td>psát</td></tr><tr><td><code>x</code></td><td>1</td><td>spustit / vstoupit do složky</td></tr></table>
+      <table><tr><th>součet</th><th>práva</th><th>znamená</th></tr><tr><td><code>7</code></td><td><code>rwx</code></td><td>všechno</td></tr><tr><td><code>6</code></td><td><code>rw-</code></td><td>číst a psát</td></tr><tr><td><code>5</code></td><td><code>r-x</code></td><td>číst a spustit</td></tr><tr><td><code>4</code></td><td><code>r--</code></td><td>jen číst</td></tr><tr><td><code>0</code></td><td><code>---</code></td><td>nic</td></tr></table>
+      <p>Tři číslice za sebou = <b>majitel, skupina, ostatní</b>. Nejčastější kombinace:</p>
+      <table><tr><th>číslo</th><th>znamená</th></tr><tr><td><code>755</code></td><td>majitel všechno, ostatní číst a spustit (programy, složky)</td></tr><tr><td><code>644</code></td><td>majitel čte a píše, ostatní jen čtou (běžný soubor)</td></tr><tr><td><code>700</code></td><td>jen majitel, nikdo jiný nic</td></tr><tr><td><code>600</code></td><td>jen majitel čte a píše</td></tr><tr><td><code>770</code></td><td>majitel a skupina všechno, ostatní nic</td></tr></table>
+    </div>
   </section>
   <section>
     <h2>11. SDÍLENÁ SLOŽKA</h2>
+    <p class="vysvetleni">Cíl: složka, do které můžou psát všichni ze skupiny projekty, ale nikdo jiný.</p>
     <ul>
-      <li><code>sudo groupadd projekty</code></li>
-      <li><code>sudo usermod -aG projekty anna</code></li>
-      <li><code>sudo usermod -aG projekty petr</code></li>
-      <li><code>sudo -u anna mkdir -p /home/anna/tym_sdilene</code></li>
-      <li><code>sudo chgrp projekty /home/anna/tym_sdilene</code></li>
-      <li><code>sudo chmod 2770 /home/anna/tym_sdilene</code><span class="popis">2 = setgid, nové soubory dostanou skupinu projekty</span></li>
-      <li><code>sudo chgrp projekty /home/anna</code></li>
-      <li><code>sudo chmod 710 /home/anna</code><span class="popis">skupina může jen projít, ne číst</span></li>
-      <li><code>ls -ld /home/anna</code></li>
-      <li><code>ls -ld /home/anna/tym_sdilene</code></li>
+      <li><code>sudo groupadd projekty</code><span class="popis">vytvoří skupinu projekty</span></li>
+      <li><code>sudo usermod -aG projekty anna</code><span class="popis">přidá do ní Annu</span></li>
+      <li><code>sudo usermod -aG projekty petr</code><span class="popis">přidá do ní Petra</span></li>
+      <li><code>sudo -u anna mkdir -p /home/anna/tym_sdilene</code><span class="popis">Anna si u sebe vytvoří složku (-u anna = udělej to jako Anna)</span></li>
+      <li><code>sudo chgrp projekty /home/anna/tym_sdilene</code><span class="popis">složka bude patřit skupině projekty</span></li>
+      <li><code>sudo chmod 2770 /home/anna/tym_sdilene</code><span class="popis">majitel a skupina všechno, ostatní nic; dvojka na začátku = nové soubory v ní budou taky patřit skupině</span></li>
+      <li><code>sudo chgrp projekty /home/anna</code><span class="popis">Annina domovská složka bude taky patřit skupině…</span></li>
+      <li><code>sudo chmod 710 /home/anna</code><span class="popis">…ale skupina jí smí jen projít, nevidí, co v ní je</span></li>
+      <li><code>ls -ld /home/anna</code><span class="popis">kontrola</span></li>
+      <li><code>ls -ld /home/anna/tym_sdilene</code><span class="popis">kontrola</span></li>
     </ul>
   </section>
   <section>
     <h2>12. PRÁVO PSÁT DO SOUBORU PRO URČITÉ LIDI</h2>
+    <p class="vysvetleni">Chceš, aby do jednoho souboru mohli psát jen někteří lidi. Uděláš pro ně skupinu, dáš do ní ty lidi a souboru dovolíš, aby skupina psala.</p>
     <ul>
-      <li><code>sudo groupadd zapisovatele</code><span class="popis">nová skupina</span></li>
-      <li><code>sudo usermod -aG zapisovatele anna</code><span class="popis">přidat člověka do skupiny (vždy -aG!)</span></li>
-      <li><code>sudo usermod -aG zapisovatele petr</code></li>
-      <li><code>sudo chgrp zapisovatele soubor.txt</code><span class="popis">soubor dostane tu skupinu</span></li>
-      <li><code>sudo chmod g+w soubor.txt</code><span class="popis">skupině přidá zápis</span></li>
-      <li><code>sudo chmod 664 soubor.txt</code><span class="popis">vlastník a skupina čtou i píšou, ostatní jen čtou</span></li>
-      <li><code>sudo chmod 660 soubor.txt</code><span class="popis">totéž, ale ostatní ani nečtou</span></li>
-      <li><code>ls -l soubor.txt</code><span class="popis">kontrola: -rw-rw-r-- … zapisovatele</span></li>
-      <li><code>newgrp zapisovatele</code><span class="popis">načíst skupinu bez odhlášení (jinak odhlásit a přihlásit)</span></li>
-      <li><code>sudo chgrp zapisovatele /home/anna</code><span class="popis">soubor v cizí domovské složce: skupina jí musí projít</span></li>
-      <li><code>sudo chmod 710 /home/anna</code><span class="popis">skupina může jen projít, ne číst</span></li>
+      <li><code>sudo groupadd zapisovatele</code><span class="popis">1. vytvoří skupinu zapisovatele</span></li>
+      <li><code>sudo usermod -aG zapisovatele anna</code><span class="popis">2. přidá do ní Annu (vždycky -aG!)</span></li>
+      <li><code>sudo usermod -aG zapisovatele petr</code><span class="popis">…a Petra</span></li>
+      <li><code>sudo chgrp zapisovatele soubor.txt</code><span class="popis">3. soubor bude patřit téhle skupině</span></li>
+      <li><code>sudo chmod g+w soubor.txt</code><span class="popis">4. skupina smí do souboru psát</span></li>
+      <li><code>sudo chmod 664 soubor.txt</code><span class="popis">nebo místo bodu 4: majitel a skupina čtou i píšou, ostatní jen čtou</span></li>
+      <li><code>sudo chmod 660 soubor.txt</code><span class="popis">totéž, ale ostatní ho ani nepřečtou</span></li>
+      <li><code>ls -l soubor.txt</code><span class="popis">5. kontrola: má tam být -rw-rw-r-- a zapisovatele</span></li>
+      <li><code>newgrp zapisovatele</code><span class="popis">přidaný člověk musí skupinu načíst (nebo se odhlásit a znovu přihlásit), jinak to nefunguje</span></li>
+      <li><code>sudo chgrp zapisovatele /home/anna</code><span class="popis">když je soubor v cizí domovské složce, skupina tou složkou musí projít…</span></li>
+      <li><code>sudo chmod 710 /home/anna</code><span class="popis">…tohle jí dovolí jen projít, ne koukat dovnitř</span></li>
     </ul>
   </section>
   <section>
     <h2>13. PRÁVO JEN PRO JEDNOHO ČLOVĚKA (ACL)</h2>
+    <p class="vysvetleni">Když je to jen jeden člověk a nechceš kvůli němu dělat skupinu.</p>
     <ul>
-      <li><code>sudo apt install acl</code><span class="popis">když ACL chybí</span></li>
-      <li><code>sudo setfacl -m u:anna:rw soubor.txt</code><span class="popis">anna smí soubor číst i psát</span></li>
-      <li><code>getfacl soubor.txt</code><span class="popis">kontrola</span></li>
-      <li><code>sudo setfacl -x u:anna soubor.txt</code><span class="popis">anně právo zase vezme</span></li>
+      <li><code>sudo apt install acl</code><span class="popis">nainstaluje ACL, když v počítači chybí</span></li>
+      <li><code>sudo setfacl -m u:anna:rw soubor.txt</code><span class="popis">Anna smí soubor číst i psát (u = uživatel, rw = číst a psát)</span></li>
+      <li><code>getfacl soubor.txt</code><span class="popis">kontrola, kdo má jaká práva</span></li>
+      <li><code>sudo setfacl -x u:anna soubor.txt</code><span class="popis">Anně to právo zase vezme</span></li>
     </ul>
   </section>
   <section>
     <h2>14. ODEBRÁNÍ PRÁV</h2>
+    <p class="vysvetleni">Když chceš práva zase vzít.</p>
     <ul>
-      <li><code>sudo chmod g-w soubor.txt</code><span class="popis">skupině vezme zápis (číst může dál)</span></li>
-      <li><code>sudo chmod g-rwx soubor.txt</code><span class="popis">skupině vezme všechno</span></li>
-      <li><code>sudo gpasswd -d petr zapisovatele</code><span class="popis">odebrat člověka ze skupiny</span></li>
-      <li><code>sudo chgrp anna soubor.txt</code><span class="popis">vrátit souboru vlastní skupinu</span></li>
-      <li><code>sudo groupdel zapisovatele</code><span class="popis">smazat skupinu</span></li>
+      <li><code>sudo chmod g-w soubor.txt</code><span class="popis">skupině vezme psaní, číst může dál</span></li>
+      <li><code>sudo chmod g-rwx soubor.txt</code><span class="popis">skupině vezme úplně všechno</span></li>
+      <li><code>sudo gpasswd -d petr zapisovatele</code><span class="popis">vyhodí Petra ze skupiny (ostatní píšou dál)</span></li>
+      <li><code>sudo chgrp anna soubor.txt</code><span class="popis">soubor bude zase patřit jen Anně…</span></li>
+      <li><code>sudo groupdel zapisovatele</code><span class="popis">…a pak jde skupinu smazat</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>15. PŘÍKAZY ZA JINÉHO UŽIVATELE</h2>
+    <p class="vysvetleni">Hodí se, když chceš vyzkoušet, jestli třeba Anna nebo Petr opravdu smí do souboru psát. Admin (ty se sudo) se může přepnout na kohokoli.</p>
+    <ul>
+      <li><code>su - anna</code><span class="popis">přepne tě na Annu, zeptá se na Annino heslo; pak všechno píšeš jako Anna</span></li>
+      <li><code>sudo -iu anna</code><span class="popis">totéž, ale stačí tvoje admin heslo</span></li>
+      <li><code>whoami</code><span class="popis">vypíše, za koho právě jsi</span></li>
+      <li><code>exit</code><span class="popis">vrátí tě zpátky k sobě</span></li>
+      <li><code>sudo -u anna touch /home/anna/test.txt</code><span class="popis">jeden příkaz za Annu, bez přepínání</span></li>
+      <li><code>sudo -u petr bash -c &#x27;echo ahoj &gt;&gt; soubor.txt&#x27;</code><span class="popis">zkouška, jestli Petr smí psát – „Permission denied“ = nesmí</span></li>
+      <li><code>sudo passwd anna</code><span class="popis">když su - anna nefunguje, Anna asi nemá heslo – tímhle jí ho nastavíš</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>16. CO DĚLÁ ADMIN A CO BĚŽNÝ UŽIVATEL</h2>
+    <p class="vysvetleni">Admin (správce) píše příkazy se sudo a smí všechno. Běžný uživatel (Anna, Petr…) píše bez sudo a smí jen se svými věcmi nebo tam, kde mu dal admin práva. Tohle dělá BĚŽNÝ UŽIVATEL sám, bez sudo:</p>
+    <ul>
+      <li><code>pwd, ls, cd</code><span class="popis">chodí po složkách a dívá se, co v nich je</span></li>
+      <li><code>mkdir moje_slozka</code><span class="popis">vytváří složky ve své domovské složce</span></li>
+      <li><code>touch, echo, nano</code><span class="popis">vytváří a píše soubory – u sebe, nebo kde má právo w</span></li>
+      <li><code>cat, less, head, tail</code><span class="popis">čte soubory, které smí číst (právo r)</span></li>
+      <li><code>cp, mv, rm</code><span class="popis">kopíruje, přesouvá a maže svoje soubory</span></li>
+      <li><code>chmod 600 muj_soubor.txt</code><span class="popis">mění práva svých vlastních souborů</span></li>
+      <li><code>grep, history, man</code><span class="popis">hledá, dívá se do historie a do návodů</span></li>
+      <li><code>passwd</code><span class="popis">změní heslo sám sobě</span></li>
+      <li><code>id, groups, whoami</code><span class="popis">zjistí, kdo je a ve kterých je skupinách</span></li>
+      <li><code>su - jiny_uzivatel</code><span class="popis">přepne se na jiného, když zná jeho heslo</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>17. CO SMÍ JEN ADMIN (SE SUDO)</h2>
+    <p class="vysvetleni">Tohle běžný uživatel neudělá – napíše mu to „Permission denied“ nebo „not in the sudoers file“. Musí to udělat admin a před příkaz dát sudo.</p>
+    <ul>
+      <li><code>sudo adduser / useradd</code><span class="popis">zakládá nové uživatele</span></li>
+      <li><code>sudo passwd jiny_uzivatel</code><span class="popis">mění heslo někomu jinému</span></li>
+      <li><code>sudo groupadd / groupdel</code><span class="popis">zakládá a maže skupiny</span></li>
+      <li><code>sudo usermod -aG / gpasswd -d</code><span class="popis">přidává lidi do skupin a vyhazuje je</span></li>
+      <li><code>sudo chown / chgrp</code><span class="popis">mění majitele nebo skupinu souboru</span></li>
+      <li><code>sudo chmod …</code><span class="popis">mění práva cizích souborů a složek</span></li>
+      <li><code>sudo setfacl …</code><span class="popis">dává práva jednotlivým lidem (ACL) u cizích souborů</span></li>
+      <li><code>sudo apt install …</code><span class="popis">instaluje programy</span></li>
+      <li><code>sudo cat /etc/shadow</code><span class="popis">čte zašifrovaná hesla</span></li>
+      <li><code>sudo -u anna … / sudo -iu anna</code><span class="popis">dělá věci za jiného uživatele bez jeho hesla</span></li>
     </ul>
   </section>
 </main>
